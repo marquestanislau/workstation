@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<project name="firstbuild" default="execute">
+	
+	<property file="build.properties"/>
+	<target name="init">
+		<mkdir dir="build/classes"/>
+		<mkdir dir="dist"/>
+	</target>
+	
+	<target name="compile" depends="init">
+		<javac srcdir="src" destdir="build/classes"/>
+	</target>
+
+	<target name="archive" depends="compile">
+		<jar destfile="dist/project.jar" basedir="build/classes"/>
+	</target>
+	
+	<target name="clean" depends="init">
+		<delete dir="build" />
+		<delete dir="dist" />
+	</target>
+	
+	<target name="execute" depends="compile, archive">
+		<property name="test" value="Konvict Muzik" />
+		<echo>${test}</echo>
+		<java classname="mz.com.ant.Main" classpath="build/classes">
+			<arg value="a" />
+			<arg value="b" />
+			<arg file="." />
+		</java>
+	</target>
+</project>
