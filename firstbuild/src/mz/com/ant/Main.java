@@ -9,4 +9,7 @@ public class Main {
 		
 	}
 	
+	protected boolean isNull(Object object) {
+		return object == null;
+	}
 }
