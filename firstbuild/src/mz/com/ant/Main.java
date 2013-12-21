@@ -1,11 +1,23 @@
 package mz.com.ant;
 
+import java.util.Scanner;
+
 public class Main {
 	
 	public static void main(String[] args) {
+
+		int a, b;
+		Scanner in = new Scanner(System.in);
 		
-		for(int i = 0; i < args.length; i++)
-			System.out.println(args[i]);
+		System.out.println("Insira o valor de 'X' .");
+		a = in.nextInt();
+		
+		System.out.println("Insira o valor de 'Y' .");
+		b= in.nextInt();
+		
+		System.out.println("O maior numero entre " + a +" e " + b + " e': " + compareTwoInteger(a,b));
+		System.out.println("Bye bye! ;)");
+		in.close();
 		
 	}
 	
