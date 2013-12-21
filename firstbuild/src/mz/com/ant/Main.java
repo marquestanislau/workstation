@@ -28,4 +28,9 @@ public class Main {
 	public static int compareTwoInteger(int first, int second) {
 		return first > second ? first: second;
 	}
+        
+        //Compara dois numeros inteiros, se sao iguais ou nao.
+        public static int theyAreTheSame(int first, int second) {
+             return first == second ? first: -1;
+        }
 }
