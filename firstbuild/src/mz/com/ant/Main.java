@@ -12,4 +12,8 @@ public class Main {
 	protected boolean isNull(Object object) {
 		return object == null;
 	}
+	
+	public static int compareTwoInteger(int first, int second) {
+		return first > second ? first: second;
+	}
 }
