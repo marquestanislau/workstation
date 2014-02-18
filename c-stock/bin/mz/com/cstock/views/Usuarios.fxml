@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.collections.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="394.0" prefWidth="626.0"
+	xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+	fx:controller="mz.com.cstock.controller.UserController">
+	<children>
+		<BorderPane prefHeight="394.0" prefWidth="626.0"
+			AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+			AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+			<top>
+				<VBox prefHeight="30.0" prefWidth="626.0">
+					<children>
+						<MenuBar xmlns:fx="http://javafx.com/fxml">
+							<menus>
+								<Menu mnemonicParsing="false" text="Sair" />
+							</menus>
+						</MenuBar>
+					</children>
+				</VBox>
+			</top>
+			<center>
+				<TableView fx:id="tableView" prefHeight="361.0" prefWidth="626.0"
+					xmlns:fx="http://javafx.com/fxml">
+					<columns>
+						<TableColumn fx:id="columnId" prefWidth="75.0" text="ID#" />
+						<TableColumn fx:id="columnName" prefWidth="75.0" text="NOME" />
+						<TableColumn fx:id="columnEmail" prefWidth="75.0"
+							text="EMAIL" />
+						<TableColumn fx:id="columnDate" prefWidth="75.0"
+							text="DATA DE REGISTRO" />
+					</columns>
+				</TableView>
+			</center>
+			<bottom>
+				<TabPane prefHeight="152.0" prefWidth="626.0"
+					tabClosingPolicy="UNAVAILABLE" xmlns:fx="http://javafx.com/fxml">
+					<tabs>
+						<Tab text="Salvar/Actualizar">
+							<content>
+								<AnchorPane minHeight="0.0" minWidth="0.0"
+									prefHeight="180.0" prefWidth="200.0">
+									<children>
+										<HBox layoutX="15.0" layoutY="14.0" prefHeight="167.0"
+											prefWidth="626.0" AnchorPane.bottomAnchor="0.0"
+											AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+											AnchorPane.topAnchor="0.0">
+											<children>
+												<VBox prefHeight="167.0" prefWidth="167.0">
+													<children>
+														<TextField promptText="Nome">
+															<VBox.margin>
+																<Insets bottom="5.0" left="5.0" right="5.0" top="10.0" />
+															</VBox.margin>
+														</TextField>
+														<TextField promptText="email">
+															<VBox.margin>
+																<Insets left="5.0" right="5.0" />
+															</VBox.margin>
+														</TextField>
+														<Button mnemonicParsing="false" text="Salvar">
+															<HBox.margin>
+																<Insets right="5.0" top="5.0" />
+															</HBox.margin>
+															<VBox.margin>
+																<Insets left="5.0" top="10.0" />
+															</VBox.margin>
+														</Button>
+													</children>
+												</VBox>
+												<VBox prefHeight="167.0" prefWidth="203.0">
+													<children>
+														<PasswordField promptText="Digite o codigo">
+															<VBox.margin>
+																<Insets bottom="5.0" right="5.0" top="10.0" />
+															</VBox.margin>
+														</PasswordField>
+														<PasswordField promptText="Repita o codigo">
+															<VBox.margin>
+																<Insets right="5.0" />
+															</VBox.margin>
+														</PasswordField>
+														<Button mnemonicParsing="false" text="Actualizar">
+															<HBox.margin>
+																<Insets top="5.0" />
+															</HBox.margin>
+															<VBox.margin>
+																<Insets top="10.0" />
+															</VBox.margin>
+														</Button>
+													</children>
+												</VBox>
+												<VBox prefHeight="167.0" prefWidth="195.0">
+													<children>
+														<HBox prefHeight="48.0" prefWidth="195.0">
+															<children>
+																<Label text="Previilegios:">
+																	<HBox.margin>
+																		<Insets bottom="5.0" right="5.0" top="10.0" />
+																	</HBox.margin>
+																</Label>
+																<ComboBox xmlns:fx="http://javafx.com/fxml">
+																	<items>
+																		<FXCollections fx:factory="observableArrayList">
+																			<String fx:value="Item 1" />
+																			<String fx:value="Item 2" />
+																			<String fx:value="Item 3" />
+																		</FXCollections>
+																	</items>
+																	<HBox.margin>
+																		<Insets bottom="5.0" top="10.0" />
+																	</HBox.margin>
+																</ComboBox>
+															</children>
+														</HBox>
+														<HBox prefHeight="100.0" prefWidth="200.0" />
+													</children>
+												</VBox>
+											</children>
+										</HBox>
+									</children>
+								</AnchorPane>
+							</content>
+						</Tab>
+						<Tab text="Remover">
+							<content>
+								<AnchorPane minHeight="0.0" minWidth="0.0"
+									prefHeight="180.0" prefWidth="200.0">
+									<children>
+										<HBox prefHeight="167.0" prefWidth="626.0"
+											AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+											AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+											<children>
+												<TextField promptText="Nome">
+													<HBox.margin>
+														<Insets left="5.0" right="5.0" top="20.0" />
+													</HBox.margin>
+												</TextField>
+												<Label text="ou">
+													<HBox.margin>
+														<Insets right="5.0" top="20.0" />
+													</HBox.margin>
+												</Label>
+												<TextField promptText="email">
+													<HBox.margin>
+														<Insets right="5.0" top="20.0" />
+													</HBox.margin>
+												</TextField>
+												<Button mnemonicParsing="false" text="Remover">
+													<HBox.margin>
+														<Insets top="20.0" />
+													</HBox.margin>
+												</Button>
+											</children>
+										</HBox>
+									</children>
+								</AnchorPane>
+							</content>
+						</Tab>
+					</tabs>
+				</TabPane>
+			</bottom>
+		</BorderPane>
+	</children>
+</AnchorPane>

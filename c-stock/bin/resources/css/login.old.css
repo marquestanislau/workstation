@@ -1,0 +1,46 @@
+/***
+#h1 {
+	-fx-font-size: 1.8em;
+	-fx-font-weight: bold;
+	-fx-effect: innershadow(one-pass-box, black, 5.0, 0.0, 1, 1) ;
+	-fx-text-fill: white;
+}
+
+#top-panel {
+	-fx-background-color: #67728E;
+	-fx-background-radius: 0.0 0.0 0.0 50.0;
+	-fx-effect: innershadow(gaussian, black, 50, 0.0, -2, 1) ;
+	-fx-effect: dropshadow(three-pass-box, black, 127.0, 0.0, 1, 1) ;
+}
+
+
+#labelMessage {
+	-fx-padding: 5 15 5 15;
+	-fx-text-fill: #F40300;
+	-fx-effect: innershadow(one-pass-box, #67728E, 2.0, 0.0, 1, 1) ;
+}
+
+.label {
+	-fx-font-family: helvica;
+	-fx-font-weight: bold;
+	-fx-font-size: 12px;
+}
+
+.text-field {
+	-fx-background-radius: 0.0;
+	-fx-effect: innershadow(gaussian, #67728E, 8.0, 0.0, 1, 1) ;
+}
+
+.button {
+	-fx-font-weight: bold;
+	-fx-font-size: 12px;
+	-fx-text-fill: white;
+	-fx-padding: 5 15 5 15; 
+	-fx-background-radius: 0.0;
+	-fx-background-color:#67728E;
+}
+
+.button:hover {
+	-fx-text-fill: black;
+}
+***/

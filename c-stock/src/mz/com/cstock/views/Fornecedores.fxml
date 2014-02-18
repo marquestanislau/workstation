@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="425.0" prefWidth="762.0"
+	xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+	<children>
+		<BorderPane prefHeight="355.0" prefWidth="640.0"
+			AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+			AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+			<top>
+				<VBox prefHeight="31.0" prefWidth="640.0">
+					<children>
+						<MenuBar xmlns:fx="http://javafx.com/fxml">
+							<menus>
+								<Menu mnemonicParsing="false" text="Imprimir" />
+								<Menu mnemonicParsing="false" text="Back">
+									<items>
+										<MenuItem mnemonicParsing="false" text="About" />
+									</items>
+								</Menu>
+							</menus>
+						</MenuBar>
+					</children>
+				</VBox>
+			</top>
+			<center>
+				<TableView prefHeight="170.0" prefWidth="762.0"
+					xmlns:fx="http://javafx.com/fxml">
+					<columns>
+						<TableColumn prefWidth="75.0" text="ID#" />
+						<TableColumn prefWidth="75.0" text="NOME" />
+						<TableColumn prefWidth="75.0" text="ENDEREÇO" />
+						<TableColumn prefWidth="75.0" text="EMAIL" />
+						<TableColumn prefWidth="75.0" text="CONTACTO" />
+						<TableColumn prefWidth="75.0" text="PRODUCTO" />
+					</columns>
+				</TableView>
+			</center>
+			<bottom>
+				<TitledPane animated="false" prefHeight="210.0"
+					prefWidth="762.0" text="Operações" xmlns:fx="http://javafx.com/fxml">
+					<content>
+						<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0"
+							prefWidth="200.0">
+							<children>
+								<TabPane prefHeight="129.0" prefWidth="694.0"
+									tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0"
+									AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+									AnchorPane.topAnchor="0.0" xmlns:fx="http://javafx.com/fxml">
+									<tabs>
+										<Tab text="Adicionar">
+											<content>
+												<AnchorPane minHeight="0.0" minWidth="0.0"
+													prefHeight="127.0" prefWidth="678.0">
+													<children>
+														<VBox layoutX="104.60000610351562" layoutY="-56.400001525878906"
+															prefHeight="76.0" prefWidth="674.0"
+															AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+															AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+															<children>
+																<TextField promptText="Endereço do fornecedor">
+																	<VBox.margin>
+																		<Insets bottom="5.0" top="5.0" />
+																	</VBox.margin>
+																</TextField>
+																<TextField promptText="Produtos">
+																	<VBox.margin>
+																		<Insets bottom="5.0" />
+																	</VBox.margin>
+																</TextField>
+																<HBox prefHeight="100.0" prefWidth="200.0">
+																	<children>
+																		<TextField promptText="Email">
+																			<HBox.margin>
+																				<Insets right="5.0" />
+																			</HBox.margin>
+																		</TextField>
+																		<TextField promptText="Telefone">
+																			<HBox.margin>
+																				<Insets right="5.0" />
+																			</HBox.margin>
+																		</TextField>
+																		<Button mnemonicParsing="false" text="Adicionar">
+																			<HBox.margin>
+																				<Insets right="5.0" />
+																			</HBox.margin>
+																		</Button>
+																		<Button mnemonicParsing="false" text="Novo" />
+																	</children>
+																</HBox>
+															</children>
+														</VBox>
+													</children>
+												</AnchorPane>
+											</content>
+										</Tab>
+										<Tab text="Remover">
+											<content>
+												<AnchorPane minHeight="0.0" minWidth="0.0"
+													prefHeight="180.0" prefWidth="200.0">
+													<children>
+														<VBox prefHeight="77.0" prefWidth="678.0"
+															AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+															AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+															<children>
+																<HBox prefHeight="100.0" prefWidth="200.0">
+																	<children>
+																		<TextField promptText="Email">
+																			<HBox.margin>
+																				<Insets right="5.0" top="10.0" />
+																			</HBox.margin>
+																		</TextField>
+																		<Label text="ou">
+																			<HBox.margin>
+																				<Insets right="5.0" top="10.0" />
+																			</HBox.margin>
+																		</Label>
+																		<TextField promptText="Nome">
+																			<HBox.margin>
+																				<Insets right="5.0" top="10.0" />
+																			</HBox.margin>
+																		</TextField>
+																		<Button mnemonicParsing="false" text="Remover">
+																			<HBox.margin>
+																				<Insets top="10.0" />
+																			</HBox.margin>
+																		</Button>
+																	</children>
+																</HBox>
+															</children>
+														</VBox>
+													</children>
+												</AnchorPane>
+											</content>
+										</Tab>
+										<Tab text="Atualizar">
+											<content>
+												<AnchorPane minHeight="0.0" minWidth="0.0"
+													prefHeight="180.0" prefWidth="200.0">
+													<children>
+														<AnchorPane minHeight="0.0" minWidth="0.0"
+															prefHeight="77.0" prefWidth="678.0"
+															AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+															AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"
+															xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+															<children>
+																<VBox layoutX="104.60000610351562" layoutY="-56.400001525878906"
+																	prefHeight="76.0" prefWidth="674.0"
+																	AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+																	AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+																	<children>
+																		<TextField promptText="Endereço do fornecedor">
+																			<VBox.margin>
+																				<Insets bottom="5.0" top="5.0" />
+																			</VBox.margin>
+																		</TextField>
+																		<TextField promptText="Produtos">
+																			<VBox.margin>
+																				<Insets bottom="5.0" />
+																			</VBox.margin>
+																		</TextField>
+																		<HBox prefHeight="100.0" prefWidth="200.0">
+																			<children>
+																				<TextField promptText="Email">
+																					<HBox.margin>
+																						<Insets right="5.0" />
+																					</HBox.margin>
+																				</TextField>
+																				<TextField promptText="Telefone">
+																					<HBox.margin>
+																						<Insets right="5.0" />
+																					</HBox.margin>
+																				</TextField>
+																				<Button mnemonicParsing="false" text="Actualizar" />
+																			</children>
+																		</HBox>
+																	</children>
+																</VBox>
+															</children>
+														</AnchorPane>
+													</children>
+												</AnchorPane>
+											</content>
+										</Tab>
+									</tabs>
+								</TabPane>
+							</children>
+						</AnchorPane>
+					</content>
+				</TitledPane>
+			</bottom>
+		</BorderPane>
+	</children>
+</AnchorPane>

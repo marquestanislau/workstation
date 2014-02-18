@@ -1,0 +1,86 @@
+.text-field {
+	-fx-background-radius: 0.0;
+	-fx-font-size: 16;
+}
+
+.tool-bar {
+	-fx-background-color: #3B3A2F;
+}
+.button {
+	-fx-background-radius: 0;
+	-fx-background-color: #2BD7E0;
+}
+.button:hover {
+	-fx-text-fill: whitesmoke;
+	-fx-underline: true;
+}
+
+.button-rounded {
+	-fx-background-radius: 0;
+	-fx-text-fill: whitesmoke;
+	-fx-font-weight: bold;
+	-fx-background-color: #2BD7E0;
+}
+
+.red {
+	-fx-background-color: #FF5C00;
+}
+.green {
+	-fx-background-color: green;
+}
+.blue {
+	-fx-background-color: blue;
+}
+
+.dark {
+	-fx-background-color:#005C00;
+}
+
+.button-rounded:hover {
+	-fx-text-fill:#132E30;
+	-fx-background-color: #48B2BC;
+}
+
+.shadow-ancor-pane {
+	
+}
+
+.table-view .column-header {
+	-fx-background-color: orange;
+	-fx-border-width: 0, 0;
+    -fx-font-size: 12px;
+}
+.table-column {
+	-fx-background-color: #2BD7E0;
+}
+
+.ancor-pane {
+	-fx-background-color: whitesmoke ;
+}
+.tab-pane .tab-header-background {
+	-fx-background-color: #2BD7E0;
+}
+
+.tab {
+	-fx-background-color: orange;
+	-fx-background-radius: 0.0;
+}
+.tab:selected {
+	-fx-background-color: white;
+}
+.footer-ancor {
+	-fx-background-color: white;
+}
+.titled-pane {
+	-fx-background-color: #2BD7E0;
+}
+.titled-pane .title{
+	-fx-font-size: 16;
+	-fx-font-weight: bold;
+	-fx-background-radius: 0.0;
+	-fx-background-color: orange;
+}
+.button-orange {
+	-fx-background-color: orange;
+	-fx-border-width: 2;
+} 
