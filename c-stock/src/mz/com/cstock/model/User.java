@@ -107,6 +107,12 @@ public class User implements Serializable {
 		return Permission.USER.equals(permission);
 	}
 
+	@Transient
+	@Override
+	public String toString() {
+		return getName();
+	}
+	
 	public User() {
 		initUserProperties();
 	}
