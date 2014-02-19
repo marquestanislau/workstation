@@ -1,7 +1,6 @@
 package mz.com.cstock.controller;
 
 import java.net.URL;
-import java.util.Calendar;
 import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
@@ -24,7 +23,7 @@ public class UserController implements Initializable {
 	@FXML
 	private TableColumn<User, String> columnEmail;
 	@FXML
-	private TableColumn<User, Calendar> columnDate;
+	private TableColumn<User, String> columnDate;
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -37,9 +36,13 @@ public class UserController implements Initializable {
 		tableView.setItems(FXCollections.observableList(dao.findAll()));
 		
 		columnId.setCellValueFactory(new PropertyValueFactory<User, String>("id"));
+		columnId.setPrefWidth(100.0);
 		columnName.setCellValueFactory(new PropertyValueFactory<User, String>("name"));
+		columnName.setPrefWidth(100.0);
 		columnEmail.setCellValueFactory(new PropertyValueFactory<User, String>("email"));
-		columnDate.setCellValueFactory(new PropertyValueFactory<User, Calendar>("dateRegistered"));
+		columnEmail.setPrefWidth(255.0);
+		columnDate.setCellValueFactory(new PropertyValueFactory<User, String>("data"));
+		columnDate.setPrefWidth(190.0);
 		
 		tableView.getColumns().setAll(columnId, columnName, columnEmail, columnDate);
 	}

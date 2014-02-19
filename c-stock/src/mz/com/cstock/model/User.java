@@ -1,6 +1,7 @@
 package mz.com.cstock.model;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import javafx.beans.property.SimpleLongProperty;
@@ -27,6 +28,7 @@ public class User implements Serializable {
 	private SimpleStringProperty email;
 	private SimpleStringProperty password;
 	private Calendar dateRegistered;
+	private SimpleStringProperty data;
 	private Permission permission;
 
 	@Id
@@ -36,6 +38,18 @@ public class User implements Serializable {
 		return id.get();
 	}
 
+	public void setData(String data) {
+		this.data.set(data);
+	}
+	
+	@Transient
+	public String getData() {
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		String dia = sdf.format(getDateRegistered().getTime());
+		data.setValue(dia);
+		return data.get();
+	}
+	
 	public void setId(Long id) {
 		this.id.set(id);
 	}
@@ -102,5 +116,6 @@ public class User implements Serializable {
 		this.id = new SimpleLongProperty();
 		this.name = new SimpleStringProperty();
 		this.password = new SimpleStringProperty();
+		this.data = new SimpleStringProperty();
 	}
 }
