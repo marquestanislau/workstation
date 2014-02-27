@@ -1,0 +1,96 @@
+.tool-bar {
+	-fx-background-color: #4DAAFF;
+	-fx-border-color: #FFFFFF;
+	-fx-border-width: 5;
+	-fx-border-insets: -5 -10 0 -10, 0, 0, 0;
+}
+.center-blue {
+	-fx-background-color: #4DAAFF;
+}
+.button-center:hover {
+	-fx-background-color: #7A7A7A;
+}
+.button {
+	-fx-background-radius: 0.0;
+	-fx-background-color: #4DAAFF;
+}
+.text-field {
+	-fx-background-radius: 0.0;
+	-fx-font-size: 16;
+	-fx-text-fill: #7A7A7A;
+}
+.button:hover {
+	/*-fx-background-color: #044AD0;*/
+}
+.blue {
+	-fx-background-color: #4DAAFF;
+}
+
+.button-rounded {
+	-fx-text-fill: #FFFFFF;
+	-fx-background-insets: 10, -20, 10, -30;
+}
+
+.button-rounded:hover {
+	-fx-border-color: #FFFFFF;
+	-fx-border-radius: 15;
+	-fx-border-width: 3;
+	-fx-border-insets: 78 0 -10 0, 0, 0, 0;
+}
+.tab {
+	-fx-background-color: #7A7A7A;
+	-fx-background-radius: 0.0;
+}
+.tab:selected {
+	-fx-background-color: #FFFFFF;
+}
+.tab .tab-label {
+	-fx-text-fill: #4DAAFF;
+}
+.tab .tab-label:hover {
+	-fx-text-fill: #044AD0;
+}
+.tab-pane .tab-header-background {
+	-fx-background-color: #4DAAFF;
+}
+.scroll-bar .increment-button {
+	-fx-background-color: #FFFFFF;
+}
+.scroll-bar .increment-button .increment-arrow{
+	-fx-background-color: #4DAAFF;
+}
+.scroll-bar .decrement-button {
+	-fx-background-color: #FFFFFF;
+} 
+.scroll-bar .decrement-button .decrement-arrow {
+	-fx-background-color: #4DAAFF;
+} 
+.scroll-bar .track {
+	-fx-background-color: #FFFFFF;
+	-fx-background-radius: 0.0;
+}
+.scroll-bar .thumb{
+	-fx-background-color: #4DAAFF;
+	-fx-background-radius: 0.0;
+}
+.table-view .column-resize-line {
+	-fx-background-color: white;
+}
+.table-view .column-header{
+	-fx-border-color: null;
+}
+.table-view .column-header-background {
+	-fx-background-color: #7A7A7A;
+	-fx-border-color: null;
+}
+.table-view .column-header-background .label {
+	-fx-text-fill: #4DAAFF;
+}
+.label {
+	-fx-text-fill: red;
+}
+.label-info {
+	-fx-font-size: 16;
+	-fx-font-weight: bold;
+	-fx-text-fill: #4DAAFF;
+}

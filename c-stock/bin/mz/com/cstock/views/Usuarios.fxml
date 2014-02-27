@@ -6,20 +6,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="419.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mz.com.cstock.controller.UserController">
+<AnchorPane prefHeight="449.0" prefWidth="776.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mz.com.cstock.controller.UserController">
 	<children>
-		<BorderPane prefHeight="394.0" prefWidth="626.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-			<top>
-				<VBox prefHeight="30.0" prefWidth="626.0">
-					<children>
-						<MenuBar xmlns:fx="http://javafx.com/fxml">
-							<menus>
-								<Menu mnemonicParsing="false" text="Sair" />
-							</menus>
-						</MenuBar>
-					</children>
-				</VBox>
-			</top>
+		<BorderPane prefHeight="394.0" prefWidth="626.0" stylesheets="/resources/css/usuarios.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 			<center>
 				<TableView fx:id="tableView" onMouseClicked="#selectItem" prefHeight="212.0" prefWidth="642.0" xmlns:fx="http://javafx.com/fxml">
 					<columns>
@@ -27,22 +16,26 @@
 						<TableColumn fx:id="columnName" prefWidth="75.0" text="NOME" />
 						<TableColumn fx:id="columnEmail" prefWidth="75.0" text="EMAIL" />
 						<TableColumn fx:id="columnDate" prefWidth="75.0" text="DATA DE REGISTRO" />
+						<TableColumn fx:id="tableColumnAction" prefWidth="75.0" text="ACÇÃO" />
 					</columns>
 				</TableView>
 			</center>
 			<bottom>
-				<TabPane prefHeight="152.0" prefWidth="626.0" tabClosingPolicy="UNAVAILABLE" xmlns:fx="http://javafx.com/fxml">
+				<TabPane prefHeight="201.0" prefWidth="776.0" tabClosingPolicy="UNAVAILABLE" xmlns:fx="http://javafx.com/fxml">
 					<tabs>
 						<Tab text="Salvar/Actualizar">
 							<content>
 								<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
 									<children>
 										<HBox layoutX="15.0" layoutY="14.0" prefHeight="167.0" prefWidth="626.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-											<children><VBox prefHeight="119.0" prefWidth="232.0">
-<children><Label fx:id="labelError">
-<VBox.margin>
-<Insets left="5.0" top="5.0" />
-</VBox.margin></Label>
+											<children>
+												<VBox prefHeight="119.0" prefWidth="232.0">
+													<children>
+														<Label fx:id="labelError">
+															<VBox.margin>
+																<Insets left="5.0" top="5.0" />
+															</VBox.margin>
+														</Label>
 														<TextField fx:id="fieldNome" promptText="Nome">
 															<VBox.margin>
 																<Insets bottom="5.0" left="5.0" right="5.0" top="10.0" />
@@ -52,29 +45,36 @@
 															<VBox.margin>
 																<Insets left="5.0" right="5.0" />
 															</VBox.margin>
-														</TextField><HBox prefHeight="29.0" prefWidth="232.0">
-<children>
-														<Button fx:id="buttonSalvar" mnemonicParsing="false" onAction="#save" text="Salvar">
-															<HBox.margin>
-																<Insets right="5.0" top="5.0" />
-															</HBox.margin>
+														</TextField>
+														<HBox prefHeight="29.0" prefWidth="232.0">
+															<children>
+																<Button fx:id="buttonSalvar" mnemonicParsing="false" onAction="#save">
+																	<HBox.margin>
+																		<Insets right="5.0" top="5.0" />
+																	</HBox.margin>
+																	<VBox.margin>
+																		<Insets left="5.0" top="10.0" />
+																	</VBox.margin>
+																</Button>
+																<Button fx:id="buttonNew" mnemonicParsing="false" onAction="#clearFields">
+																	<HBox.margin>
+																		<Insets top="5.0" />
+																	</HBox.margin>
+																</Button>
+															</children>
 															<VBox.margin>
-																<Insets left="5.0" top="10.0" />
+																<Insets left="5.0" />
 															</VBox.margin>
-														</Button><Button fx:id="buttonNew" mnemonicParsing="false" onAction="#clearFields" text="Novo">
-<HBox.margin>
-<Insets top="5.0" />
-</HBox.margin></Button>
-</children>
-<VBox.margin>
-<Insets left="5.0" />
-</VBox.margin></HBox>
-</children></VBox>
+														</HBox>
+													</children>
+												</VBox>
 												<VBox prefHeight="119.0" prefWidth="219.0">
-													<children><Label fx:id="labelErrorPassword">
-<VBox.margin>
-<Insets top="5.0" />
-</VBox.margin></Label>
+													<children>
+														<Label fx:id="labelErrorPassword">
+															<VBox.margin>
+																<Insets top="5.0" />
+															</VBox.margin>
+														</Label>
 														<PasswordField fx:id="fieldCodigo" promptText="Digite o codigo">
 															<VBox.margin>
 																<Insets bottom="5.0" right="5.0" top="10.0" />
@@ -85,12 +85,12 @@
 																<Insets right="5.0" />
 															</VBox.margin>
 														</PasswordField>
-														<Button fx:id="buttonUpdate" mnemonicParsing="false" text="Actualizar">
+														<Button fx:id="buttonUpdate" mnemonicParsing="false">
 															<HBox.margin>
 																<Insets top="5.0" />
 															</HBox.margin>
 															<VBox.margin>
-																<Insets top="10.0" />
+																<Insets top="5.0" />
 															</VBox.margin>
 														</Button>
 													</children>
@@ -117,11 +117,17 @@
 																	</HBox.margin>
 																</ComboBox>
 															</children>
+															<VBox.margin>
+																<Insets top="20.0" />
+															</VBox.margin>
 														</HBox>
 														<HBox prefHeight="100.0" prefWidth="200.0" />
 													</children>
 												</VBox>
 											</children>
+											<padding>
+												<Insets bottom="10.0" />
+											</padding>
 										</HBox>
 									</children>
 								</AnchorPane>
@@ -148,14 +154,16 @@
 														<Insets right="5.0" top="20.0" />
 													</HBox.margin>
 												</TextField>
-												<Button fx:id="buttonDelete" mnemonicParsing="false" onAction="#delete" text="Remover">
+												<Button fx:id="buttonDelete" mnemonicParsing="false" onAction="#delete">
 													<HBox.margin>
 														<Insets top="20.0" />
 													</HBox.margin>
-												</Button><Label fx:id="labelRemoved">
-<HBox.margin>
-<Insets top="20.0" />
-</HBox.margin></Label>
+												</Button>
+												<Label fx:id="labelRemoved">
+													<HBox.margin>
+														<Insets left="10.0" top="20.0" />
+													</HBox.margin>
+												</Label>
 											</children>
 										</HBox>
 									</children>

@@ -3,6 +3,7 @@ package mz.com.cstock.controller;
 import java.io.IOException;
 import java.io.Serializable;
 import java.net.URL;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -123,6 +124,13 @@ public class MainController implements Serializable, Initializable {
 	private Button buttonVendaAdd;
 	@FXML
 	private Button buttonCompraRemove;
+	@FXML
+	private Button buttonVender;
+	
+	@FXML
+	private Label labelInfo;
+	@FXML
+	private Label labelErrorSell;
 
 	private static final String imagesPath = "/resources/images/";
 
@@ -159,6 +167,15 @@ public class MainController implements Serializable, Initializable {
 			e.printStackTrace();
 		}
 	}
+	
+	private void initLabels(ProductDAO dao) {
+		int allQuantity = 0;
+		for(Product p: dao.findAll()) {
+			allQuantity += p.getQuantity();
+		}
+		DecimalFormat df = (DecimalFormat) DecimalFormat.getIntegerInstance();
+		labelInfo.setText("Tem " + df.format(allQuantity) + " produto(s) disponiveis");
+	}
 
 	@SuppressWarnings("unchecked")
 	private void populateTable() {
@@ -168,6 +185,7 @@ public class MainController implements Serializable, Initializable {
 		columnName
 				.setCellValueFactory(new PropertyValueFactory<Product, String>(
 						"name"));
+		columnName.setPrefWidth(155);
 
 		columnQuantity
 				.setCellValueFactory(new PropertyValueFactory<Product, String>(
@@ -187,16 +205,17 @@ public class MainController implements Serializable, Initializable {
 		tableView.getColumns().setAll(columnId, columnName, columnQuantity,
 				columnSellPrice, columnBuyPrice);
 		list.getItems().setAll(FXCollections.observableList(dao.findAll()));
+		initLabels(dao);
 	}
 
 	private void initButtons() {
 		Image img1, img2, img3;
 		img1 = new Image(getClass().getResourceAsStream(
-				imagesPath + "USER - M_48x48-32.png"));
+				imagesPath + "Alien.png"));
 		img2 = new Image(getClass().getResourceAsStream(
-				imagesPath + "HDD_48x48-32.png"));
+				imagesPath + "Industry.png"));
 		img3 = new Image(getClass().getResourceAsStream(
-				imagesPath + "CALENDAR_48x48-32.png"));
+				imagesPath + "notes.png"));
 		btnUser.setGraphic(new ImageView(img1));
 		btnUser.setContentDisplay(ContentDisplay.TOP);
 		btnFornecedores.setGraphic(new ImageView(img2));
@@ -205,21 +224,22 @@ public class MainController implements Serializable, Initializable {
 		btnRelatorio.setContentDisplay(ContentDisplay.TOP);
 		btnLogOut.setGraphic(new ImageView(new Image(getClass()
 				.getResourceAsStream(
-						imagesPath + "POWER - SWITCH USER_48x48-32.png"))));
+						imagesPath + "power.png"))));
 		btnLogOut.setContentDisplay(ContentDisplay.TOP);
 		btnSalvar.setGraphic(new ImageView(new Image(getClass()
-				.getResourceAsStream(imagesPath + "CERTIFICATE.png"))));
+				.getResourceAsStream(imagesPath + "add.png"))));
 		btnNovo.setGraphic(new ImageView(new Image(getClass()
-				.getResourceAsStream(imagesPath + "FILE_32x32-32.png"))));
+				.getResourceAsStream(imagesPath + "New.png"))));
 		btnActualizar.setGraphic(new ImageView(new Image(getClass()
-				.getResourceAsStream(imagesPath + "UPDATES.png"))));
+				.getResourceAsStream(imagesPath + "refresh.png"))));
 		Apagar.setGraphic(new ImageView(new Image(getClass()
-				.getResourceAsStream(imagesPath + "RECYCLE.png"))));
+				.getResourceAsStream(imagesPath + "delete.png"))));
 		// buttonSell.setGraphic(new ImageView(new
 		// Image(getClass().getResourceAsStream(imagesPath +
 		// "Ecommerce.png"))));
-		buttonVendaAdd.setGraphic(new ImageView(new Image(getClass().getResourceAsStream(imagesPath + "ATTACHMENT_32x32-32.png"))));
-		buttonCompraRemove.setGraphic(new ImageView(new Image(getClass().getResourceAsStream(imagesPath + "RECYCLE BIN - EMPTY_32x32-32.png"))));
+		buttonVendaAdd.setGraphic(new ImageView(new Image(getClass().getResourceAsStream(imagesPath + "Forward.png"))));
+		buttonCompraRemove.setGraphic(new ImageView(new Image(getClass().getResourceAsStream(imagesPath + "Backward.png"))));
+		buttonVender.setGraphic(new ImageView(new Image(getClass().getResourceAsStream(imagesPath + "Go.png"))));
 	}
 
 	private void cleanFields(TextField... fields) {
@@ -367,16 +387,21 @@ public class MainController implements Serializable, Initializable {
 	public void fromListToTable(ActionEvent event) {
 		
 		Product product = (Product)list.getSelectionModel().getSelectedItem();
-		Compra compra = new Compra();
-		CompraDAO dao = new CompraDAO();
-		compra.setDate(Calendar.getInstance());
-		compra.setName(product.getName());
-		compra.setQtd(product.getQuantity());
+		if(product != null) {
+			Compra compra = new Compra();
+			CompraDAO dao = new CompraDAO();
+			compra.setDate(Calendar.getInstance());
+			compra.setName(product.getName());
+			compra.setQtd(product.getQuantity());
+			
+			dao.save(compra);
+			dao.commitAndCloseTransaction();
+			
+			populateTableCompra();
+		} else {
+			labelErrorSell.setText("Selecione da lista para a tabela.");
+		}
 		
-		dao.save(compra);
-		dao.commitAndCloseTransaction();
-		
-		populateTableCompra();
 	}
 	
 	public void deleteFromTableCompra(ActionEvent event) {

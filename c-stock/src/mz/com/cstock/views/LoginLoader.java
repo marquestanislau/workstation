@@ -16,7 +16,9 @@ public class LoginLoader extends Application {
 	public void start(Stage stage) throws Exception {
 		stage.setTitle("cstock:Login");
 //		Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
-		Parent root = FXMLLoader.load(getClass().getResource("Main.fxml"));
+//		Parent root = FXMLLoader.load(getClass().getResource("Main.fxml"));
+//		Parent root = FXMLLoader.load(getClass().getResource("Usuarios.fxml"));
+		Parent root = FXMLLoader.load(getClass().getResource("Fornecedores.fxml"));
 		stage.setScene(new Scene(root));
 		stage.show();		
 	}

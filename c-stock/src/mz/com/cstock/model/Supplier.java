@@ -29,6 +29,7 @@ public class Supplier implements Serializable {
 	private SimpleStringProperty name;
 	private SimpleStringProperty address;
 	private SimpleStringProperty email;
+	private SimpleStringProperty contact;
 	private SimpleLongProperty id;
 	
 	public Supplier() {
@@ -41,6 +42,15 @@ public class Supplier implements Serializable {
 		this.address = new SimpleStringProperty();
 		this.email = new SimpleStringProperty();
 		this.id = new SimpleLongProperty();
+		this.contact = new SimpleStringProperty();
+	}
+	
+	public void setContact(String contact) {
+		this.contact.set(contact);
+	}
+	
+	public String getContact() {
+		return contact.get();
 	}
 
 	@OneToMany
@@ -94,5 +104,10 @@ public class Supplier implements Serializable {
 
 	public void setId(Long id) {
 		this.id.set(id);
+	}
+	
+	@Override
+	public String toString() {
+		return this.getName();
 	}
 }

@@ -5,28 +5,20 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="571.0" prefWidth="913.0"
-	xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-	fx:controller="mz.com.cstock.controller.MainController">
+<AnchorPane prefHeight="587.0" prefWidth="1016.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mz.com.cstock.controller.MainController">
 	<children>
-		<BorderPane prefHeight="472.0" prefWidth="775.0"
-			stylesheets="/resources/css/main.css" AnchorPane.bottomAnchor="0.0"
-			AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
-			AnchorPane.topAnchor="0.0">
+		<BorderPane prefHeight="472.0" prefWidth="775.0" stylesheets="/resources/css/main.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 			<top>
-				<ToolBar prefHeight="83.0" prefWidth="795.0"
-					xmlns:fx="http://javafx.com/fxml">
+				<ToolBar prefHeight="94.0" prefWidth="1016.0" xmlns:fx="http://javafx.com/fxml">
 					<items>
-						<Button fx:id="btnFornecedores" mnemonicParsing="false"
-							onAction="#openFornecedoresDialog" text="Fornecedores">
+						<Button fx:id="btnFornecedores" mnemonicParsing="false" onAction="#openFornecedoresDialog" text="Fornecedores">
 							<styleClass>
 								<String fx:value="button" />
 								<String fx:value="button-rounded" />
 								<String fx:value="red" />
 							</styleClass>
 						</Button>
-						<Button fx:id="btnUser" mnemonicParsing="false" onAction="#openUserDialog"
-							text="Usuários">
+						<Button fx:id="btnUser" mnemonicParsing="false" onAction="#openUserDialog" text="Usuários">
 							<styleClass>
 								<String fx:value="button" />
 								<String fx:value="button-rounded" />
@@ -37,7 +29,7 @@
 							<styleClass>
 								<String fx:value="button" />
 								<String fx:value="button-rounded" />
-								<String fx:value="blue" />
+								<String fx:value="blueBar" />
 							</styleClass>
 						</Button>
 						<Button fx:id="btnLogOut" mnemonicParsing="false" text="Log out">
@@ -51,23 +43,14 @@
 				</ToolBar>
 			</top>
 			<center>
-				<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0"
-					prefWidth="200.0" styleClass="shadow-ancor-pane">
+				<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="shadow-ancor-pane">
 					<children>
-						<TableView fx:id="tableView" layoutX="153.0" layoutY="10.0"
-							onMouseClicked="#selectRowFromTable" prefHeight="370.0"
-							prefWidth="775.0" AnchorPane.bottomAnchor="0.0"
-							AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
-							AnchorPane.topAnchor="0.0" xmlns:fx="http://javafx.com/fxml">
+						<TableView fx:id="tableView" layoutX="153.0" layoutY="10.0" onMouseClicked="#selectRowFromTable" prefHeight="370.0" prefWidth="775.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns:fx="http://javafx.com/fxml">
 							<columns>
-								<TableColumn fx:id="columnName" prefWidth="100.0"
-									text="Nome" />
-								<TableColumn fx:id="columnQuantity" minWidth="50.0"
-									prefWidth="100.0" text="Quantidade" />
-								<TableColumn fx:id="columnBuyPrice" minWidth="50.0"
-									prefWidth="150.0" text="Preço Compra" />
-								<TableColumn fx:id="columnSellPrice" minWidth="50.0"
-									prefWidth="100.0" text="Preço Venda" />
+								<TableColumn fx:id="columnName" prefWidth="100.0" text="Nome" />
+								<TableColumn fx:id="columnQuantity" minWidth="50.0" prefWidth="100.0" text="Quantidade" />
+								<TableColumn fx:id="columnBuyPrice" minWidth="50.0" prefWidth="150.0" text="Preço Compra(MTN)" />
+								<TableColumn fx:id="columnSellPrice" minWidth="50.0" prefWidth="100.0" text="Preço Venda(MTN)" />
 								<TableColumn fx:id="columnId" prefWidth="75.0" text="ID#" />
 							</columns>
 						</TableView>
@@ -77,48 +60,38 @@
 			<left>
 				<VBox prefHeight="389.0" prefWidth="270.0">
 					<children>
-						<TabPane prefHeight="389.0" prefWidth="360.0"
-							tabClosingPolicy="UNAVAILABLE" xmlns:fx="http://javafx.com/fxml">
+						<TabPane prefHeight="389.0" prefWidth="360.0" tabClosingPolicy="UNAVAILABLE" xmlns:fx="http://javafx.com/fxml">
 							<tabs>
 								<Tab text="Salvar">
 									<content>
-										<AnchorPane minHeight="0.0" minWidth="0.0"
-											prefHeight="180.0" prefWidth="200.0">
+										<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
 											<children>
-												<VBox layoutX="52.0" layoutY="-17.0" prefHeight="356.0"
-													prefWidth="348.0" AnchorPane.bottomAnchor="0.0"
-													AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="12.0"
-													AnchorPane.topAnchor="0.0">
+												<VBox layoutX="52.0" layoutY="-17.0" prefHeight="356.0" prefWidth="348.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="0.0">
 													<children>
 														<TextField fx:id="fieldNome" promptText="Nome">
 															<VBox.margin>
 																<Insets bottom="5.0" top="5.0" />
 															</VBox.margin>
 														</TextField>
-														<TextField fx:id="fieldQuantidade" onKeyTyped="#characterOrNumber"
-															promptText="Quantidade">
+														<TextField fx:id="fieldQuantidade" onKeyTyped="#characterOrNumber" promptText="Quantidade">
 															<VBox.margin>
 																<Insets bottom="5.0" />
 															</VBox.margin>
 														</TextField>
-														<TextField fx:id="fieldPrice" onKeyTyped="#characterOrNumber"
-															promptText="Preço de compra">
+														<TextField fx:id="fieldPrice" onKeyTyped="#characterOrNumber" promptText="Preço de compra">
 															<VBox.margin>
 																<Insets bottom="5.0" />
 															</VBox.margin>
 														</TextField>
-														<TextField fx:id="fieldPriceB" onKeyTyped="#characterOrNumber"
-															promptText="Preço de venda">
+														<TextField fx:id="fieldPriceB" onKeyTyped="#characterOrNumber" promptText="Preço de venda">
 															<VBox.margin>
 																<Insets bottom="5.0" />
 															</VBox.margin>
 														</TextField>
-														<HBox prefHeight="100.0" prefWidth="200.0">
+														<HBox id="" prefHeight="46.0" prefWidth="218.0" styleClass="blue">
 															<children>
-																<Button fx:id="btnSalvar" mnemonicParsing="false"
-																	onAction="#save" text="Salvar" />
-																<Button fx:id="btnNovo" mnemonicParsing="false"
-																	onAction="#resetSaveFields" text="Novo">
+																<Button fx:id="btnSalvar" mnemonicParsing="false" onAction="#save" prefHeight="26.0" prefWidth="110.0" />
+																<Button fx:id="btnNovo" mnemonicParsing="false" onAction="#resetSaveFields" prefHeight="26.0" prefWidth="107.0">
 																	<HBox.margin>
 																		<Insets left="5.0" />
 																	</HBox.margin>
@@ -137,12 +110,9 @@
 								</Tab>
 								<Tab text="Actualizar">
 									<content>
-										<AnchorPane minHeight="0.0" minWidth="0.0"
-											prefHeight="180.0" prefWidth="200.0">
+										<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
 											<children>
-												<VBox prefHeight="356.0" prefWidth="347.0"
-													AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
-													AnchorPane.rightAnchor="13.0" AnchorPane.topAnchor="0.0">
+												<VBox prefHeight="356.0" prefWidth="347.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="13.0" AnchorPane.topAnchor="0.0">
 													<children>
 														<Label fx:id="labelMessageActualizar">
 															<VBox.margin>
@@ -154,14 +124,12 @@
 																<Insets bottom="5.0" />
 															</VBox.margin>
 														</TextField>
-														<TextField fx:id="updateFieldQuantity"
-															promptText="Quantidade">
+														<TextField fx:id="updateFieldQuantity" promptText="Quantidade">
 															<VBox.margin>
 																<Insets bottom="5.0" />
 															</VBox.margin>
 														</TextField>
-														<TextField fx:id="updateFieldPriceBuy"
-															promptText="Preço de compra">
+														<TextField fx:id="updateFieldPriceBuy" promptText="Preço de compra">
 															<VBox.margin>
 																<Insets bottom="5.0" />
 															</VBox.margin>
@@ -171,8 +139,7 @@
 																<Insets bottom="5.0" />
 															</VBox.margin>
 														</TextField>
-														<Button fx:id="btnActualizar" mnemonicParsing="false"
-															onAction="#update" text="Actualizar" />
+														<Button fx:id="btnActualizar" mnemonicParsing="false" onAction="#update" />
 													</children>
 													<padding>
 														<Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
@@ -184,12 +151,9 @@
 								</Tab>
 								<Tab text="Apagar">
 									<content>
-										<AnchorPane minHeight="0.0" minWidth="0.0"
-											prefHeight="180.0" prefWidth="200.0">
+										<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
 											<children>
-												<VBox prefHeight="356.0" prefWidth="349.0"
-													AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
-													AnchorPane.rightAnchor="11.0" AnchorPane.topAnchor="0.0">
+												<VBox prefHeight="356.0" prefWidth="349.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="11.0" AnchorPane.topAnchor="0.0">
 													<children>
 														<Label fx:id="deleteMessage" />
 														<TextField fx:id="fieldApagar" promptText="Nome">
@@ -197,8 +161,7 @@
 																<Insets bottom="5.0" />
 															</VBox.margin>
 														</TextField>
-														<Button fx:id="Apagar" mnemonicParsing="false"
-															onAction="#delete" text="Apagar" />
+														<Button fx:id="Apagar" mnemonicParsing="false" onAction="#delete" />
 													</children>
 													<padding>
 														<Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
@@ -214,77 +177,72 @@
 				</VBox>
 			</left>
 			<bottom>
-				<TitledPane animated="false" prefHeight="176.0"
-					prefWidth="913.0" text="Venda de productos" xmlns:fx="http://javafx.com/fxml">
-					<content>
-						<AnchorPane fx:id="" minHeight="0.0" minWidth="0.0"
-							prefHeight="180.0" prefWidth="200.0" styleClass="footer-ancor">
+				<BorderPane prefHeight="200.0" prefWidth="200.0">
+					<bottom>
+						<HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" styleClass="center-blue">
 							<children>
-								<HBox layoutX="61.0" layoutY="21.0" prefHeight="158.0"
-									prefWidth="911.0" AnchorPane.bottomAnchor="10.0"
-									AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
-									AnchorPane.topAnchor="0.0">
-									<children>
-										<TitledPane animated="false" text="Producto disponivel"
-											xmlns:fx="http://javafx.com/fxml">
-											<content>
-												<AnchorPane minHeight="0.0" minWidth="0.0"
-													prefHeight="180.0" prefWidth="200.0">
-													<children>
-														<ListView fx:id="list" prefHeight="92.0"
-															prefWidth="200.0" AnchorPane.bottomAnchor="0.0"
-															AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
-															AnchorPane.topAnchor="0.0" />
-													</children>
-												</AnchorPane>
-											</content>
-										</TitledPane>
-										<VBox prefHeight="97.0" prefWidth="155.0" spacing="8.0">
-											<children>
-												<Button fx:id="buttonVendaAdd" mnemonicParsing="false"
-													onAction="#fromListToTable" text="Adicionar" />
-												<Button fx:id="buttonCompraRemove" mnemonicParsing="false"
-													onAction="#deleteFromTableCompra" text="Remover" />
-												<Button mnemonicParsing="false" text="Efectuar venda" />
-											</children>
-											<padding>
-												<Insets left="10.0" right="10.0" top="20.0" />
-											</padding>
-										</VBox>
-										<TitledPane animated="false" text="Compra"
-											xmlns:fx="http://javafx.com/fxml">
-											<content>
-												<AnchorPane minHeight="0.0" minWidth="0.0"
-													prefHeight="180.0" prefWidth="200.0">
-													<children>
-														<TableView fx:id="tableCompra" prefHeight="92.0"
-															prefWidth="200.0" AnchorPane.bottomAnchor="0.0"
-															AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
-															AnchorPane.topAnchor="0.0" xmlns:fx="http://javafx.com/fxml">
-															<columns>
-																<TableColumn fx:id="colCompraNome"
-																	prefWidth="75.0" text="Nome" />
-																<TableColumn fx:id="colCompraQdt" prefWidth="75.0"
-																	text="Qtd" />
-															</columns>
-														</TableView>
-													</children>
-												</AnchorPane>
-											</content>
-										</TitledPane>
-										<VBox prefHeight="119.0" prefWidth="208.0">
-											<children>
-												<Label text="Label" />
-												<Separator prefWidth="200.0" />
-												<Label text="Label" />
-											</children>
-										</VBox>
-									</children>
-								</HBox>
+								<Button fx:id="buttonVendaAdd" mnemonicParsing="false" onAction="#fromListToTable" prefHeight="26.0" prefWidth="127.0">
+									<styleClass>
+										<String fx:value="button" />
+										<String fx:value="button-center" />
+									</styleClass>
+								</Button>
+								<Button fx:id="buttonVender" mnemonicParsing="false" prefHeight="26.0" prefWidth="127.0">
+									<styleClass>
+										<String fx:value="button" />
+										<String fx:value="button-center" />
+									</styleClass>
+								</Button>
+								<Button fx:id="buttonCompraRemove" mnemonicParsing="false" onAction="#deleteFromTableCompra" prefHeight="26.0" prefWidth="127.0">
+									<styleClass>
+										<String fx:value="button" />
+										<String fx:value="button-center" />
+									</styleClass>
+								</Button>
+							</children>
+						</HBox>
+					</bottom>
+					<center>
+						<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="461.0">
+							<children>
+								<TableView fx:id="tableCompra" prefHeight="100.0" prefWidth="535.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns:fx="http://javafx.com/fxml">
+									<columns>
+										<TableColumn fx:id="colCompraNome" prefWidth="75.0" text="Nome" />
+										<TableColumn fx:id="colCompraQdt" prefWidth="75.0" text="Qtd" />
+									</columns>
+								</TableView>
 							</children>
 						</AnchorPane>
-					</content>
-				</TitledPane>
+					</center>
+					<right>
+						<VBox prefHeight="100.0" prefWidth="359.0">
+							<children>
+								<Label fx:id="labelInfo" text="Label">
+									<styleClass>
+										<String fx:value="label" />
+										<String fx:value="label-info" />
+									</styleClass>
+								</Label>
+								<Separator prefWidth="200.0" />
+								<Label fx:id="labelErrorSell">
+								</Label>
+							</children>
+							<padding>
+								<Insets left="5.0" />
+							</padding>
+						</VBox>
+					</right>
+					<left>
+						<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="258.0">
+							<children>
+								<ListView fx:id="list" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+							</children>
+						</AnchorPane>
+					</left>
+					<padding>
+						<Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+					</padding>
+				</BorderPane>
 			</bottom>
 		</BorderPane>
 	</children>
