@@ -5,57 +5,39 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="main" prefHeight="413.0" prefWidth="384.0"
-	stylesheets="/resources/css/login.css" xmlns="http://javafx.com/javafx/8"
-	xmlns:fx="http://javafx.com/fxml/1" fx:controller="mz.com.cstock.controller.LoginController">
+<AnchorPane id="main" prefHeight="413.0" prefWidth="384.0" stylesheets="/resources/css/login.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mz.com.cstock.controller.LoginController">
 	<children>
-		<BorderPane prefHeight="492.0" prefWidth="384.0"
-			AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
-			AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+		<BorderPane prefHeight="492.0" prefWidth="384.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 			<center>
-				<VBox id="body" fx:id="" prefHeight="294.0" prefWidth="465.0"
-					stylesheets="/resources/css/login.css" AnchorPane.bottomAnchor="50.0"
-					AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0"
-					AnchorPane.topAnchor="50.0">
+				<VBox id="body" fx:id="" prefHeight="294.0" prefWidth="465.0" stylesheets="/resources/css/login.css" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
 					<children>
-						<Label fx:id="" text="Nome:" GridPane.columnIndex="0"
-							GridPane.halignment="CENTER" GridPane.rowIndex="0">
+						<Label fx:id="" text="Nome:" GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.rowIndex="0">
 							<VBox.margin>
 								<Insets bottom="10.0" left="15.0" right="15.0" top="30.0" />
 							</VBox.margin>
 						</Label>
-						<TextField id="fieldName" fx:id="fieldName"
-							onKeyPressed="#cleanOnkeyEvent" GridPane.columnIndex="0"
-							GridPane.halignment="CENTER" GridPane.rowIndex="1">
+						<TextField id="fieldName" fx:id="fieldName" onKeyPressed="#cleanOnkeyEvent" GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.rowIndex="1">
 							<VBox.margin>
 								<Insets bottom="10.0" left="15.0" right="15.0" />
 							</VBox.margin>
 						</TextField>
-						<Label text="Codigo:" GridPane.columnIndex="0"
-							GridPane.halignment="CENTER" GridPane.rowIndex="2">
+						<Label text="Codigo:" GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.rowIndex="2">
 							<VBox.margin>
 								<Insets bottom="10.0" left="15.0" right="15.0" />
 							</VBox.margin>
 						</Label>
-						<PasswordField id="fieldPassword" fx:id="fieldPassword"
-							onKeyPressed="#cleanOnkeyEvent" prefHeight="25.0" prefWidth="133.0"
-							GridPane.columnIndex="0" GridPane.halignment="CENTER"
-							GridPane.rowIndex="3">
+						<PasswordField id="fieldPassword" fx:id="fieldPassword" onKeyPressed="#cleanOnkeyEvent" prefColumnCount="40" GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.rowIndex="3">
 							<VBox.margin>
 								<Insets bottom="10.0" left="15.0" right="15.0" />
 							</VBox.margin>
 						</PasswordField>
 					</children>
-					<BorderPane.margin>
-						<Insets left="15.0" right="15.0" top="15.0" />
-					</BorderPane.margin>
 				</VBox>
 			</center>
 			<bottom>
 				<VBox id="footer" prefHeight="106.0" prefWidth="384.0">
 					<children>
-						<Button mnemonicParsing="false" onAction="#loginUser" text="Entrar"
-							textAlignment="RIGHT" GridPane.columnIndex="0">
+						<Button mnemonicParsing="false" onAction="#loginUser" text="Entrar" textAlignment="RIGHT" GridPane.columnIndex="0">
 							<VBox.margin>
 								<Insets left="20.0" top="30.0" />
 							</VBox.margin>
@@ -71,9 +53,7 @@
 			<top>
 				<VBox id="header" prefHeight="99.0" prefWidth="384.0">
 					<children>
-						<Label id="h1" fx:id="h1" prefHeight="46.0" prefWidth="372.0"
-							text="Bem vindo!" GridPane.columnSpan="2147483647"
-							GridPane.rowIndex="1" GridPane.rowSpan="1">
+						<Label id="h1" fx:id="h1" prefHeight="46.0" prefWidth="372.0" text="Bem vindo!" GridPane.columnSpan="2147483647" GridPane.rowIndex="1" GridPane.rowSpan="1">
 							<GridPane.margin>
 								<Insets bottom="25.0" />
 							</GridPane.margin>

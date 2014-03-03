@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.collections.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="383.0" prefWidth="629.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+	<children>
+		<BorderPane layoutX="200.0" layoutY="126.0" prefHeight="383.0" prefWidth="629.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+			<center>
+				<AnchorPane prefHeight="200.0" prefWidth="200.0">
+					<children>
+						<TabPane prefHeight="383.0" prefWidth="629.0" side="LEFT" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns:fx="http://javafx.com/fxml">
+							<tabs>
+								<Tab text="Vendas">
+									<content>
+										<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+											<children>
+												<BorderPane layoutX="228.0" layoutY="109.0" prefHeight="383.0" prefWidth="596.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+													<center>
+														<BarChart title="Grafico de vendas">
+															<xAxis>
+																<CategoryAxis side="BOTTOM" />
+															</xAxis>
+															<yAxis>
+																<NumberAxis side="LEFT" />
+															</yAxis>
+														</BarChart>
+													</center>
+													<bottom>
+														<HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+															<children><Label text="Meses:" />
+																<ChoiceBox prefHeight="26.0" prefWidth="87.0" xmlns:fx="http://javafx.com/fxml">
+																	<items>
+																		<FXCollections fx:factory="observableArrayList">
+																			<String fx:value="Item 1" />
+																			<String fx:value="Item 2" />
+																			<String fx:value="Item 3" />
+																		</FXCollections>
+																	</items>
+																</ChoiceBox>
+															</children>
+<padding>
+<Insets left="20.0" right="20.0" top="20.0" />
+</padding>
+														</HBox>
+													</bottom>
+												</BorderPane>
+											</children>
+										</AnchorPane>
+									</content>
+								</Tab>
+								<Tab text="Registros">
+									<content>
+										<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+									</content>
+								</Tab>
+							</tabs>
+						</TabPane>
+					</children>
+				</AnchorPane>
+			</center>
+		</BorderPane>
+	</children>
+</AnchorPane>

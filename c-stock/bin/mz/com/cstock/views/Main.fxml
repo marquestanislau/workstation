@@ -5,58 +5,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="587.0" prefWidth="1016.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mz.com.cstock.controller.MainController">
+<AnchorPane prefHeight="550.0" prefWidth="931.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mz.com.cstock.controller.MainController">
 	<children>
 		<BorderPane prefHeight="472.0" prefWidth="775.0" stylesheets="/resources/css/main.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-			<top>
-				<ToolBar prefHeight="94.0" prefWidth="1016.0" xmlns:fx="http://javafx.com/fxml">
-					<items>
-						<Button fx:id="btnFornecedores" mnemonicParsing="false" onAction="#openFornecedoresDialog" text="Fornecedores">
-							<styleClass>
-								<String fx:value="button" />
-								<String fx:value="button-rounded" />
-								<String fx:value="red" />
-							</styleClass>
-						</Button>
-						<Button fx:id="btnUser" mnemonicParsing="false" onAction="#openUserDialog" text="Usuários">
-							<styleClass>
-								<String fx:value="button" />
-								<String fx:value="button-rounded" />
-								<String fx:value="green" />
-							</styleClass>
-						</Button>
-						<Button fx:id="btnRelatorio" mnemonicParsing="false" text="Relatorios">
-							<styleClass>
-								<String fx:value="button" />
-								<String fx:value="button-rounded" />
-								<String fx:value="blueBar" />
-							</styleClass>
-						</Button>
-						<Button fx:id="btnLogOut" mnemonicParsing="false" text="Log out">
-							<styleClass>
-								<String fx:value="button" />
-								<String fx:value="button-rounded" />
-								<String fx:value="dark" />
-							</styleClass>
-						</Button>
-					</items>
-				</ToolBar>
-			</top>
-			<center>
-				<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="shadow-ancor-pane">
-					<children>
-						<TableView fx:id="tableView" layoutX="153.0" layoutY="10.0" onMouseClicked="#selectRowFromTable" prefHeight="370.0" prefWidth="775.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns:fx="http://javafx.com/fxml">
-							<columns>
-								<TableColumn fx:id="columnName" prefWidth="100.0" text="Nome" />
-								<TableColumn fx:id="columnQuantity" minWidth="50.0" prefWidth="100.0" text="Quantidade" />
-								<TableColumn fx:id="columnBuyPrice" minWidth="50.0" prefWidth="150.0" text="Preço Compra(MTN)" />
-								<TableColumn fx:id="columnSellPrice" minWidth="50.0" prefWidth="100.0" text="Preço Venda(MTN)" />
-								<TableColumn fx:id="columnId" prefWidth="75.0" text="ID#" />
-							</columns>
-						</TableView>
-					</children>
-				</AnchorPane>
-			</center>
 			<left>
 				<VBox prefHeight="389.0" prefWidth="270.0">
 					<children>
@@ -115,9 +66,6 @@
 												<VBox prefHeight="356.0" prefWidth="347.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="13.0" AnchorPane.topAnchor="0.0">
 													<children>
 														<Label fx:id="labelMessageActualizar">
-															<VBox.margin>
-																<Insets bottom="10.0" top="10.0" />
-															</VBox.margin>
 														</Label>
 														<TextField fx:id="updateFieldName" promptText="Nome">
 															<VBox.margin>
@@ -153,7 +101,7 @@
 									<content>
 										<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
 											<children>
-												<VBox prefHeight="356.0" prefWidth="349.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="11.0" AnchorPane.topAnchor="0.0">
+												<VBox prefHeight="323.0" prefWidth="270.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 													<children>
 														<Label fx:id="deleteMessage" />
 														<TextField fx:id="fieldApagar" promptText="Nome">
@@ -163,9 +111,9 @@
 														</TextField>
 														<Button fx:id="Apagar" mnemonicParsing="false" onAction="#delete" />
 													</children>
-													<padding>
-														<Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-													</padding>
+<padding>
+<Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+</padding>
 												</VBox>
 											</children>
 										</AnchorPane>
@@ -176,46 +124,23 @@
 					</children>
 				</VBox>
 			</left>
-			<bottom>
-				<BorderPane prefHeight="200.0" prefWidth="200.0">
-					<bottom>
-						<HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" styleClass="center-blue">
-							<children>
-								<Button fx:id="buttonVendaAdd" mnemonicParsing="false" onAction="#fromListToTable" prefHeight="26.0" prefWidth="127.0">
-									<styleClass>
-										<String fx:value="button" />
-										<String fx:value="button-center" />
-									</styleClass>
-								</Button>
-								<Button fx:id="buttonVender" mnemonicParsing="false" prefHeight="26.0" prefWidth="127.0">
-									<styleClass>
-										<String fx:value="button" />
-										<String fx:value="button-center" />
-									</styleClass>
-								</Button>
-								<Button fx:id="buttonCompraRemove" mnemonicParsing="false" onAction="#deleteFromTableCompra" prefHeight="26.0" prefWidth="127.0">
-									<styleClass>
-										<String fx:value="button" />
-										<String fx:value="button-center" />
-									</styleClass>
-								</Button>
-							</children>
-						</HBox>
-					</bottom>
-					<center>
-						<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="461.0">
-							<children>
-								<TableView fx:id="tableCompra" prefHeight="100.0" prefWidth="535.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns:fx="http://javafx.com/fxml">
-									<columns>
-										<TableColumn fx:id="colCompraNome" prefWidth="75.0" text="Nome" />
-										<TableColumn fx:id="colCompraQdt" prefWidth="75.0" text="Qtd" />
-									</columns>
-								</TableView>
-							</children>
-						</AnchorPane>
-					</center>
-					<right>
-						<VBox prefHeight="100.0" prefWidth="359.0">
+<center>
+				<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="195.0" prefWidth="450.0" styleClass="shadow-ancor-pane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+					<children>
+						<TableView fx:id="tableView" layoutX="153.0" layoutY="10.0" onMouseClicked="#selectRowFromTable" prefHeight="372.0" prefWidth="746.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+							<columns>
+								<TableColumn fx:id="columnName" prefWidth="100.0" text="Nome" />
+								<TableColumn fx:id="columnQuantity" minWidth="50.0" prefWidth="100.0" text="Quantidade" />
+								<TableColumn fx:id="columnBuyPrice" minWidth="50.0" prefWidth="150.0" text="Preço Compra(MTN)" />
+								<TableColumn fx:id="columnSellPrice" minWidth="50.0" prefWidth="100.0" text="Preço Venda(MTN)" />
+								<TableColumn fx:id="columnId" prefWidth="75.0" text="ID#" />
+							</columns>
+						</TableView>
+					</children>
+				</AnchorPane>
+</center>
+<bottom>
+						<VBox prefHeight="100.0" prefWidth="394.0" spacing="15.0" styleClass="footer">
 							<children>
 								<Label fx:id="labelInfo" text="Label">
 									<styleClass>
@@ -223,27 +148,48 @@
 										<String fx:value="label-info" />
 									</styleClass>
 								</Label>
-								<Separator prefWidth="200.0" />
-								<Label fx:id="labelErrorSell">
-								</Label>
+								<Label fx:id="labelTimeLoged" text="Label" />
 							</children>
 							<padding>
-								<Insets left="5.0" />
+								<Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
 							</padding>
 						</VBox>
-					</right>
-					<left>
-						<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="258.0">
-							<children>
-								<ListView fx:id="list" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-							</children>
-						</AnchorPane>
-					</left>
-					<padding>
-						<Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-					</padding>
-				</BorderPane>
-			</bottom>
+</bottom>
+<top>
+				<ToolBar orientation="HORIZONTAL" prefHeight="94.0" prefWidth="1016.0" xmlns:fx="http://javafx.com/fxml">
+					<items>
+						<Button fx:id="btnFornecedores" mnemonicParsing="false" onAction="#openFornecedoresDialog" text="Fornecedores">
+							<styleClass>
+								<String fx:value="button" />
+								<String fx:value="button-rounded" />
+								<String fx:value="red" />
+							</styleClass>
+						</Button>
+						<Button fx:id="btnUser" mnemonicParsing="false" onAction="#openUserDialog" text="Usuários">
+							<styleClass>
+								<String fx:value="button" />
+								<String fx:value="button-rounded" />
+								<String fx:value="green" />
+							</styleClass>
+						</Button>
+						<Button fx:id="btnRelatorio" mnemonicParsing="false" onAction="#openReportDialog" text="Relatorios">
+							<styleClass>
+								<String fx:value="button" />
+								<String fx:value="button-rounded" />
+								<String fx:value="blueBar" />
+							</styleClass>
+						</Button><Button fx:id="buttonVendas" mnemonicParsing="false" onAction="#openSellDialog" text="Vendas" />
+						<Button fx:id="btnLogOut" mnemonicParsing="false" text="Log out">
+							<styleClass>
+								<String fx:value="button" />
+								<String fx:value="button-rounded" />
+								<String fx:value="dark" />
+							</styleClass>
+						</Button>
+								<Label fx:id="imageFrame" text="Well Come" />
+					</items>
+				</ToolBar>
+</top>
 		</BorderPane>
 	</children>
 </AnchorPane>

@@ -1,5 +1,7 @@
 package mz.com.cstock.controller;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -52,9 +54,10 @@ public class LoginController implements Initializable {
 			UserFacade facade = new UserFacade();
 			boolean what = facade.validateUser(fieldName.getText(),
 					fieldPassword.getText());
-
 			if (what) {
+				Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
 				final Stage stage = new Stage();
+				stage.setWidth(size.getWidth());
 				stage.setTitle("cstock");
 				Parent root;
 				try {
@@ -78,8 +81,9 @@ public class LoginController implements Initializable {
 	private void initComponents() {
 		Image image = new Image(getClass().getResourceAsStream(
 				"/resources/images/login.png"));
+		h1.setText("");
 		h1.setGraphic(new ImageView(image));
-		h1.setContentDisplay(ContentDisplay.RIGHT);
+		h1.setContentDisplay(ContentDisplay.CENTER);
 
 		fieldName.setTooltip(new Tooltip("O nome do usuário."));
 		fieldPassword.setTooltip(new Tooltip("O código do usuário."));

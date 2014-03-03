@@ -4,9 +4,7 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.net.URL;
 import java.text.DecimalFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
 import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
@@ -20,7 +18,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -31,7 +28,6 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import mz.com.cstock.dao.CompraDAO;
 import mz.com.cstock.dao.ProductDAO;
 import mz.com.cstock.model.Compra;
 import mz.com.cstock.model.Product;
@@ -57,6 +53,8 @@ public class MainController implements Serializable, Initializable {
 	private Button btnActualizar;
 	@FXML
 	private Button Apagar;
+	@FXML
+	private Button buttonVendas;
 
 	/* Label com finalidade de mostar os erros no sistema ao usuario */
 	@FXML
@@ -105,11 +103,6 @@ public class MainController implements Serializable, Initializable {
 	/* Tabela que recebe colunas */
 	@FXML
 	private TableView<Product> tableView;
-	@SuppressWarnings("rawtypes")
-	@FXML
-	private ListView list;
-	// @FXML
-	// private Button buttonSell;
 
 	@FXML
 	private TableView<Compra> tableCompra;
@@ -118,27 +111,28 @@ public class MainController implements Serializable, Initializable {
 	@FXML
 	private TableColumn<Compra, String> colCompraQdt;
 	
-//	private Popup popup;
-//	private TextField fieldView;
-	@FXML
-	private Button buttonVendaAdd;
-	@FXML
-	private Button buttonCompraRemove;
-	@FXML
-	private Button buttonVender;
-	
 	@FXML
 	private Label labelInfo;
+	
 	@FXML
-	private Label labelErrorSell;
-
+	private Label imageFrame;
+	@FXML
+	private Label labelTimeLoged;
+	
 	private static final String imagesPath = "/resources/images/";
 
 	@Override
 	public void initialize(URL url, ResourceBundle bundle) {
 		populateTable();
-		populateTableCompra();
 		initButtons();
+	}
+	
+	public void openSellDialog(ActionEvent ev) {
+		createModalWindow("Vendas", "C-Stock: Vendas", ev);
+	}
+	
+	public void openReportDialog(ActionEvent ev) {
+		createModalWindow("Relatorios", "C-Stock: Reatorios", ev);
 	}
 
 	public void openUserDialog(ActionEvent event) {
@@ -163,7 +157,6 @@ public class MainController implements Serializable, Initializable {
 			stage.initOwner(((Node) event.getSource()).getScene().getWindow());
 			stage.show();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -175,8 +168,10 @@ public class MainController implements Serializable, Initializable {
 		}
 		DecimalFormat df = (DecimalFormat) DecimalFormat.getIntegerInstance();
 		labelInfo.setText("Tem " + df.format(allQuantity) + " produto(s) disponiveis");
+		imageFrame.setGraphic(new ImageView(new Image(getClass().getResourceAsStream(imagesPath + "User.png"))));
+		imageFrame.setContentDisplay(ContentDisplay.BOTTOM);
 	}
-
+	
 	@SuppressWarnings("unchecked")
 	private void populateTable() {
 		ProductDAO dao = new ProductDAO();
@@ -204,7 +199,6 @@ public class MainController implements Serializable, Initializable {
 
 		tableView.getColumns().setAll(columnId, columnName, columnQuantity,
 				columnSellPrice, columnBuyPrice);
-		list.getItems().setAll(FXCollections.observableList(dao.findAll()));
 		initLabels(dao);
 	}
 
@@ -222,6 +216,7 @@ public class MainController implements Serializable, Initializable {
 		btnFornecedores.setContentDisplay(ContentDisplay.TOP);
 		btnRelatorio.setGraphic(new ImageView(img3));
 		btnRelatorio.setContentDisplay(ContentDisplay.TOP);
+		buttonVendas.setContentDisplay(ContentDisplay.TOP);
 		btnLogOut.setGraphic(new ImageView(new Image(getClass()
 				.getResourceAsStream(
 						imagesPath + "power.png"))));
@@ -234,12 +229,11 @@ public class MainController implements Serializable, Initializable {
 				.getResourceAsStream(imagesPath + "refresh.png"))));
 		Apagar.setGraphic(new ImageView(new Image(getClass()
 				.getResourceAsStream(imagesPath + "delete.png"))));
+		buttonVendas.setGraphic(new ImageView(new Image(getClass()
+				.getResourceAsStream(imagesPath + "share.png"))));
 		// buttonSell.setGraphic(new ImageView(new
 		// Image(getClass().getResourceAsStream(imagesPath +
 		// "Ecommerce.png"))));
-		buttonVendaAdd.setGraphic(new ImageView(new Image(getClass().getResourceAsStream(imagesPath + "Forward.png"))));
-		buttonCompraRemove.setGraphic(new ImageView(new Image(getClass().getResourceAsStream(imagesPath + "Backward.png"))));
-		buttonVender.setGraphic(new ImageView(new Image(getClass().getResourceAsStream(imagesPath + "Go.png"))));
 	}
 
 	private void cleanFields(TextField... fields) {
@@ -361,57 +355,6 @@ public class MainController implements Serializable, Initializable {
 		}
 	}
 
-	@SuppressWarnings("unchecked")
-	private void populateTableCompra() {
-		CompraDAO dao = new CompraDAO();
-		List<Compra> compras = dao.findAll();
-		List<Compra> comprasActual = new ArrayList<Compra>();
-
-		for (Compra compra : compras) {
-
-			if (compra.getDate().compareTo(Calendar.getInstance()) != 0) {
-				comprasActual.add(compra);
-			}
-
-		}
-		tableCompra.setItems(FXCollections.observableList(comprasActual));
-		colCompraNome
-				.setCellValueFactory(new PropertyValueFactory<Compra, String>(
-						"name"));
-		colCompraQdt
-				.setCellValueFactory(new PropertyValueFactory<Compra, String>(
-						"qtd"));
-		tableCompra.getColumns().setAll(colCompraNome, colCompraQdt);
-	}
-	
-	public void fromListToTable(ActionEvent event) {
-		
-		Product product = (Product)list.getSelectionModel().getSelectedItem();
-		if(product != null) {
-			Compra compra = new Compra();
-			CompraDAO dao = new CompraDAO();
-			compra.setDate(Calendar.getInstance());
-			compra.setName(product.getName());
-			compra.setQtd(product.getQuantity());
-			
-			dao.save(compra);
-			dao.commitAndCloseTransaction();
-			
-			populateTableCompra();
-		} else {
-			labelErrorSell.setText("Selecione da lista para a tabela.");
-		}
-		
-	}
-	
-	public void deleteFromTableCompra(ActionEvent event) {
-		Compra compra = tableCompra.getSelectionModel().getSelectedItem();
-		CompraDAO dao = new CompraDAO();
-		dao.delete(compra.getId(), Compra.class);
-		dao.commitAndCloseTransaction();
-		populateTableCompra();
-	}
-	
 	@FXML
 	public void characterOrNumber(KeyEvent event) {
 		if(!"0123456789".contains(event.getCharacter())) 

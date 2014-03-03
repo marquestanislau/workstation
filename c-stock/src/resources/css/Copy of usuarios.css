@@ -1,0 +1,62 @@
+.text-field {
+	-fx-background-radius: 0.0;
+	-fx-font-size: 16;
+}
+.table-view .column-header, .column-header-background {
+	-fx-background-color: #7A7A7A;
+	-fx-border-color: null;
+}
+.table-view .column-header .label {
+	-fx-text-fill: #4DAAFF;
+	-fx-font-weight: bold;
+}
+.scroll-bar .increment-button {
+	-fx-background-color: #FFFFFF;
+}
+.scroll-bar .increment-button .increment-arrow{
+	-fx-background-color: #4DAAFF;
+}
+.scroll-bar .decrement-button {
+	-fx-background-color: #FFFFFF;
+} 
+.scroll-bar .decrement-button .decrement-arrow {
+	-fx-background-color: #4DAAFF;
+} 
+.scroll-bar .track {
+	-fx-background-color: #FFFFFF;
+	-fx-background-radius: 0.0;
+}
+.scroll-bar .thumb{
+	-fx-background-color: #4DAAFF;
+	-fx-background-radius: 0.0;
+}
+.combo-box, .arrow-button {
+	-fx-background-radius: 0.0;	
+	-fx-background-color: #7A7A7A;
+}
+.arrow-button {
+	-fx-background-color: #FFFFFF;
+	-fx-border-color: #7A7A7A;
+}
+.button {
+	-fx-background-radius: 0.0;
+	-fx-background-color: #7A7A7A;
+}
+.button:hover {
+	-fx-background-color: #4DAAFF;
+}
+.tab-pane .tab-header-background {
+	-fx-background-color: #7A7A7A;
+}
+.tab {
+	-fx-background-radius: 0.0;
+	-fx-background-color: #4DAAFF;
+}
+.tab:selected {
+	-fx-background-color: #FFFFFF;
+}
+.tab .tab-label {
+	-fx-text-fill: #7A7A7A;
+	-fx-font-weight: bold;
+	-fx-effect: innershadow(gaussian, black, 5.0, 0.0, 2, 1);
+}

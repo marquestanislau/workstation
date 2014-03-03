@@ -141,7 +141,7 @@ public class UserController implements Initializable {
 
 	private void initButtons() {
 		buttonDelete.setGraphic(new ImageView(new Image(getClass()
-				.getResourceAsStream(path + "CERTIFICATE.png"))));
+				.getResourceAsStream(path + "New.png"))));
 		buttonSalvar.setGraphic(new ImageView(new Image(getClass().getResourceAsStream(path + "add.png"))));
 		buttonNew.setGraphic(new ImageView(new Image(getClass().getResourceAsStream(path + "New.png"))));
 		buttonUpdate.setGraphic(new ImageView(new Image(getClass().getResourceAsStream(path + "refresh.png"))));
