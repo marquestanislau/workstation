@@ -136,3 +136,7 @@
     -fx-text-fill: linear-gradient(white, #d0d0d0);
     -fx-font-size: 12px;
 }
+.footer .label {
+	-fx-font-size: 18;
+	-fx-text-alignment: center;
+}

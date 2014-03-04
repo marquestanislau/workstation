@@ -1,8 +1,5 @@
 package mz.com.cstock.views;
 
-import java.awt.Dimension;
-import java.awt.Toolkit;
-
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -24,11 +21,11 @@ public class LoginLoader extends Application {
 //		stage.setWidth(width.getWidth()/6 + width.getWidth()/2);
 //		stage.setHeight(height.getHeight()/6 + (height.getHeight() /2));
 //		Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
-		Parent root = FXMLLoader.load(getClass().getResource("Main.fxml"));
+//		Parent root = FXMLLoader.load(getClass().getResource("Main.fxml"));
 //		Parent root = FXMLLoader.load(getClass().getResource("Usuarios.fxml"));
 //		Parent root = FXMLLoader.load(getClass().getResource("Fornecedores.fxml"));
 //		Parent root = FXMLLoader.load(getClass().getResource("Relatorios.fxml"));
-//		Parent root = FXMLLoader.load(getClass().getResource("Vendas.fxml"));
+		Parent root = FXMLLoader.load(getClass().getResource("Vendas.fxml"));
 		stage.setScene(new Scene(root));
 		stage.getIcons().add(new Image(getClass().getResourceAsStream("/resources/images/basecircle.png")));
 		stage.show();		

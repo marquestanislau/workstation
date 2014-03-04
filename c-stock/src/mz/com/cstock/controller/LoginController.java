@@ -1,14 +1,14 @@
 package mz.com.cstock.controller;
 
-import java.awt.Dimension;
-import java.awt.Toolkit;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ContentDisplay;
@@ -38,9 +38,13 @@ public class LoginController implements Initializable {
 	public void initialize(URL url, ResourceBundle resource) {
 		initComponents();
 	}
+	
+	@FXML
+	private void loginUser(ActionEvent event) {
 
-	public void loginUser() {
-
+		Node source = (Node) event.getSource();
+		Stage closed = (Stage) source.getScene().getWindow();
+		
 		if (fieldName.getText().trim().equals("")
 				|| fieldPassword.getText().trim().equals("")) {
 			labelMessage.setText("Preencha o nome e codigo ");
@@ -55,9 +59,9 @@ public class LoginController implements Initializable {
 			boolean what = facade.validateUser(fieldName.getText(),
 					fieldPassword.getText());
 			if (what) {
-				Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
+//				Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
 				final Stage stage = new Stage();
-				stage.setWidth(size.getWidth());
+//				stage.setWidth(size.getWidth());
 				stage.setTitle("cstock");
 				Parent root;
 				try {
@@ -65,6 +69,7 @@ public class LoginController implements Initializable {
 							"../views/Main.fxml"));
 					stage.setScene(new Scene(root));
 					stage.show();
+					closed.close();
 				} catch (IOException e) {
 
 					e.printStackTrace();
@@ -91,8 +96,50 @@ public class LoginController implements Initializable {
 
 	public void cleanOnkeyEvent(KeyEvent event) {
 		if (event.getCode().equals(KeyCode.ENTER)) {
-			loginUser();
+			loginUserOnKeyEntered(event);
 		}
 	}
 
+	private void loginUserOnKeyEntered(KeyEvent event) {
+		Node source = (Node) event.getSource();
+		Stage closed = (Stage) source.getScene().getWindow();
+		
+		if (fieldName.getText().trim().equals("")
+				|| fieldPassword.getText().trim().equals("")) {
+			labelMessage.setText("Preencha o nome e codigo ");
+			return;
+		}
+		Image image = new Image(getClass().getResourceAsStream(
+				"/resources/images/KEY_16x16-32.png"));
+		try {
+
+			labelMessage.setGraphic(new ImageView(image));
+			UserFacade facade = new UserFacade();
+			boolean what = facade.validateUser(fieldName.getText(),
+					fieldPassword.getText());
+			if (what) {
+//				Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
+				final Stage stage = new Stage();
+//				stage.setWidth(size.getWidth());
+				stage.setTitle("cstock");
+				Parent root;
+				try {
+					root = FXMLLoader.load(getClass().getResource(
+							"../views/Main.fxml"));
+					stage.setScene(new Scene(root));
+					stage.show();
+					closed.close();
+				} catch (IOException e) {
+
+					e.printStackTrace();
+				}
+			} else {
+				labelMessage.setText("Codigo ou nome errado!");				
+			}
+			
+		} catch (Exception e) {
+			labelMessage.setText("Ocorreu um erro,contatar adm...");
+		}
+
+	}
 }

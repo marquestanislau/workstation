@@ -110,15 +110,15 @@ public class MainController implements Serializable, Initializable {
 	private TableColumn<Compra, String> colCompraNome;
 	@FXML
 	private TableColumn<Compra, String> colCompraQdt;
-	
+
 	@FXML
 	private Label labelInfo;
-	
+
 	@FXML
 	private Label imageFrame;
 	@FXML
 	private Label labelTimeLoged;
-	
+
 	private static final String imagesPath = "/resources/images/";
 
 	@Override
@@ -126,11 +126,11 @@ public class MainController implements Serializable, Initializable {
 		populateTable();
 		initButtons();
 	}
-	
+
 	public void openSellDialog(ActionEvent ev) {
 		createModalWindow("Vendas", "C-Stock: Vendas", ev);
 	}
-	
+
 	public void openReportDialog(ActionEvent ev) {
 		createModalWindow("Relatorios", "C-Stock: Reatorios", ev);
 	}
@@ -160,18 +160,20 @@ public class MainController implements Serializable, Initializable {
 			e.printStackTrace();
 		}
 	}
-	
+
 	private void initLabels(ProductDAO dao) {
 		int allQuantity = 0;
-		for(Product p: dao.findAll()) {
+		for (Product p : dao.findAll()) {
 			allQuantity += p.getQuantity();
 		}
 		DecimalFormat df = (DecimalFormat) DecimalFormat.getIntegerInstance();
-		labelInfo.setText("Tem " + df.format(allQuantity) + " produto(s) disponiveis");
-		imageFrame.setGraphic(new ImageView(new Image(getClass().getResourceAsStream(imagesPath + "User.png"))));
+		labelInfo.setText("Tem " + df.format(allQuantity)
+				+ " produto(s) disponiveis");
+		imageFrame.setGraphic(new ImageView(new Image(getClass()
+				.getResourceAsStream(imagesPath + "User.png"))));
 		imageFrame.setContentDisplay(ContentDisplay.BOTTOM);
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	private void populateTable() {
 		ProductDAO dao = new ProductDAO();
@@ -218,8 +220,7 @@ public class MainController implements Serializable, Initializable {
 		btnRelatorio.setContentDisplay(ContentDisplay.TOP);
 		buttonVendas.setContentDisplay(ContentDisplay.TOP);
 		btnLogOut.setGraphic(new ImageView(new Image(getClass()
-				.getResourceAsStream(
-						imagesPath + "power.png"))));
+				.getResourceAsStream(imagesPath + "power.png"))));
 		btnLogOut.setContentDisplay(ContentDisplay.TOP);
 		btnSalvar.setGraphic(new ImageView(new Image(getClass()
 				.getResourceAsStream(imagesPath + "add.png"))));
@@ -341,15 +342,16 @@ public class MainController implements Serializable, Initializable {
 					dao.update(p);
 					dao.commitAndCloseTransaction();
 					populateTable();
-					labelMessageActualizar.setText("Actualizado: " + p.getName());
+					labelMessageActualizar.setText("Actualizado: "
+							+ p.getName());
 
 				}
 			}
-			
-			if(!real) {
+
+			if (!real) {
 				labelMessageActualizar.setText("Não existe!");
 			}
-			
+
 		} catch (Exception e) {
 			labelMessageActualizar.setText("Erro ao actualizar!");
 		}
@@ -357,7 +359,7 @@ public class MainController implements Serializable, Initializable {
 
 	@FXML
 	public void characterOrNumber(KeyEvent event) {
-		if(!"0123456789".contains(event.getCharacter())) 
+		if (!"0123456789".contains(event.getCharacter()))
 			labelSaveMessage.setText("Digite apenas numeros");
 		else
 			labelSaveMessage.setText("");
