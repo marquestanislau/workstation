@@ -9,12 +9,12 @@
         linear-gradient(#20262b, #191d22),
         radial-gradient(center 50% 0%, radius 0%, rgba(114,131,148,0.9), rgba(255,255,255,0));
     -fx-background-insets: 0,1,2,0;
-    -fx-text-fill: white;
     -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
     -fx-font-family: "Arial";
     -fx-text-fill: linear-gradient(white, #d0d0d0);
     -fx-font-size: 12px;
 }
+
 .tab-pane .tab-header-background {
 	-fx-background-color: #7A7A7A;
 }
