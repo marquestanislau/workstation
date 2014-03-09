@@ -94,6 +94,7 @@ public class UserController implements Initializable {
 		UserDAO dao = new UserDAO();
 
 		tableView.setItems(FXCollections.observableList(dao.findAll()));
+		tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
 		columnId.setCellValueFactory(new PropertyValueFactory<User, String>(
 				"id"));

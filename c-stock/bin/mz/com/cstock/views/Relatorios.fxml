@@ -7,7 +7,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="383.0" prefWidth="629.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="438.0" prefWidth="754.0" stylesheets="/resources/css/relatorios.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mz.com.cstock.controller.ReportController">
 	<children>
 		<BorderPane layoutX="200.0" layoutY="126.0" prefHeight="383.0" prefWidth="629.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 			<center>
@@ -21,7 +21,7 @@
 											<children>
 												<BorderPane layoutX="228.0" layoutY="109.0" prefHeight="383.0" prefWidth="596.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 													<center>
-														<BarChart title="Grafico de vendas">
+														<BarChart fx:id="barChart" title="Grafico de vendas">
 															<xAxis>
 																<CategoryAxis side="BOTTOM" />
 															</xAxis>
@@ -31,9 +31,10 @@
 														</BarChart>
 													</center>
 													<bottom>
-														<HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
-															<children><Label text="Meses:" />
-																<ChoiceBox prefHeight="26.0" prefWidth="87.0" xmlns:fx="http://javafx.com/fxml">
+														<HBox id="footer" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+															<children>
+																<Label text="Meses:" />
+																<ChoiceBox fx:id="meses" prefHeight="26.0" prefWidth="100.0" xmlns:fx="http://javafx.com/fxml">
 																	<items>
 																		<FXCollections fx:factory="observableArrayList">
 																			<String fx:value="Item 1" />
@@ -41,11 +42,11 @@
 																			<String fx:value="Item 3" />
 																		</FXCollections>
 																	</items>
-																</ChoiceBox>
+																</ChoiceBox><Button fx:id="buttonExibir" mnemonicParsing="false" onAction="#selectMonth" text="Exibir Gráfico" /><Label fx:id="labelError" />
 															</children>
-<padding>
-<Insets left="20.0" right="20.0" top="20.0" />
-</padding>
+															<padding>
+																<Insets left="20.0" right="20.0" top="20.0" />
+															</padding>
 														</HBox>
 													</bottom>
 												</BorderPane>
@@ -55,7 +56,18 @@
 								</Tab>
 								<Tab text="Registros">
 									<content>
-										<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+										<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+											<children>
+												<StackedBarChart fx:id="sbc">
+													<xAxis>
+														<CategoryAxis side="BOTTOM" />
+													</xAxis>
+													<yAxis>
+														<NumberAxis side="LEFT" />
+													</yAxis>
+												</StackedBarChart>
+											</children>
+										</AnchorPane>
 									</content>
 								</Tab>
 							</tabs>

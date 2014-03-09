@@ -3,7 +3,9 @@ package mz.com.cstock.controller;
 import java.io.IOException;
 import java.io.Serializable;
 import java.net.URL;
+import java.text.DateFormat;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.ResourceBundle;
 
@@ -125,6 +127,7 @@ public class MainController implements Serializable, Initializable {
 	public void initialize(URL url, ResourceBundle bundle) {
 		populateTable();
 		initButtons();
+		initTime();
 	}
 
 	public void openSellDialog(ActionEvent ev) {
@@ -169,15 +172,16 @@ public class MainController implements Serializable, Initializable {
 		DecimalFormat df = (DecimalFormat) DecimalFormat.getIntegerInstance();
 		labelInfo.setText("Tem " + df.format(allQuantity)
 				+ " produto(s) disponiveis");
-		imageFrame.setGraphic(new ImageView(new Image(getClass()
-				.getResourceAsStream(imagesPath + "User.png"))));
-		imageFrame.setContentDisplay(ContentDisplay.BOTTOM);
+//		imageFrame.setGraphic(new ImageView(new Image(getClass()
+//				.getResourceAsStream(imagesPath + "User.png"))));
+//		imageFrame.setContentDisplay(ContentDisplay.BOTTOM);
 	}
 
 	@SuppressWarnings("unchecked")
 	private void populateTable() {
 		ProductDAO dao = new ProductDAO();
 		tableView.setItems(FXCollections.observableList(dao.findAll()));
+		tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
 		columnName
 				.setCellValueFactory(new PropertyValueFactory<Product, String>(
@@ -269,19 +273,29 @@ public class MainController implements Serializable, Initializable {
 		product.setDateRegistered(Calendar.getInstance());
 
 		try {
-			product.setBuyPrice(Double.parseDouble(fieldPrice.getText()));
-			product.setSellPrice(Double.parseDouble(fieldPriceB.getText()));
-			product.setQuantity(Integer.parseInt(fieldQuantidade.getText()));
-
+			
+			double buy = Double.parseDouble(fieldPrice.getText());
+			double sell = Double.parseDouble(fieldPriceB.getText());
+			int qtd = Integer.parseInt(fieldQuantidade.getText());
+			
+			product.setBuyPrice(buy);
+			product.setSellPrice(sell);
+			product.setQuantity(qtd);
+	
+			if((product.getSellPrice() <= 0) || (product.getBuyPrice() <= 0) || (product.getQuantity() <= 0)) {
+				labelSaveMessage.setText("Remova numero(s) negativo(s)");
+				return;
+			} else {
+				dao.save(product);
+				dao.commitAndCloseTransaction();
+				populateTable();
+				labelSaveMessage.setText("Produto guardado!");
+			}
+			
 		} catch (Exception e) {
-			labelSaveMessage.setText("Ocorreu um erro!");
+			labelSaveMessage.setText("Numero(s) invalidos!");
 			e.printStackTrace();
 		}
-
-		dao.save(product);
-		dao.commitAndCloseTransaction();
-		populateTable();
-		labelSaveMessage.setText("Produto guardado!");
 
 	}
 
@@ -331,19 +345,30 @@ public class MainController implements Serializable, Initializable {
 			for (Product p : dao.findAll()) {
 				if (p.getName().equals(updateFieldName.getText())) {
 					real = true;
-					p.setName(updateFieldName.getText());
-					p.setBuyPrice(Double.parseDouble(updateFieldPriceBuy
-							.getText()));
-					p.setDateRegistered(Calendar.getInstance());
-					p.setSellPrice(Double.parseDouble(updateFieldPrice
-							.getText()));
-					p.setQuantity(Integer.parseInt(updateFieldQuantity
-							.getText()));
-					dao.update(p);
-					dao.commitAndCloseTransaction();
-					populateTable();
-					labelMessageActualizar.setText("Actualizado: "
-							+ p.getName());
+					
+					try {
+						p.setName(updateFieldName.getText());
+						p.setBuyPrice(Double.parseDouble(updateFieldPriceBuy
+								.getText()));
+						p.setDateRegistered(Calendar.getInstance());
+						p.setSellPrice(Double.parseDouble(updateFieldPrice
+								.getText()));
+						p.setQuantity(Integer.parseInt(updateFieldQuantity
+								.getText()));
+						if((p.getBuyPrice() <= 0) || (p.getSellPrice() <= 0) || (p.getQuantity() <= 0)) {
+							labelMessageActualizar.setText("Remova os numeros negativos");
+							return;
+						} else {
+							dao.update(p);
+							dao.commitAndCloseTransaction();
+							populateTable();
+							labelMessageActualizar.setText("Actualizado: "
+									+ p.getName());
+						}
+					} catch (Exception e) {
+						labelMessageActualizar.setText("Numero(s) Invalido(s)!");
+						e.printStackTrace();
+					}
 
 				}
 			}
@@ -363,6 +388,12 @@ public class MainController implements Serializable, Initializable {
 			labelSaveMessage.setText("Digite apenas numeros");
 		else
 			labelSaveMessage.setText("");
+	}
+	private void initTime() {
+		Calendar time = Calendar.getInstance();
+		
+		DateFormat df = new SimpleDateFormat();
+		labelTimeLoged.setText("Dia e Hora de entrada no sistema: " + String.valueOf(df.format(time.getTime())));
 	}
 
 }

@@ -81,6 +81,7 @@ public class VendasController implements Initializable {
 
 		}
 		tableCompra.setItems(FXCollections.observableList(comprasActual));
+		tableCompra.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 		colCompraNome
 				.setCellValueFactory(new PropertyValueFactory<Compra, String>(
 						"name"));
