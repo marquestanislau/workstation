@@ -10,6 +10,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -21,6 +23,7 @@ import mz.com.cstock.dao.SupplierDAO;
 import mz.com.cstock.messages.FieldVerify;
 import mz.com.cstock.model.Product;
 import mz.com.cstock.model.Supplier;
+import mz.com.cstock.report.SupplierReport;
 
 public class FornecedoresController implements Initializable {
 
@@ -82,11 +85,21 @@ public class FornecedoresController implements Initializable {
 	private Label labelErrorCell;
 	@FXML
 	private Label labelErrorAddress;
+	
+	@FXML
+	private Menu menuPrint;
+	@FXML
+	private MenuItem intemFornecedores;
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		initButtons();
 		populateTable();
+		initMenuItens();
+	}
+	
+	private void initMenuItens() {
+		menuPrint.setGraphic(new ImageView(new Image(getClass().getResourceAsStream(path + "print.png"))));
 	}
 
 	private void initButtons() {
@@ -270,5 +283,10 @@ public class FornecedoresController implements Initializable {
 			labelErrorCell.setText("");
 			labelErrorName.setText("");
 		}
+	}
+	@FXML
+	private void callReport() {
+		SupplierReport report = new SupplierReport();
+		report.showReport("fornecedores_jasper.jasper");
 	}
 }

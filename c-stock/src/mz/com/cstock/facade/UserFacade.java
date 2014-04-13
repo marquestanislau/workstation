@@ -20,4 +20,8 @@ public class UserFacade {
 
 		return false;
 	}
+	
+	public User findByName(String name) {
+		return userDAO.findByName(name);
+	}
 }

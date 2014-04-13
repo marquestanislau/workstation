@@ -19,6 +19,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContentDisplay;
+import javafx.scene.control.Dialogs;
+import javafx.scene.control.Dialogs.DialogResponse;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -30,9 +32,12 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import mz.com.cstock.dao.ProductDAO;
 import mz.com.cstock.model.Compra;
 import mz.com.cstock.model.Product;
+import mz.com.cstock.report.ProductReport;
+import mz.com.cstock.util.UserHolder;
 
 public class MainController implements Serializable, Initializable {
 
@@ -57,6 +62,8 @@ public class MainController implements Serializable, Initializable {
 	private Button Apagar;
 	@FXML
 	private Button buttonVendas;
+	@FXML
+	private Button buttonReport;
 
 	/* Label com finalidade de mostar os erros no sistema ao usuario */
 	@FXML
@@ -158,6 +165,7 @@ public class MainController implements Serializable, Initializable {
 			stage.setTitle(title);
 			stage.initModality(Modality.WINDOW_MODAL);
 			stage.initOwner(((Node) event.getSource()).getScene().getWindow());
+			stage.initStyle(StageStyle.UTILITY);
 			stage.show();
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -172,9 +180,15 @@ public class MainController implements Serializable, Initializable {
 		DecimalFormat df = (DecimalFormat) DecimalFormat.getIntegerInstance();
 		labelInfo.setText("Tem " + df.format(allQuantity)
 				+ " produto(s) disponiveis");
-//		imageFrame.setGraphic(new ImageView(new Image(getClass()
-//				.getResourceAsStream(imagesPath + "User.png"))));
-//		imageFrame.setContentDisplay(ContentDisplay.BOTTOM);
+		try {
+			imageFrame.setText("Bem vindo: " + UserHolder.copy().getName());
+		} catch (Exception e) {
+			imageFrame.setText("Bem vindo");
+		}
+
+		// imageFrame.setGraphic(new ImageView(new Image(getClass()
+		// .getResourceAsStream(imagesPath + "User.png"))));
+		// imageFrame.setContentDisplay(ContentDisplay.BOTTOM);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -236,6 +250,8 @@ public class MainController implements Serializable, Initializable {
 				.getResourceAsStream(imagesPath + "delete.png"))));
 		buttonVendas.setGraphic(new ImageView(new Image(getClass()
 				.getResourceAsStream(imagesPath + "share.png"))));
+		buttonReport.setGraphic(new ImageView(new Image(getClass()
+				.getResourceAsStream(imagesPath + "attibutes.png"))));
 		// buttonSell.setGraphic(new ImageView(new
 		// Image(getClass().getResourceAsStream(imagesPath +
 		// "Ecommerce.png"))));
@@ -273,16 +289,17 @@ public class MainController implements Serializable, Initializable {
 		product.setDateRegistered(Calendar.getInstance());
 
 		try {
-			
+
 			double buy = Double.parseDouble(fieldPrice.getText());
 			double sell = Double.parseDouble(fieldPriceB.getText());
 			int qtd = Integer.parseInt(fieldQuantidade.getText());
-			
+
 			product.setBuyPrice(buy);
 			product.setSellPrice(sell);
 			product.setQuantity(qtd);
-	
-			if((product.getSellPrice() <= 0) || (product.getBuyPrice() <= 0) || (product.getQuantity() <= 0)) {
+
+			if ((product.getSellPrice() <= 0) || (product.getBuyPrice() <= 0)
+					|| (product.getQuantity() <= 0)) {
 				labelSaveMessage.setText("Remova numero(s) negativo(s)");
 				return;
 			} else {
@@ -291,7 +308,7 @@ public class MainController implements Serializable, Initializable {
 				populateTable();
 				labelSaveMessage.setText("Produto guardado!");
 			}
-			
+
 		} catch (Exception e) {
 			labelSaveMessage.setText("Numero(s) invalidos!");
 			e.printStackTrace();
@@ -345,7 +362,7 @@ public class MainController implements Serializable, Initializable {
 			for (Product p : dao.findAll()) {
 				if (p.getName().equals(updateFieldName.getText())) {
 					real = true;
-					
+
 					try {
 						p.setName(updateFieldName.getText());
 						p.setBuyPrice(Double.parseDouble(updateFieldPriceBuy
@@ -355,8 +372,10 @@ public class MainController implements Serializable, Initializable {
 								.getText()));
 						p.setQuantity(Integer.parseInt(updateFieldQuantity
 								.getText()));
-						if((p.getBuyPrice() <= 0) || (p.getSellPrice() <= 0) || (p.getQuantity() <= 0)) {
-							labelMessageActualizar.setText("Remova os numeros negativos");
+						if ((p.getBuyPrice() <= 0) || (p.getSellPrice() <= 0)
+								|| (p.getQuantity() <= 0)) {
+							labelMessageActualizar
+									.setText("Remova os numeros negativos");
 							return;
 						} else {
 							dao.update(p);
@@ -366,7 +385,8 @@ public class MainController implements Serializable, Initializable {
 									+ p.getName());
 						}
 					} catch (Exception e) {
-						labelMessageActualizar.setText("Numero(s) Invalido(s)!");
+						labelMessageActualizar
+								.setText("Numero(s) Invalido(s)!");
 						e.printStackTrace();
 					}
 
@@ -389,11 +409,42 @@ public class MainController implements Serializable, Initializable {
 		else
 			labelSaveMessage.setText("");
 	}
+
 	private void initTime() {
 		Calendar time = Calendar.getInstance();
-		
+
 		DateFormat df = new SimpleDateFormat();
-		labelTimeLoged.setText("Dia e Hora de entrada no sistema: " + String.valueOf(df.format(time.getTime())));
+		labelTimeLoged.setText("Dia e Hora de entrada no sistema: "
+				+ String.valueOf(df.format(time.getTime())));
 	}
 
+	@FXML
+	private void callReport() {
+		ProductReport report = new ProductReport();
+		report.showReport("product_jasper.jasper");
+	}
+
+	@FXML
+	private void logOut(ActionEvent event) {
+		Node root = (Node) event.getSource();
+		Stage stage = (Stage) root.getScene().getWindow();
+		DialogResponse response = Dialogs.showConfirmDialog(stage,
+				"Deseja sair?", "Selecione uma opção!");
+		System.out.println(response);
+		if (response == DialogResponse.YES) {
+			stage.close();
+
+			Parent root_;
+			Stage stg = new Stage();
+			try {
+				root_ = FXMLLoader.load(getClass().getResource(
+						"../views/Login.fxml"));
+				stg.setScene(new Scene(root_));
+				stg.show();
+			} catch (IOException e) {
+				e.printStackTrace();
+				Dialogs.showErrorDialog(stg, "Erro ao carregar a janela!");
+			}
+		}
+	}
 }

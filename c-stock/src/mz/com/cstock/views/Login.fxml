@@ -31,6 +31,11 @@
 								<Insets bottom="10.0" left="15.0" right="15.0" />
 							</VBox.margin>
 						</PasswordField>
+						<Label id="labelMessage" fx:id="labelMessage">
+<VBox.margin>
+<Insets left="15.0" right="15.0" />
+</VBox.margin>
+						</Label>
 					</children>
 				</VBox>
 			</center>
@@ -42,11 +47,6 @@
 								<Insets left="20.0" top="30.0" />
 							</VBox.margin>
 						</Button>
-						<Label id="labelMessage" fx:id="labelMessage">
-							<VBox.margin>
-								<Insets left="30.0" top="30.0" />
-							</VBox.margin>
-						</Label>
 					</children>
 				</VBox>
 			</bottom>

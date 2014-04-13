@@ -18,10 +18,10 @@
 					<children>
 						<MenuBar xmlns:fx="http://javafx.com/fxml">
 							<menus>
-								<Menu mnemonicParsing="false" text="Imprimir" />
-								<Menu mnemonicParsing="false" text="Back">
+								<Menu fx:id="menuPrint" mnemonicParsing="false" text="Imprimir">
 									<items>
-										<MenuItem mnemonicParsing="false" text="About" />
+										<MenuItem fx:id="intemFornecedores" mnemonicParsing="false"
+											onAction="#callReport" text="Fornecedores" />
 									</items>
 								</Menu>
 							</menus>

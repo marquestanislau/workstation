@@ -21,7 +21,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import mz.com.cstock.facade.UserFacade;
+import mz.com.cstock.model.User;
+import mz.com.cstock.util.UserHolder;
 
 public class LoginController implements Initializable {
 
@@ -58,6 +61,8 @@ public class LoginController implements Initializable {
 			UserFacade facade = new UserFacade();
 			boolean what = facade.validateUser(fieldName.getText(),
 					fieldPassword.getText());
+			User user = facade.findByName(fieldName.getText().trim());
+			UserHolder.sendUser(user);
 			if (what) {
 //				Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
 				final Stage stage = new Stage();
@@ -68,6 +73,7 @@ public class LoginController implements Initializable {
 					root = FXMLLoader.load(getClass().getResource(
 							"../views/Main.fxml"));
 					stage.setScene(new Scene(root));
+					stage.initStyle(StageStyle.UTILITY);
 					stage.show();
 					closed.close();
 				} catch (IOException e) {
@@ -117,6 +123,8 @@ public class LoginController implements Initializable {
 			UserFacade facade = new UserFacade();
 			boolean what = facade.validateUser(fieldName.getText(),
 					fieldPassword.getText());
+			User user = facade.findByName(fieldName.getText().trim());
+			UserHolder.sendUser(user);
 			if (what) {
 //				Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
 				final Stage stage = new Stage();

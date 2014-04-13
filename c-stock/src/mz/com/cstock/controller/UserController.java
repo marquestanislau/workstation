@@ -10,6 +10,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.Menu;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
@@ -24,10 +25,11 @@ import mz.com.cstock.dao.UserDAO;
 import mz.com.cstock.messages.FieldVerify;
 import mz.com.cstock.model.Permission;
 import mz.com.cstock.model.User;
+import mz.com.cstock.report.UserReport;
 
 public class UserController implements Initializable {
 
-	private static final String path = "/resources/images/";
+	private static final String PATH = "/resources/images/";
 
 	@FXML
 	private TableView<User> tableView;
@@ -81,12 +83,15 @@ public class UserController implements Initializable {
 	private Label labelErrorPassword;
 	@FXML
 	private Label labelRemoved;
+	@FXML
+	private Menu menuReport;
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		populateTable();
 		initComboBox();
 		initButtons();
+		initMenu();
 	}
 
 	@SuppressWarnings("unchecked")
@@ -135,6 +140,10 @@ public class UserController implements Initializable {
 		tableView.getColumns().setAll(columnId, columnName, columnEmail,
 				columnDate, tableColumnAction);
 	}
+	
+	private void initMenu() {
+		menuReport.setGraphic(new ImageView(new Image(this.getClass().getResourceAsStream(PATH + "print.png"))));
+	}
 
 	private void initComboBox() {
 		boxPrevilegios.getItems().setAll("", "ADMIN", "USER");
@@ -142,11 +151,11 @@ public class UserController implements Initializable {
 
 	private void initButtons() {
 		buttonDelete.setGraphic(new ImageView(new Image(getClass()
-				.getResourceAsStream(path + "New.png"))));
-		buttonSalvar.setGraphic(new ImageView(new Image(getClass().getResourceAsStream(path + "add.png"))));
-		buttonNew.setGraphic(new ImageView(new Image(getClass().getResourceAsStream(path + "New.png"))));
-		buttonUpdate.setGraphic(new ImageView(new Image(getClass().getResourceAsStream(path + "refresh.png"))));
-		buttonDelete.setGraphic(new ImageView(new Image(getClass().getResourceAsStream(path + "delete.png"))));
+				.getResourceAsStream(PATH + "New.png"))));
+		buttonSalvar.setGraphic(new ImageView(new Image(getClass().getResourceAsStream(PATH + "add.png"))));
+		buttonNew.setGraphic(new ImageView(new Image(getClass().getResourceAsStream(PATH + "New.png"))));
+		buttonUpdate.setGraphic(new ImageView(new Image(getClass().getResourceAsStream(PATH + "refresh.png"))));
+		buttonDelete.setGraphic(new ImageView(new Image(getClass().getResourceAsStream(PATH + "delete.png"))));
 	}
 
 	public void save() {
@@ -234,5 +243,10 @@ public class UserController implements Initializable {
 		dao.commitAndCloseTransaction();
 		labelRemoved.setText("Removido!");
 		populateTable();
+	}
+	@FXML
+	private void callReport() {
+		UserReport report = new UserReport();
+		report.showReport("report_user.jasper");
 	}
 }

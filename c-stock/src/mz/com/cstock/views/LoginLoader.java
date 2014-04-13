@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class LoginLoader extends Application {
 
@@ -20,14 +21,16 @@ public class LoginLoader extends Application {
 //		Dimension height = Toolkit.getDefaultToolkit().getScreenSize();
 //		stage.setWidth(width.getWidth()/6 + width.getWidth()/2);
 //		stage.setHeight(height.getHeight()/6 + (height.getHeight() /2));
-//		Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
-		Parent root = FXMLLoader.load(getClass().getResource("Main.fxml"));
+		Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
+//		Parent root = FXMLLoader.load(getClass().getResource("Main.fxml"));
 //		Parent root = FXMLLoader.load(getClass().getResource("Usuarios.fxml"));
 //		Parent root = FXMLLoader.load(getClass().getResource("Fornecedores.fxml"));
 //		Parent root = FXMLLoader.load(getClass().getResource("Relatorios.fxml"));
 //		Parent root = FXMLLoader.load(getClass().getResource("Vendas.fxml"));
 		stage.setScene(new Scene(root));
 		stage.getIcons().add(new Image(getClass().getResourceAsStream("/resources/images/basecircle.png")));
+		System.out.println();
+		stage.initStyle(StageStyle.UTILITY);
 		stage.show();		
 	}
 }

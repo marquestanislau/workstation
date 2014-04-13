@@ -6,28 +6,42 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="449.0" prefWidth="776.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mz.com.cstock.controller.UserController">
+<AnchorPane prefHeight="449.0" prefWidth="776.0"
+	xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+	fx:controller="mz.com.cstock.controller.UserController">
 	<children>
-		<BorderPane prefHeight="394.0" prefWidth="626.0" stylesheets="/resources/css/usuarios.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+		<BorderPane prefHeight="394.0" prefWidth="626.0"
+			stylesheets="/resources/css/usuarios.css" AnchorPane.bottomAnchor="0.0"
+			AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+			AnchorPane.topAnchor="0.0">
 			<center>
-				<TableView fx:id="tableView" onMouseClicked="#selectItem" prefHeight="212.0" prefWidth="642.0" xmlns:fx="http://javafx.com/fxml">
+				<TableView fx:id="tableView" onMouseClicked="#selectItem"
+					prefHeight="212.0" prefWidth="642.0" xmlns:fx="http://javafx.com/fxml">
 					<columns>
 						<TableColumn fx:id="columnId" prefWidth="75.0" text="ID#" />
 						<TableColumn fx:id="columnName" prefWidth="75.0" text="NOME" />
-						<TableColumn fx:id="columnEmail" prefWidth="75.0" text="EMAIL" />
-						<TableColumn fx:id="columnDate" prefWidth="75.0" text="DATA DE REGISTRO" />
-						<TableColumn fx:id="tableColumnAction" prefWidth="75.0" text="ACÇÃO" />
+						<TableColumn fx:id="columnEmail" prefWidth="75.0"
+							text="EMAIL" />
+						<TableColumn fx:id="columnDate" prefWidth="75.0"
+							text="DATA DE REGISTRO" />
+						<TableColumn fx:id="tableColumnAction" prefWidth="75.0"
+							text="ACÇÃO" />
 					</columns>
 				</TableView>
 			</center>
 			<bottom>
-				<TabPane prefHeight="201.0" prefWidth="776.0" tabClosingPolicy="UNAVAILABLE" xmlns:fx="http://javafx.com/fxml">
+				<TabPane prefHeight="201.0" prefWidth="776.0"
+					tabClosingPolicy="UNAVAILABLE" xmlns:fx="http://javafx.com/fxml">
 					<tabs>
 						<Tab text="Salvar/Actualizar">
 							<content>
-								<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+								<AnchorPane minHeight="0.0" minWidth="0.0"
+									prefHeight="180.0" prefWidth="200.0">
 									<children>
-										<HBox layoutX="15.0" layoutY="14.0" prefHeight="167.0" prefWidth="626.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+										<HBox layoutX="15.0" layoutY="14.0" prefHeight="167.0"
+											prefWidth="626.0" AnchorPane.bottomAnchor="0.0"
+											AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+											AnchorPane.topAnchor="0.0">
 											<children>
 												<VBox prefHeight="119.0" prefWidth="232.0">
 													<children>
@@ -48,7 +62,8 @@
 														</TextField>
 														<HBox prefHeight="29.0" prefWidth="232.0">
 															<children>
-																<Button fx:id="buttonSalvar" mnemonicParsing="false" onAction="#save">
+																<Button fx:id="buttonSalvar" mnemonicParsing="false"
+																	onAction="#save">
 																	<HBox.margin>
 																		<Insets right="5.0" top="5.0" />
 																	</HBox.margin>
@@ -56,7 +71,8 @@
 																		<Insets left="5.0" top="10.0" />
 																	</VBox.margin>
 																</Button>
-																<Button fx:id="buttonNew" mnemonicParsing="false" onAction="#clearFields">
+																<Button fx:id="buttonNew" mnemonicParsing="false"
+																	onAction="#clearFields">
 																	<HBox.margin>
 																		<Insets top="5.0" />
 																	</HBox.margin>
@@ -75,12 +91,14 @@
 																<Insets top="5.0" />
 															</VBox.margin>
 														</Label>
-														<PasswordField fx:id="fieldCodigo" promptText="Digite o codigo">
+														<PasswordField fx:id="fieldCodigo"
+															promptText="Digite o codigo">
 															<VBox.margin>
 																<Insets bottom="5.0" right="5.0" top="10.0" />
 															</VBox.margin>
 														</PasswordField>
-														<PasswordField fx:id="fieldCodigo_" onKeyTyped="#verifyPassword" promptText="Repita o codigo">
+														<PasswordField fx:id="fieldCodigo_"
+															onKeyTyped="#verifyPassword" promptText="Repita o codigo">
 															<VBox.margin>
 																<Insets right="5.0" />
 															</VBox.margin>
@@ -135,9 +153,12 @@
 						</Tab>
 						<Tab text="Remover">
 							<content>
-								<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+								<AnchorPane minHeight="0.0" minWidth="0.0"
+									prefHeight="180.0" prefWidth="200.0">
 									<children>
-										<HBox prefHeight="167.0" prefWidth="626.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+										<HBox prefHeight="167.0" prefWidth="626.0"
+											AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+											AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 											<children>
 												<TextField fx:id="fieldNomeDelete" promptText="Nome">
 													<HBox.margin>
@@ -154,7 +175,8 @@
 														<Insets right="5.0" top="20.0" />
 													</HBox.margin>
 												</TextField>
-												<Button fx:id="buttonDelete" mnemonicParsing="false" onAction="#delete">
+												<Button fx:id="buttonDelete" mnemonicParsing="false"
+													onAction="#delete">
 													<HBox.margin>
 														<Insets top="20.0" />
 													</HBox.margin>
@@ -173,6 +195,18 @@
 					</tabs>
 				</TabPane>
 			</bottom>
+			<top>
+				<MenuBar xmlns:fx="http://javafx.com/fxml">
+					<menus>
+						<Menu fx:id="menuReport" mnemonicParsing="false" text="Relatório">
+							<items>
+								<MenuItem fx:id="menuItemReatorio" mnemonicParsing="false"
+									onAction="#callReport" text="Visualizar" />
+							</items>
+						</Menu>
+					</menus>
+				</MenuBar>
+			</top>
 		</BorderPane>
 	</children>
 </AnchorPane>
