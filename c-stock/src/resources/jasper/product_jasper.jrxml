@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="product_jasper" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="833b96eb-75ae-41a1-9ae6-b72f0a34e3c9">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="16"/>
+	<queryString>
+		<![CDATA[SELECT * FROM Product;]]>
+	</queryString>
+	<field name="id" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="buyPrice" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="dateRegistered" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="quantity" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="sellPrice" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="buyPrice_1" class="java.lang.Double" resetType="Column" calculation="Sum">
+		<variableExpression><![CDATA[$F{buyPrice}]]></variableExpression>
+	</variable>
+	<variable name="sellPrice_1" class="java.lang.Double" resetType="Column" calculation="Sum">
+		<variableExpression><![CDATA[$F{sellPrice}]]></variableExpression>
+	</variable>
+	<variable name="quantity_1" class="java.lang.Integer" resetType="Column" calculation="Sum">
+		<variableExpression><![CDATA[$F{quantity}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="572" height="79" uuid="2965d563-1d3e-4596-8f21-7fdda779e592"/>
+			</rectangle>
+			<image>
+				<reportElement x="-2" y="0" width="574" height="79" uuid="5bd66ccd-56a0-41d1-a65e-6ab40b17c015"/>
+				<imageExpression><![CDATA["/home/estanislau/Desktop/jasper_logo.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="337" y="59" width="235" height="20" forecolor="#5A51F8" uuid="8d579598-92b1-4211-8638-f446979031dc"/>
+				<textElement>
+					<font fontName="AquaBase" isBold="true"/>
+				</textElement>
+				<text><![CDATA[EMAIL: estanislau@live.com]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="49" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="34" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="572" height="34" uuid="487edf37-c740-4a70-9f1c-2d561523f542"/>
+				<textElement textAlignment="Center">
+					<font fontName="Andale Mono" size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Productos Disponiveis]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="66" splitType="Stretch">
+			<rectangle>
+				<reportElement x="54" y="0" width="200" height="20" backcolor="#463A3A" uuid="a728a0a2-7684-482d-9c69-6c8dbd862036"/>
+			</rectangle>
+			<textField>
+				<reportElement x="54" y="43" width="100" height="20" uuid="fd90739a-fcaf-472d-bc1a-0d77d270ca49"/>
+				<textElement>
+					<font fontName="Andale Mono"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="154" y="42" width="100" height="20" uuid="dbf8cc1f-8cfa-43b8-b559-fbd14c7b24f3"/>
+				<textElement>
+					<font fontName="Andale Mono"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{buyPrice}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="254" y="42" width="100" height="20" uuid="b42e3ae1-b33b-4fcd-9219-a41bc589c8e2"/>
+				<textElement>
+					<font fontName="Andale Mono"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dateRegistered}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="454" y="42" width="100" height="20" uuid="4736b1f6-9efb-4ed1-b74b-5ff88f26f92e"/>
+				<textElement>
+					<font fontName="Andale Mono"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{quantity}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="354" y="42" width="100" height="20" uuid="d577ccec-b72c-4463-8c5a-d9759c29a336"/>
+				<textElement>
+					<font fontName="Andale Mono"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sellPrice}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="54" y="63" width="500" height="1" uuid="4298b229-a5e3-4b12-ba63-187a0a9a557d"/>
+			</line>
+			<staticText>
+				<reportElement x="54" y="22" width="100" height="20" uuid="edab8f7b-f098-48b5-956d-2c42793fcfa1"/>
+				<textElement>
+					<font fontName="Andale Mono" isBold="true"/>
+				</textElement>
+				<text><![CDATA[#ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="154" y="22" width="100" height="20" uuid="823bf050-c64f-4e33-922e-de6fb77e5f33"/>
+				<textElement>
+					<font fontName="Andale Mono" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PREÇO COMPRA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="254" y="23" width="100" height="20" uuid="5889aeb3-39c9-4467-8686-ada7951db01f"/>
+				<textElement>
+					<font fontName="Andale Mono" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DATA REG]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="354" y="22" width="100" height="20" uuid="c6aba848-baea-4c65-a589-22d7a8e46eda"/>
+				<textElement>
+					<font fontName="Andale Mono" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PREÇO VENDA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="454" y="22" width="100" height="20" uuid="a886585f-053c-455e-80c4-d82f598cd9a1"/>
+				<textElement>
+					<font fontName="Andale Mono" isBold="true"/>
+				</textElement>
+				<text><![CDATA[QUANTIDADE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="54" y="0" width="100" height="20" forecolor="#FEFEFE" uuid="ab56081a-fe32-4156-9dff-ad77b6be220f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[NOME:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="154" y="0" width="100" height="20" forecolor="#FFFFFF" uuid="4106c0c4-a2fe-44d8-b857-9e5d9a698725"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="54" y="20" width="500" height="1" uuid="dd7f3f9c-04a1-46eb-8cf0-66edf205b854"/>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="21" splitType="Stretch">
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="154" y="1" width="100" height="20" uuid="6dd6436f-f35a-40f9-9234-29e7b0f9c2d1"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="454" y="1" width="40" height="20" uuid="e02dcbb4-7180-4705-bacb-0d006b96f38a"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="374" y="0" width="80" height="20" uuid="214757a2-5d49-47e9-b3b7-1642693c6518"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Página "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="54" y="1" width="100" height="20" uuid="472c9510-5691-42ed-90ae-212349c49470"/>
+				<text><![CDATA[Data de emissão:]]></text>
+			</staticText>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="25" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="5" width="572" height="20" uuid="03724448-8bdc-46e6-a16c-1c5e67193b36"/>
+				<textElement textAlignment="Center">
+					<font fontName="Comic Sans MS" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Criado por Estanislau Samussone Marques]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch">
+			<staticText>
+				<reportElement x="40" y="0" width="100" height="20" uuid="3dcf990b-fbae-463b-8ee1-a4b1ab811b5c"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[TOTAL:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="140" y="0" width="100" height="20" uuid="2e1a7b76-b72b-440f-a4f9-8fa86b2bb403"/>
+				<textFieldExpression><![CDATA[$V{buyPrice_1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="340" y="0" width="100" height="20" uuid="eca84a21-c8a5-45e7-ae08-75a6bb2742b9"/>
+				<textFieldExpression><![CDATA[$V{sellPrice_1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="440" y="0" width="100" height="20" uuid="a235a201-4233-45b4-ada0-6201ab01fbb9"/>
+				<textFieldExpression><![CDATA[$V{quantity_1}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

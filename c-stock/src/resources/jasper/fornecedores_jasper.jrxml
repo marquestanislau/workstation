@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="fornecedores_jasper" language="groovy" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d7c253db-04f7-40fb-ad64-2a5373e7fd90">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT * FROM Supplier]]>
+	</queryString>
+	<field name="id" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="address" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="dateRegistered" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="email" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="contact" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="0" width="572" height="79" uuid="61c4949f-044a-4e99-90fc-bf66d4b986dd"/>
+				<imageExpression><![CDATA["/home/estanislau/git/workstation/c-stock/src/resources/images/jasper_logo.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="333" y="19" width="238" height="20" uuid="68ed5991-9c18-4977-ba2b-a637fc3b4dc6"/>
+				<textElement>
+					<font fontName="Dialog"/>
+				</textElement>
+				<text><![CDATA[E-mail: estanislau@live.com]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="334" y="59" width="238" height="20" uuid="d0dde4b0-6717-42ea-98cc-781d619fcbd6"/>
+				<textElement>
+					<font fontName="Dialog"/>
+				</textElement>
+				<text><![CDATA[Tel: 844871791]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="333" y="39" width="239" height="20" uuid="73cefea8-1e25-461e-9502-83e3e5bc94a2"/>
+				<textElement>
+					<font fontName="Dialog"/>
+				</textElement>
+				<text><![CDATA[Nome: Estanislau Marques]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="24" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="572" height="20" uuid="6cc6d77e-234a-4ba9-a30b-169869ac5692"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fornecedores de produtos]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="0" width="572" height="1" uuid="6ec88aa0-16e9-48cd-8d1f-3884edbb8047"/>
+			</line>
+			<line>
+				<reportElement x="1" y="21" width="572" height="1" uuid="2dc2d9d9-4779-42db-a20e-37cce1805d23"/>
+			</line>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="27" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="7" width="572" height="20" backcolor="#B2CAE7" uuid="79c8b1f0-6036-47ba-960e-a42c33dcb36c"/>
+				<graphicElement>
+					<pen lineWidth="0.0" lineStyle="Solid"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="13" y="7" width="100" height="20" uuid="708de838-44c5-4228-a3e9-9b84238dbf05"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[NOME]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="124" y="7" width="100" height="20" uuid="0a6a0f25-fd88-4bb2-9a25-33b6d6bb3a72"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[CONTACTO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="238" y="7" width="100" height="20" uuid="02558f1b-5abb-4a62-8219-d908ecf45ebf"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[EMAIL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="472" y="7" width="100" height="20" uuid="3d2101d0-b3a4-406a-867b-042e1326422e"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[DATA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="350" y="7" width="100" height="20" uuid="4521a2de-0b3a-45eb-a3d5-ace7aec25a7f"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[ENDERÇO]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="572" height="20" backcolor="#D7E8F7" uuid="96b03fda-5f61-4b4a-83ad-001016a3d447"/>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</rectangle>
+			<textField>
+				<reportElement x="13" y="0" width="100" height="20" uuid="7157eb66-d968-4ff2-ad47-1a53d7af3ceb"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="124" y="0" width="100" height="20" uuid="00ee3a90-3f2e-4fe4-a1cd-8bc4f37e6e39"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{contact}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="238" y="0" width="100" height="20" uuid="b684d676-bccf-4688-8dd4-1602a3f5b87a"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{email}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="472" y="0" width="100" height="20" uuid="2a82ab25-da2d-4543-9ac1-b1682e730786"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{dateRegistered}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="350" y="0" width="100" height="20" uuid="d9f209eb-428c-482a-8ada-3e8955facc2e"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{address}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="6" splitType="Stretch">
+			<line>
+				<reportElement x="0" y="3" width="572" height="1" uuid="84956587-9bf1-4b38-bb09-eb4eaad8b09f"/>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="29" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="9" width="572" height="20" uuid="586aee76-6dce-4929-bb80-a79426650443"/>
+				<textElement textAlignment="Center">
+					<font fontName="AquaBase"/>
+				</textElement>
+				<text><![CDATA[Criado por Estanislau Samussone Marques]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="468" y="9" width="80" height="20" uuid="9edc0479-9762-415c-9919-f3c308541222"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Pag "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="548" y="9" width="40" height="20" uuid="06494d4a-63cd-4d4b-a130-d362a0775b0d"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="15" y="9" width="100" height="20" uuid="72d51b24-0687-4e1e-bd60-98bce1488bae"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="15" y="0" width="100" height="20" uuid="d18603ce-82e4-414f-8e17-ad9c07f9ac6a"/>
+				<text><![CDATA[DATA]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
