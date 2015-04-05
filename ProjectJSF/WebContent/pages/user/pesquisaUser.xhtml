@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/pages/template/template.xhtml">
+	<ui:define name="center">
+		<h:outputLabel style="font-size: 40px;" value="Pesquisar usuario" />
+
+		<h:form id="frm">
+			<p:menubar>
+				<p:menuitem>
+					<p:commandButton icon="ui-icon-search" value="Pesquisar" />
+				</p:menuitem>
+				<f:facet name="options">
+					<p:menuitem>
+					<p:commandButton icon="ui-icon-circle-plus" action="cadastro?faces-redirect=true" value="Novo" />
+					</p:menuitem>
+				</f:facet>
+			</p:menubar>
+			<p:spacer />
+			<p:panelGrid>
+				<p:row>
+					<p:column>
+						<p:outputLabel value="Nome:" />
+					</p:column>
+					<p:column>
+						<p:inputText />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column colspan="4">
+						<p:outputLabel style="text-align: center;" value="Procurar pelas datas de registro" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column>
+						<p:outputLabel value="De:" />
+					</p:column>
+					<p:column>
+						<p:calendar pattern="dd/MM/yyyy" />
+					</p:column>
+					<p:column>
+						<p:outputLabel value="Ate:" />
+					</p:column>
+					<p:column>
+						<p:calendar pattern="dd/MM/yyyy" maxdate="#{java.util.Calendar.time}" />
+					</p:column>
+				</p:row>
+			</p:panelGrid>
+			
+			<p:spacer />
+			
+			<p:dataTable>
+				<p:column headerText="Nome" />
+				<p:column headerText="Apelido" />
+				<p:column headerText="Email" />
+				<p:column headerText="Contacto" />
+				<p:column headerText="Previlegio" />
+			</p:dataTable>
+		</h:form>
+	</ui:define>
+</ui:composition>
+
+</html>

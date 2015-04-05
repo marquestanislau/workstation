@@ -1,0 +1,279 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+</h:head>
+<h:body>
+	<ui:composition template="/pages/template/template.xhtml">
+		<ui:define name="center">
+
+			<h:form id="user_frm">
+				<p:menubar>
+					<f:facet name="options">
+						<p:menuitem>
+							<p:commandButton value="Lista de usuarios" icon="ui-icon-person"
+								action="/pages/user/list?faces-redirect=true" />
+						</p:menuitem>
+					</f:facet>
+					<p:menuitem>
+						<p:commandButton title="Clica para submeter os dados"
+							action="#{userBean.addUser}" value="Salvar"
+							icon="ui-icon-circle-check" update=":frm:dataTable" />
+					</p:menuitem>
+					<p:menuitem>
+						<p:commandButton value="Limpar campos" type="reset" />
+					</p:menuitem>
+
+				</p:menubar>
+				<p:growl autoUpdate="true" showDetail="true" showSummary="true" />
+				<p:panelGrid>
+					<p:row>
+						<p:column>
+							<h:outputLabel value="Nome: " />
+						</p:column>
+						<p:column>
+							<p:inputText id="nome" value="#{userBean.user.nome}" />
+						</p:column>
+						<p:column>
+							<h:outputLabel for="apelido" value="Apelido: " />
+						</p:column>
+						<p:column>
+							<p:inputText id="apelido" value="#{userBean.user.apelido}" />
+						</p:column>
+					</p:row>
+
+					<p:row>
+						<p:column>
+							<h:outputLabel for="email" value="Email: " />
+						</p:column>
+						<p:column>
+							<p:inputText id="email"
+								validatorMessage="Formato de email invalido!"
+								value="#{userBean.user.email}">
+								<f:validateRegex
+									pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+							</p:inputText>
+							<p:watermark for="email" value="exemplo@mail.com"></p:watermark>
+						</p:column>
+						<p:column>
+							<h:outputLabel for="cell" value="Cell: " />
+						</p:column>
+						<p:column>
+							<p:inputMask id="cell" mask="(+258)-999-999-999"
+								value="#{userBean.user.cell}" />
+							<p:watermark value="(+258)-123-456-789" for="cell" />
+						</p:column>
+						<p:column>
+							<p:outputLabel value="Tipo de usuario: " />
+						</p:column>
+						<p:column>
+							<p:selectOneMenu value="#{userBean.user.role}">
+								<f:selectItem itemLabel="Selecione..." />
+								<f:selectItems value="#{userBean.roles}" var="rolex"
+									itemValue="#{rolex}" itemLabel="#{rolex.label}" />
+							</p:selectOneMenu>
+						</p:column>
+					</p:row>
+
+					<p:row>
+						<p:column>
+							<p:outputLabel value="Senha:" />
+						</p:column>
+						<p:column>
+							<p:password maxlength="15" />
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>
+							<p:outputLabel value="Repita a senha:" />
+						</p:column>
+						<p:column>
+							<p:password maxlength="15" />
+						</p:column>
+					</p:row>
+
+				</p:panelGrid>
+			</h:form>
+
+			<p:spacer />
+
+			<h:form id="frm">
+				<p:growl id="growl" autoUpdate="true" showDetail="true"
+					showSummary="true" />
+				<p:menubar id="menu_search">
+					<p:menuitem>
+						<p:outputLabel value="Nome:" />
+					</p:menuitem>
+					<p:menuitem>
+						<p:spacer width="5" />
+					</p:menuitem>
+					<p:menuitem>
+						<p:inputText id="nome_search" size="100" />
+						<p:watermark for="nome_search" value="Digite o nome aqui" />
+					</p:menuitem>
+					<p:menuitem>
+						<p:spacer width="5" />
+					</p:menuitem>
+					<p:menuitem>
+						<p:commandButton icon="ui-icon-search" value="Procurar" />
+					</p:menuitem>
+					<f:facet name="options">
+						<p:menuitem>
+							<p:commandButton value="Pesquisar" process="menu_search"
+								action="/pages/user/pesquisaUser?faces-redirect=true" />
+						</p:menuitem>
+					</f:facet>
+				</p:menubar>
+				<p:panelGrid columns="1" layout="grid">
+					<f:facet name="header">
+						<p:outputLabel value="Usuarios cadastrados" />
+					</f:facet>
+					<p:dataTable emptyMessage="Sem usuarios cadastrados" id="dataTable"
+						var="user" rows="5" value="#{userBean.users}" paginator="true"
+						selectionMode="single" selection="#{userBean.user}"
+						rowKey="#{user.id}">
+						<p:ajax event="rowSelect" listener="#{userBean.onRowSelect}"
+							update=":frm:growl" />
+						<p:column headerText="Nome">
+							<p:outputLabel value="#{user.nome}" />
+						</p:column>
+						<p:column headerText="Apelido">
+							<p:outputLabel value="#{user.apelido}" />
+						</p:column>
+						<p:column headerText="Email">
+							<p:outputLabel value="#{user.email}" />
+						</p:column>
+						<p:column headerText="Data de registro">
+							<p:outputLabel value="#{user.created.time}">
+								<f:convertDateTime pattern="dd/MM/yy" type="date" />
+							</p:outputLabel>
+						</p:column>
+						<p:column headerText="Contacto">
+							<p:outputLabel value="#{user.cell}" />
+						</p:column>
+						<p:column headerText="Role">
+							<p:outputLabel value="#{user.role.label}" />
+						</p:column>
+						<p:column headerText="">
+							<p:commandButton icon="ui-icon-trash"
+								onclick="PF('confirmDialog').show()" />
+
+							<p:confirmDialog appendTo="@(body)" modal="true"
+								header="Mensagem de confirmacao" widgetVar="confirmDialog"
+								message="Deseja apagar usuario?" showEffect="slide"
+								hideEffect="slide">
+
+								<!-- <h:form id="confirm_frm"> -->
+								<p:commandButton value="Sim"
+									oncomplete="PF('confirmDialog').hide()"
+									action="#{userBean.deleteUser(user)}" update=":frm:dataTable" />
+								<p:commandButton value="Nao"
+									onclick="PF('confirmDialog').hide()" />
+								<!-- </h:form> -->
+							</p:confirmDialog>
+
+							<p:commandButton update=":frm:frm_update:userDetail"
+								oncomplete="PF('update_dialog').show()" icon="ui-icon-pencil"
+								process="dataTable" />
+							<p:commandButton update=":frm:viewUser"
+								oncomplete="PF('view_dialog').show()" icon="ui-icon-search"
+								process="dataTable" />
+						</p:column>
+						<p:columnGroup type="footer">
+							<p:row>
+								<p:column colspan="6" style="text-align: right;"
+									footerText="Numero total de usuarios:" />
+								<p:column footerText="#{userBean.totalUsers}" />
+							</p:row>
+						</p:columnGroup>
+					</p:dataTable>
+					<f:facet name="footer">
+						<p:spacer width="10" />
+						<p:commandButton icon="ui-icon-plus" value="Novo Cadastro" />
+					</f:facet>
+				</p:panelGrid>
+
+				<p:dialog resizable="false" closable="true"
+					widgetVar="update_dialog" showEffect="size" hideEffect="size">
+
+					<h:form id="frm_update">
+						<p:panelGrid id="userDetail" columns="2">
+							<f:facet name="header">
+								<p:outputLabel value="Detalhes de: " />
+								<p:outputLabel value="#{userBean.user.nome}" />
+							</f:facet>
+
+							<p:outputLabel for="edit_nome" value="Nome:" />
+							<p:inputText id="edit_nome" value="#{userBean.user.nome}" />
+
+							<p:outputLabel for="edit_apelido" value="Apelido:" />
+							<p:inputText id="edit_apelido" value="#{userBean.user.apelido}" />
+
+							<p:outputLabel for="edit_email" value="Email:" />
+							<p:inputText id="edit_email" value="#{userBean.user.email}"
+								validatorMessage="Formato de email invalido!">
+								<f:validateRegex
+									pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+							</p:inputText>
+
+							<p:outputLabel value="Cell:" />
+							<p:inputMask mask="(+258)-999-999-999"
+								value="#{userBean.user.cell}" />
+
+							<p:outputLabel value="Tipo de usuario:" />
+							<p:selectOneMenu value="#{userBean.user.role}">
+								<f:selectItem itemLabel="Selecione..." />
+								<f:selectItems value="#{userBean.roles}" var="rolex"
+									itemValue="#{rolex}" itemLabel="#{rolex.label}" />
+							</p:selectOneMenu>
+
+							<f:facet name="footer">
+								<p:commandButton icon="ui-icon-refresh"
+									action="#{userBean.update}" update=":frm:dataTable"
+									value="Actualizar" />
+							</f:facet>
+						</p:panelGrid>
+					</h:form>
+				</p:dialog>
+
+				<p:dialog widgetVar="view_dialog" closable="true"
+					closeOnEscape="true" modal="false" resizable="false"
+					showEffect="slide" hideEffect="slide">
+					<p:panelGrid id="viewUser" columns="2">
+						<f:facet name="header">
+							<p:outputLabel value="Detalhes de: " />
+							<p:outputLabel value="#{userBean.user.nome}" />
+						</f:facet>
+
+						<p:outputLabel value="Nome:" />
+						<p:outputLabel value="#{userBean.user.nome}" />
+
+						<p:outputLabel value="Apelido:" />
+						<p:outputLabel value="#{userBean.user.apelido}" />
+
+						<p:outputLabel value="Email:" />
+						<p:outputLabel value="#{userBean.user.email}" />
+
+						<p:outputLabel value="Cell:" />
+						<p:outputLabel value="#{userBean.user.cell}" />
+
+						<p:outputLabel value="Tipo de usuario:" />
+						<p:outputLabel value="#{userBean.user.role}" />
+
+						<f:facet name="footer">
+							<p:commandButton value="Ok" onclick="PF('view_dialog').hide()" />
+						</f:facet>
+
+					</p:panelGrid>
+				</p:dialog>
+
+			</h:form>
+
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>
