@@ -56,7 +56,7 @@
 		</dependency>
 		<dependency>
 			<groupId>org.primefaces.themes</groupId>
-			<artifactId>eggplant</artifactId>
+			<artifactId>ui-lightness</artifactId>
 			<version>1.0.10</version>
 		</dependency>
 	</dependencies>
