@@ -1,14 +1,79 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
 
-	<ui:composition template="/pages/template/template.xhtml">
-		<ui:define name="center">
-			<h:outputLabel value="Registo de Multas" style="font-size: 30px;" />
-		</ui:define>
-	</ui:composition>
-	
+<ui:composition template="/pages/template/template.xhtml">
+	<ui:define name="center">
+		<h:outputLabel value="Registo de Multas" style="font-size: 30px;" />
+		<h:form id="main_frm">
+			<p:growl id="message" showDetail="true" showSummary="true" />
+			<p:menubar>
+				<p:menuitem>
+					<p:commandButton value="Salvar" icon="ui-icon-circle-check" />
+				</p:menuitem>
+			</p:menubar>
+
+			<p:spacer />
+
+			<p:panelGrid>
+				<p:row>
+					<p:column>
+						<p:outputLabel for="nome" value="Designa&ccedil;&atilde;o:" />
+					</p:column>
+					<p:column>
+						<p:inputText id="nome" size="45" />
+					</p:column>
+					<p:column>
+						<p:outputLabel value="Tipo:" />
+					</p:column>
+					<p:column>
+						<p:selectOneMenu>
+							<f:selectItem itemLabel="Selecione um tipo..." />
+						</p:selectOneMenu>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column>
+						<p:outputLabel value="Gravidade:" />
+					</p:column>
+					<p:column>
+						<p:selectOneMenu>
+							<f:selectItem itemLabel="Selecione..." />
+						</p:selectOneMenu>
+					</p:column>
+					<p:column>
+						<p:outputLabel for="valor" value="Valor da multa:" />
+					</p:column>
+					<p:column>
+						<p:inputText id="valor">
+							<f:convertNumber for="valor" />
+						</p:inputText>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column>
+						<p:outputLabel value="Data de aprova&ccedil;&atilde;o:" />
+					</p:column>
+					<p:column>
+						<p:calendar id="data" pattern="dd/mm/yyyy" />
+						<p:watermark value=" exemplo: 01/01/1900" for="data" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column>
+						<p:outputLabel style="padding-bottom: 45%;" for="desc"
+							value="Descri&ccedil;&atilde;o:" />
+					</p:column>
+					<p:column>
+						<p:inputTextarea id="desc" cols="50" rows="10" />
+					</p:column>
+				</p:row>
+			</p:panelGrid>
+		</h:form>
+	</ui:define>
+</ui:composition>
+
 </html>
