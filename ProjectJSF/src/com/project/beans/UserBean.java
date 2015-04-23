@@ -4,6 +4,7 @@ import java.util.Calendar;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -22,7 +23,17 @@ public class UserBean {
 
 	private User user;
 	private List<User> users;
+	private List<User> filteredUsers;
 	private int totalUsers;
+	private UserDao dao = null;
+	
+	public void setFilteredUsers(List<User> filteredUsers) {
+		this.filteredUsers = filteredUsers;
+	}
+	
+	public List<User> getFilteredUsers() {
+		return filteredUsers;
+	}
 
 	public User getUser() {
 		return user;
@@ -43,13 +54,11 @@ public class UserBean {
 	public String addUser() {
 		System.out.println("Managed bean working");
 		FacesContext context = FacesContext.getCurrentInstance();
-		UserDao dao = new UserDao(ConnectionFactory.getConnection().createEntityManager());
+		
 		user.setCreated(Calendar.getInstance());
-		dao.begin();
+
 		dao.create(user);
 		dao.commit();
-		dao.close();
-		
 		users.add(user);
 		
 		context.addMessage(null, new FacesMessage("Salvou com exito!") );
@@ -63,17 +72,18 @@ public class UserBean {
 		
 	@PostConstruct
 	public void init() {
-		UserDao dao = new UserDao(ConnectionFactory.getConnection().createEntityManager());
+		dao = new UserDao(ConnectionFactory.getConnection().createEntityManager());
 		dao.begin();
 		users = dao.findAll();
+	}
+	
+	@PreDestroy
+	private void destroy() {
 		dao.close();
 	}
 	
 	public User read() {
-		UserDao dao = new UserDao(ConnectionFactory.getConnection().createEntityManager());
-		dao.begin();
 		User user = dao.read(3L);
-		dao.close();
 		return user;
 	}
 	
@@ -90,25 +100,25 @@ public class UserBean {
 	public void update() {
 		FacesContext context = FacesContext.getCurrentInstance();
 		FacesMessage message = new FacesMessage("Usuario Actualizado", user.getNome());
-		UserDao dao = new UserDao(ConnectionFactory.getConnection().createEntityManager());
-		dao.begin();
-		dao.update(user);
-		dao.commit();
-		dao.close();
 		
-		context.addMessage(null, message);
+		if(dao.update(user) != null) {
+			dao.commit();
+			context.addMessage(null, message);
+		} else {
+			FacesMessage errorMessage = new FacesMessage("Usuario nao existe.", "Selecione um usuario na tabela");
+			errorMessage.setSeverity(FacesMessage.SEVERITY_ERROR);
+			context.addMessage(null, errorMessage);
+		}
+		
 	}
 	
 	public void deleteUser(User u) {
 		FacesContext context = FacesContext.getCurrentInstance();
 		FacesMessage message = new FacesMessage("Usuario removido!");
 		
-		UserDao dao = new UserDao(ConnectionFactory.getConnection().createEntityManager());
-		dao.begin();
 		dao.delete(u);
 		dao.commit();
 		users.remove(u);
-		dao.close();
 		
 		context.addMessage(null, message);
 	}

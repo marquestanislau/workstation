@@ -56,8 +56,8 @@
 		</dependency>
 		<dependency>
 			<groupId>org.primefaces.themes</groupId>
-			<artifactId>ui-lightness</artifactId>
-			<version>1.0.10</version>
+			<artifactId>all-themes</artifactId>
+			<version>1.0.9</version>
 		</dependency>
 	</dependencies>
 </project>

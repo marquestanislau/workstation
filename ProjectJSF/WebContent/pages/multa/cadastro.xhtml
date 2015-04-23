@@ -9,11 +9,20 @@
 	<ui:define name="center">
 		<h:outputLabel value="Registo de Multas" style="font-size: 30px;" />
 		<h:form id="main_frm">
-			<p:growl id="message" showDetail="true" showSummary="true" />
+			<p:growl id="message" showSummary="true" />
 			<p:menubar>
 				<p:menuitem>
-					<p:commandButton value="Salvar" icon="ui-icon-circle-check" />
+					<p:commandButton value="Salvar" action="#{multaBean.add}"
+						icon="ui-icon-circle-check" update=":main_frm:message"/>
+					<p:commandButton icon="ui-icon-arrowrefresh-1-w" type="reset" value="Cancelar"/>
 				</p:menuitem>
+				<f:facet name="options">
+					<h:form id="url_frm">
+						<p:menuitem>
+							<p:commandButton icon="ui-icon-search" value="Lista" action="/pages/multa/lista?faces-redirect=true" process="url_frm" />
+						</p:menuitem>
+					</h:form>
+				</f:facet>
 			</p:menubar>
 
 			<p:spacer />
@@ -24,7 +33,7 @@
 						<p:outputLabel for="nome" value="Designa&ccedil;&atilde;o:" />
 					</p:column>
 					<p:column>
-						<p:inputText id="nome" size="45" />
+						<p:inputText value="#{multaBean.multa.nome}" id="nome" size="45" />
 					</p:column>
 					<p:column>
 						<p:outputLabel value="Tipo:" />
@@ -37,29 +46,30 @@
 				</p:row>
 				<p:row>
 					<p:column>
-						<p:outputLabel value="Gravidade:" />
+						<p:outputLabel for="gravidade" value="Gravidade:" />
 					</p:column>
 					<p:column>
-						<p:selectOneMenu>
+						<p:selectOneMenu id="gravidade" value="#{multaBean.multa.gravidade}">
 							<f:selectItem itemLabel="Selecione..." />
+							<f:selectItems value="#{multaBean.gravidades}" var="gravity"
+								itemValue="#{gravity}" itemLabel="#{gravity.label}" />
 						</p:selectOneMenu>
 					</p:column>
 					<p:column>
 						<p:outputLabel for="valor" value="Valor da multa:" />
 					</p:column>
 					<p:column>
-						<p:inputText id="valor">
-							<f:convertNumber for="valor" />
+						<p:inputText value="#{multaBean.multa.valorDaMulta}" id="valor">
+							<f:convertNumber for="valor" type="currency" currencyCode="MZM" pattern="000.00"/>
 						</p:inputText>
 					</p:column>
 				</p:row>
 				<p:row>
 					<p:column>
-						<p:outputLabel value="Data de aprova&ccedil;&atilde;o:" />
+						<p:outputLabel for="data" value="Data de aprova&ccedil;&atilde;o:" />
 					</p:column>
 					<p:column>
-						<p:calendar id="data" pattern="dd/mm/yyyy" />
-						<p:watermark value=" exemplo: 01/01/1900" for="data" />
+						<p:calendar id="data"/>
 					</p:column>
 				</p:row>
 				<p:row>
@@ -68,11 +78,14 @@
 							value="Descri&ccedil;&atilde;o:" />
 					</p:column>
 					<p:column>
-						<p:inputTextarea id="desc" cols="50" rows="10" />
+						<p:inputTextarea value="#{multaBean.multa.descricao}" id="desc" cols="50" rows="10" />
 					</p:column>
 				</p:row>
 			</p:panelGrid>
 		</h:form>
+		<p:panelMenu>
+		
+		</p:panelMenu>
 	</ui:define>
 </ui:composition>
 

@@ -9,45 +9,70 @@
 	<title>PT-Saver</title>
 	<h:link rel="stylesheet" type="text/css" href="../res/css/template.css" />
 	<style>
-		
-		* {
-			font-size: 12px;
-		}
-		.ui-layout-north {
-			z-index: 20 !important;
-			overflow: visible !important;
-		}
-		
-		.ui-layout-north .ui-layout-unit-content {
-			overflow: visible !important;
-		}
+* {
+	font-size: 12px;
+}
+
+.ui-layout-north {
+	z-index: 20 !important;
+	overflow: visible !important;
+}
+
+.ui-layout-north .ui-layout-unit-content {
+	overflow: visible !important;
+}
 </style>
 </h:head>
 <h:body>
 	<p:layout fullPage="true">
-		<p:layoutUnit gutter="0" collapseSize="0" position="north">
+		<!-- <p:layoutUnit gutter="0" collapseSize="0" position="north">
 			<ui:insert name="north">
 				<h:form>
 					<p:menubar>
 						<p:menuitem value="Home" icon="ui-icon-home" url="/index.xhtml" />
-						<p:submenu label="Registros" icon="ui-icon ui-icon-circle-plus" >
-							<p:menuitem value="Usuarios" icon="ui-icon-person" url="/pages/user/cadastro.xhtml" />
-							<p:menuitem value="Multas" icon="ui-icon-note" url="/pages/multa/cadastro.xhtml" />
-							<p:menuitem value="Titulares" icon="ui-icon ui-icon-contact" url="/pages/titular/cadastro.xhtml" />
-							<p:menuitem value="Viaturas" icon="ui-icon ui-icon-grip-diagonal-se" />
+						<p:submenu label="Registros" icon="ui-icon ui-icon-circle-plus">
+							<p:menuitem value="Usuarios" icon="ui-icon-person"
+								url="/pages/user/cadastro.xhtml" />
+							<p:menuitem value="Multas" icon="ui-icon-note"
+								url="/pages/multa/cadastro.xhtml" />
+							<p:menuitem value="Titulares" icon="ui-icon ui-icon-contact"
+								url="/pages/titular/cadastro.xhtml" />
+							<p:menuitem value="Viaturas"
+								icon="ui-icon ui-icon-grip-diagonal-se" />
 						</p:submenu>
 						<p:menuitem value="Relatorios" icon="ui-icon-bookmark" />
 						<f:facet name="options">
-							<h:outputLabel style="font-size: 10px;" value="UserName"/>
+							<h:outputLabel style="font-size: 10px;" value="UserName" />
 							<p:spacer width="5" />
 							<p:commandButton value="Sair" icon="ui-icon-power" />
 						</f:facet>
 					</p:menubar>
 				</h:form>
 			</ui:insert>
-		</p:layoutUnit>
+		</p:layoutUnit> -->
 		<p:layoutUnit position="center">
-
+			<h:form>
+				<p:menubar>
+					<p:menuitem value="Home" icon="ui-icon-home" url="/index.xhtml" />
+					<p:submenu label="Registros" icon="ui-icon ui-icon-circle-plus">
+						<p:menuitem value="Usuarios" icon="ui-icon-person"
+							url="/pages/user/cadastro.xhtml" />
+						<p:menuitem value="Multas" icon="ui-icon-note"
+							url="/pages/multa/cadastro.xhtml" />
+						<p:menuitem value="Titulares" icon="ui-icon ui-icon-contact"
+							url="/pages/titular/cadastro.xhtml" />
+						<p:menuitem value="Viaturas"
+							icon="ui-icon ui-icon-grip-diagonal-se" />
+					</p:submenu>
+					<p:menuitem value="Relatorios" icon="ui-icon-bookmark" />
+					<f:facet name="options">
+						<h:outputLabel style="font-size: 10px;" value="UserName" />
+						<p:spacer width="5" />
+						<p:commandButton value="Sair" icon="ui-icon-power" />
+					</f:facet>
+				</p:menubar>
+				<p:spacer />
+			</h:form>
 			<ui:insert name="center">
 				<h1>This is my content</h1>
 			</ui:insert>
@@ -59,6 +84,9 @@
 				<f:facet name="header">
 					<p:outputLabel value="Data: " />
 					<p:clock />
+					<p:themeSwitcher>
+						<f:selectItem itemLabel="Selecione um template" />
+					</p:themeSwitcher>
 				</f:facet>
 			</ui:insert>
 

@@ -13,11 +13,15 @@
 				<p:menubar>
 					<f:facet name="options">
 						<p:menuitem>
-							<p:commandButton value="Imprimir" icon="ui-icon-print" />
+							<p:commandButton type="button" icon="ui-icon-plus"
+							onclick="PF('saveDialog').show()" value="Novo Cadastro" />
+						</p:menuitem>
+						<p:menuitem>
+							<p:commandButton type="button" value="Imprimir" icon="ui-icon-print" />
 						</p:menuitem>
 					</f:facet>
 				</p:menubar>
-				<p:growl id="growl" showDetail="true" />
+				<p:growl id="growl" showDetail="true" showSummary="true" autoUpdate="true" />
 
 				<p:panelGrid columns="1" layout="grid">
 
@@ -48,13 +52,9 @@
 							<p:outputLabel value="#{user.role}" />
 						</p:column>
 						<p:column headerText="">
-							<p:commandButton icon="ui-icon-trash" />
-							<p:commandButton update=":frm:userDetail"
-								oncomplete="PF('update_dialog').show()" icon="ui-icon-pencil"
-								process="dataTable" />
 							<p:commandButton update=":frm:viewUser"
 								oncomplete="PF('view_dialog').show()" icon="ui-icon-search"
-								process="dataTable" />
+								process="dataTable" value="Detalhes" />
 						</p:column>
 						<p:columnGroup type="footer">
 							<p:row>
@@ -64,45 +64,7 @@
 							</p:row>
 						</p:columnGroup>
 					</p:dataTable>
-					<f:facet name="footer">
-						<p:spacer width="10" />
-						<p:commandButton icon="ui-icon-plus" value="Novo Cadastro" />
-					</f:facet>
 				</p:panelGrid>
-
-				<p:dialog resizable="false" closable="true"
-					widgetVar="update_dialog" showEffect="fade" hideEffect="explode">
-
-					<p:messages showDetail="false" showSummary="true" autoUpdate="true" />
-
-					<p:panelGrid id="userDetail" columns="2">
-						<f:facet name="header">
-							<p:outputLabel value="Detalhes de: " />
-							<p:outputLabel value="#{userBean.user.nome}" />
-						</f:facet>
-
-						<p:outputLabel for="edit_nome" value="Nome:" />
-						<p:inputText id="edit_nome" value="#{userBean.user.nome}" />
-
-						<p:outputLabel for="edit_apelido" value="Apelido:" />
-						<p:inputText id="edit_apelido" value="#{userBean.user.apelido}" />
-
-						<p:outputLabel for="edit_email" value="Email:" />
-						<p:inputText id="edit_email" value="#{userBean.user.email}" />
-
-						<p:outputLabel for="edit_cell" value="Cell:" />
-						<p:inputText id="edit_cell" value="#{userBean.user.cell}" />
-
-						<p:outputLabel value="Tipo de usuario:" />
-						<p:selectOneMenu>
-
-						</p:selectOneMenu>
-
-						<f:facet name="footer">
-							<p:commandButton icon="ui-icon-refresh" value="Actualizar" />
-						</f:facet>
-					</p:panelGrid>
-				</p:dialog>
 
 				<p:dialog widgetVar="view_dialog" closable="true"
 					closeOnEscape="true" modal="false" showEffect="slide"
@@ -126,11 +88,95 @@
 						<p:outputLabel value="#{userBean.user.cell}" />
 
 						<p:outputLabel value="Tipo de usuario:" />
-						<p:selectOneMenu>
-
-						</p:selectOneMenu>
+						<p:outputLabel value="#{userBean.user.role.label}" />
 					</p:panelGrid>
 				</p:dialog>
+
+				<h:form id="process_frm">
+					<p:dialog widgetVar="saveDialog" closeOnEscape="true"
+						closable="true" header="Cadastro de Usuarios">
+						<h:outputLabel style="font-size: 35px;"
+							value="Efectue o registo de usuarios." />
+						
+						<p:panelGrid>
+							<p:row>
+								<p:column>
+									<h:outputLabel value="Nome: " for="nome" />
+								</p:column>
+								<p:column>
+									<p:inputText id="nome" required="true" value="#{userBean.user.nome}" />
+								</p:column>
+								<p:column>
+									<h:outputLabel for="apelido" value="Apelido: " />
+								</p:column>
+								<p:column>
+									<p:inputText id="apelido" required="true" value="#{userBean.user.apelido}" />
+								</p:column>
+							</p:row>
+
+							<p:row>
+								<p:column>
+									<h:outputLabel for="email" value="Email: " />
+								</p:column>
+								<p:column>
+									<p:inputText id="email"
+										validatorMessage="Formato de email invalido!"
+										value="#{userBean.user.email}">
+										<f:validateRegex
+											pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+									</p:inputText>
+									<p:watermark for="email" value="exemplo@mail.com"></p:watermark>
+								</p:column>
+								<p:column>
+									<h:outputLabel for="cell" value="Cell: " />
+								</p:column>
+								<p:column>
+									<p:inputMask required="true" id="cell" mask="(+258)-999-999-999"
+										value="#{userBean.user.cell}" />
+									<p:watermark value="(+258)-123-456-789" for="cell" />
+								</p:column>
+								<p:column>
+									<p:outputLabel value="Tipo de usuario: " for="userType" />
+								</p:column>
+								<p:column>
+									<p:selectOneMenu required="true" id="userType" value="#{userBean.user.role}">
+										<f:selectItem itemLabel="Selecione..." />
+										<f:selectItems value="#{userBean.roles}" var="rolex"
+											itemValue="#{rolex}" itemLabel="#{rolex.label}" />
+									</p:selectOneMenu>
+								</p:column>
+							</p:row>
+
+							<p:row>
+								<p:column>
+									<p:outputLabel value="Senha:" for="senha" />
+								</p:column>
+								<p:column>
+									<p:password feedback="true" weakLabel="Fraco" required="true" id="senha"
+										strongLabel="Segura" goodLabel="Aceitavel"
+										promptLabel="Digite a palavra passe" maxlength="15" />
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column>
+									<p:outputLabel value="Repita a senha:" for="repeatSenha" />
+								</p:column>
+								<p:column>
+									<p:password maxlength="15" id="repeatSenha" required="true" />
+								</p:column>
+							</p:row>
+						</p:panelGrid>
+
+						<f:facet name="footer">
+							<p:outputPanel>
+								<p:commandButton icon="ui-icon-circle-plus" value="Salvar"
+									action="#{userBean.addUser}" update=":frm:dataTable"
+									process="process_frm" />
+								<p:commandButton value="Novo" icon="ui-icon-refresh" type="reset" />
+							</p:outputPanel>
+						</f:facet>
+					</p:dialog>
+				</h:form>
 			</h:form>
 		</ui:define>
 	</ui:composition>

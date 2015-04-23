@@ -5,6 +5,7 @@ import java.util.Calendar;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -23,6 +24,7 @@ public class TitularBean {
 	private Titular titular;
 	private List<Titular> titulares;
 	private int totalTitulares;
+	private TitularDao dao = null;
 	
 	public TitularBean() {
 		titular = new Titular();
@@ -46,38 +48,37 @@ public class TitularBean {
 	
 	@PostConstruct
 	public void initList() {
-		TitularDao dao = new TitularDao(ConnectionFactory.getConnection().createEntityManager());
+		dao = new TitularDao(ConnectionFactory.getConnection().createEntityManager());
 		dao.begin();
 		setTitulares(dao.findAll());
+	}
+	
+	@PreDestroy
+	private void quit() {
 		dao.close();
 	}
 	
 	public String saveTitular() {
 		FacesContext context = FacesContext.getCurrentInstance();
 		
-		TitularDao dao = new TitularDao(ConnectionFactory.getConnection().createEntityManager());
-		dao.begin();
 		titular.setCreatedDate(Calendar.getInstance());
 		dao.create(titular);
 		dao.commit();
-		dao.close();
+		
 		titulares.add(titular);
 		FacesMessage message = new FacesMessage("Salvou com exito!", titular.getNome());
 		context.addMessage(null, message);
 		
-		return "index?faces-redirect=false";
+		return "/pages/titular/cadastro?faces-redirect=false";
 	}
 
 	public void delete(Titular t) {
 		FacesContext context = FacesContext.getCurrentInstance();
 		FacesMessage message = new FacesMessage("Removido!", t.getNome());
 		
-		TitularDao dao = new TitularDao(ConnectionFactory.getConnection().createEntityManager());
-		dao.begin();
 		dao.delete(t);
 		dao.commit();
 		titulares.remove(t);
-		dao.close();
 		
 		context.addMessage(null, message);
 	}
@@ -98,11 +99,8 @@ public class TitularBean {
 	
 	public void update() {
 		
-		TitularDao dao = new TitularDao(ConnectionFactory.getConnection().createEntityManager());
-		dao.begin();
 		dao.update(titular);
 		dao.commit();
-		dao.close();
 		
 		FacesContext context = FacesContext.getCurrentInstance();
 		FacesMessage message = new FacesMessage("Actualizado com sucesso!");
