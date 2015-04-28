@@ -7,21 +7,27 @@
 
 <ui:composition template="/pages/template/template.xhtml">
 	<ui:define name="center">
-		<h:outputLabel value="Registo de Multas" style="font-size: 30px;" />
+		<h:outputLabel value="Registo de Multas" style="font-size: 0%;" />
 		<h:form id="main_frm">
 			<p:growl id="message" showSummary="true" />
 			<p:menubar>
 				<p:menuitem>
 					<p:commandButton value="Salvar" action="#{multaBean.add}"
-						icon="ui-icon-circle-check" update=":main_frm:message"/>
-					<p:commandButton icon="ui-icon-arrowrefresh-1-w" type="reset" value="Cancelar"/>
+						icon="ui-icon-circle-check" update=":main_frm:message"
+						process="main_frm" />
+				</p:menuitem>
+				<p:menuitem>
+					<p:commandButton icon="ui-icon-arrowrefresh-1-w" type="reset"
+						value="Novo" />
 				</p:menuitem>
 				<f:facet name="options">
-					<h:form id="url_frm">
-						<p:menuitem>
-							<p:commandButton icon="ui-icon-search" value="Lista" action="/pages/multa/lista?faces-redirect=true" process="url_frm" />
-						</p:menuitem>
-					</h:form>
+
+					<p:menuitem>
+						<p:commandButton onclick="PF('dialog_view').show()" value="Multas" />
+						<p:commandButton icon="ui-icon-search" value="Lista"
+							action="/pages/multa/lista?faces-redirect=true" />
+					</p:menuitem>
+
 				</f:facet>
 			</p:menubar>
 
@@ -49,7 +55,8 @@
 						<p:outputLabel for="gravidade" value="Gravidade:" />
 					</p:column>
 					<p:column>
-						<p:selectOneMenu id="gravidade" value="#{multaBean.multa.gravidade}">
+						<p:selectOneMenu id="gravidade"
+							value="#{multaBean.multa.gravidade}">
 							<f:selectItem itemLabel="Selecione..." />
 							<f:selectItems value="#{multaBean.gravidades}" var="gravity"
 								itemValue="#{gravity}" itemLabel="#{gravity.label}" />
@@ -60,7 +67,8 @@
 					</p:column>
 					<p:column>
 						<p:inputText value="#{multaBean.multa.valorDaMulta}" id="valor">
-							<f:convertNumber for="valor" type="currency" currencyCode="MZM" pattern="000.00"/>
+							<f:convertNumber for="valor" type="currency" currencyCode="MZM"
+								pattern="000.00" />
 						</p:inputText>
 					</p:column>
 				</p:row>
@@ -69,7 +77,7 @@
 						<p:outputLabel for="data" value="Data de aprova&ccedil;&atilde;o:" />
 					</p:column>
 					<p:column>
-						<p:calendar id="data"/>
+						<p:calendar id="data" />
 					</p:column>
 				</p:row>
 				<p:row>
@@ -78,13 +86,45 @@
 							value="Descri&ccedil;&atilde;o:" />
 					</p:column>
 					<p:column>
-						<p:inputTextarea value="#{multaBean.multa.descricao}" id="desc" cols="50" rows="10" />
+						<p:inputTextarea value="#{multaBean.multa.descricao}" id="desc"
+							cols="50" rows="10" />
 					</p:column>
 				</p:row>
 			</p:panelGrid>
+
+			<p:dialog width="600" widgetVar="dialog_view" closable="true"
+				closeOnEscape="true" resizable="false" showEffect="puff">
+				<f:facet name="header">
+					Tipos de Multas existentes no sistema.
+				</f:facet>
+				<p:dataTable id="dataTableMulta" var="multa"
+					value="#{multaBean.multas}" rowKey="#{multa.multa_id}"
+					selectionMode="single" paginator="true" rows="15">
+					<f:facet name="header">
+						<p:outputPanel>
+							<h:outputLabel value="Introduza a chave:" style="align:left" />
+							<p:spacer />
+							<p:inputText style="align:left" />
+						</p:outputPanel>
+					</f:facet>
+					<p:column headerText="#ID">
+						<h:outputText value="#{multa.multa_id}" />
+					</p:column>
+					<p:column headerText="GRAVIDADE">
+						<p:outputLabel value="#{multa.gravidade.label}" />
+					</p:column>
+					<p:column headerText="DATA">
+						<p:outputLabel value="#{multa.createdDate}" />
+					</p:column>
+					<p:column headerText="DESCRICAO">
+						<p:outputLabel value="#{multa.descricao}" />
+					</p:column>
+				</p:dataTable>
+			</p:dialog>
+
 		</h:form>
 		<p:panelMenu>
-		
+
 		</p:panelMenu>
 	</ui:define>
 </ui:composition>

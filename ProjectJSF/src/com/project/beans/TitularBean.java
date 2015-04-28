@@ -24,10 +24,20 @@ public class TitularBean {
 	private Titular titular;
 	private List<Titular> titulares;
 	private int totalTitulares;
+	private List<Titular> filterTitulares;
 	private TitularDao dao = null;
 	
 	public TitularBean() {
 		titular = new Titular();
+	}
+	
+	//metodos usados para search automatico nas datatables
+	public List<Titular> getFilterTitulares() {
+		return filterTitulares;
+	}
+	
+	public void setFilterTitulares(List<Titular> filterTitulares) {
+		this.filterTitulares = filterTitulares;
 	}
 
 	public Titular getTitular() {

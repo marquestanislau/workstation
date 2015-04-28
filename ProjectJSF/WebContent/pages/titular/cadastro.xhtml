@@ -112,11 +112,19 @@
 			<p:tabView id="tabview">
 				<p:tab id="tab" title="Resultado">
 					<p:dataTable scrollable="true" selectionMode="single"
-						selection="#{titularBean.titular}" rowKey="#{titular.id}"
-						id="dataTable" rows="5" paginator="true" widgetVar="table_result"
-						var="titular" value="#{titularBean.titulares}">
+						selection="#{titularBean.titular}" id="dataTable" rows="5"
+						paginator="true" widgetVar="table_result" var="titular"
+						value="#{titularBean.titulares}" rowKey="#{titular.id}"
+						filteredValue="#{titularBean.filterTitulares}">
+						
+						<f:facet name="header">
+							<p:outputPanel>
+								<p:inputText placeholder="Use uma palavra chave" id="filter_text" onkeyup="PF('table_result').filter()" />
+							</p:outputPanel>
+						</f:facet>
+						
 						<p:ajax event="rowSelect" listener="#{titularBean.onRowSelect}" />
-						<p:column headerText="Nome">
+						<p:column headerText="Nome" filterBy="#{titular.nome}" filterMatchMode="contains" sortBy="#{titular.nome}">
 							<p:outputLabel value="#{titular.nome}" />
 						</p:column>
 						<p:column headerText="Apelido">
@@ -125,7 +133,7 @@
 						<p:column headerText="Contacto">
 							<p:outputLabel value="#{titular.contacto}" />
 						</p:column>
-						<p:column headerText="Num Carta">
+						<p:column headerText="Num Carta" filterMatchMode="exact" filterBy="#{titular.numeroCarta}">
 							<p:outputLabel value="#{titular.numeroCarta}" />
 						</p:column>
 						<p:column>
@@ -186,7 +194,9 @@
 
 					<p:inputText value="#{titularBean.titular.caixaPostal}" />
 
-					<p:outputLabel value="Quarteirao:" />
+					<p:outputLabel value="Quarteirao:">
+						<p:inputText type="hidden" value="#{titularBean.titular.id}" />
+					</p:outputLabel>
 
 					<p:inputText value="#{titularBean.titular.numQuarteirao}" />
 
@@ -215,31 +225,31 @@
 						<p:outputLabel value="#{titularBean.titular.apelido}" />
 					</f:facet>
 
-					<p:outputLabel value="Nome:" />
+					<p:outputLabel style="font-weight: bold" value="Nome:" />
 
 					<p:outputLabel value="#{titularBean.titular.nome}" />
 
-					<p:outputLabel value="Numero de Casa:" />
+					<p:outputLabel style="font-weight: bold" value="Numero de Casa:" />
 
 					<p:outputLabel value="#{titularBean.titular.numCasa}" />
 
-					<p:outputLabel value="Apelido:" />
+					<p:outputLabel style="font-weight: bold" value="Apelido:" />
 
 					<p:outputLabel value="#{titularBean.titular.apelido}" />
 
-					<p:outputLabel value="Codigo Postal:" />
+					<p:outputLabel style="font-weight: bold" value="Codigo Postal:" />
 
 					<p:outputLabel value="#{titularBean.titular.caixaPostal}" />
 
-					<p:outputLabel value="Quarteirao:" />
+					<p:outputLabel style="font-weight: bold" value="Quarteirao:" />
 
 					<p:outputLabel value="#{titularBean.titular.numQuarteirao}" />
 
-					<p:outputLabel value="Bairro:" />
+					<p:outputLabel style="font-weight: bold" value="Bairro:" />
 
 					<p:outputLabel value="#{titularBean.titular.bairro}" />
 
-					<p:outputLabel value="Rua:" />
+					<p:outputLabel style="font-weight: bold" value="Rua:" />
 
 					<p:outputLabel value="#{titularBean.titular.rua}" />
 

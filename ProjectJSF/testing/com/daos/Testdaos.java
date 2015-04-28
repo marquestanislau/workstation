@@ -3,21 +3,19 @@ package com.daos;
 import org.junit.Test;
 
 import com.project.dao.ConnectionFactory;
-import com.project.dao.UserDao;
-import com.project.model.User;
+import com.project.dao.TitularDao;
+import com.project.model.Titular;
 
 public class Testdaos {
 
-	private User user;
-
 	@Test
 	public void test() {
-		UserDao dao = new UserDao(ConnectionFactory.getConnection().createEntityManager());
+		TitularDao dao = new TitularDao(ConnectionFactory.getConnection().createEntityManager());
 		dao.begin();
-		user = new User();
-		user.setNome("Teste");
-		user.setPassword("1212");
-		dao.create(user);
+		Titular t = new Titular();
+		t =  dao.findAll().get(2);
+		t.setContacto("1234567");
+		dao.update(t);
 		dao.commit();
 		dao.close();
 	}

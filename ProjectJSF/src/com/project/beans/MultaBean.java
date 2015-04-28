@@ -73,6 +73,7 @@ public class MultaBean {
 	public void init() {
 		 dao = new MultaDao(ConnectionFactory.getConnection().createEntityManager());
 		 dao.begin();
+		 setMultas(dao.findAll());
 		 fillNode(); // preenchemento da lista em forma de nodos
 	}
 	
@@ -82,6 +83,8 @@ public class MultaBean {
 		
 		dao.create(multa);
 		dao.commit();
+		
+		multas.add(multa);
 		
 		context.addMessage(null, message);
 	}

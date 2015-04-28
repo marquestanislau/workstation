@@ -25,11 +25,14 @@
 							icon="ui-icon-circle-check" update=":frm:dataTable" />
 					</p:menuitem>
 					<p:menuitem>
-						<p:commandButton value="Limpar campos" type="reset" />
+						<p:commandButton value="Novo" icon="ui-icon-plus" type="reset" />
 					</p:menuitem>
 
 				</p:menubar>
+				
+				<p:spacer />
 				<p:growl autoUpdate="true" showDetail="true" showSummary="true" />
+				
 				<p:panelGrid>
 					<p:row>
 						<p:column>
@@ -118,7 +121,7 @@
 					<p:menuitem>
 						<p:inputText id="nome_search" size="100"
 							onkeyup="PF('filteredDataTable').filter()"
-							placeholder="Insira a palavra chave" />
+							placeholder="Insira a palavra chave"/>
 					</p:menuitem>
 					<p:menuitem>
 						<p:spacer width="5" />
@@ -131,6 +134,9 @@
 						</p:menuitem>
 					</f:facet>
 				</p:menubar>
+				
+				<p:spacer />
+				
 				<p:panelGrid columns="1" layout="grid">
 					<p:dataTable widgetVar="filteredDataTable"
 						emptyMessage="Sem usuarios cadastrados" id="dataTable" var="user"
@@ -151,11 +157,7 @@
 							filterMatchMode="contains">
 							<p:outputLabel value="#{user.email}" />
 						</p:column>
-						<p:column headerText="Data de registro" filterBy="#{user.created}"
-							filterMatchMode="exact">
-							<f:facet name="filter">
-								<p:calendar pattern="dd/MM/yy" />
-							</f:facet>
+						<p:column headerText="Data de registo">
 							<p:outputLabel value="#{user.created.time}">
 								<f:convertDateTime pattern="dd/MM/yy" type="date" />
 							</p:outputLabel>
@@ -170,17 +172,17 @@
 						</p:column>
 						<p:column headerText="">
 							<p:commandButton icon="ui-icon-trash"
-								onclick="PF('confirmDialog').show()" />
+								onclick="PF('confirmDialog').show()"/>
 
 							<p:confirmDialog appendTo="@(body)" modal="true"
 								header="Mensagem de confirmacao" widgetVar="confirmDialog"
 								message="Deseja apagar usuario?" showEffect="slide"
-								hideEffect="slide">
+								hideEffect="slide" id="confrimDialog">
 
 								<!-- <h:form id="confirm_frm"> -->
 								<p:commandButton value="Sim"
 									oncomplete="PF('confirmDialog').hide()"
-									action="#{userBean.deleteUser(user)}" update=":frm:dataTable" />
+									action="#{userBean.deleteUser(user)}" process=":frm:dataTable" update=":frm:dataTable" />
 								<p:commandButton value="Nao"
 									onclick="PF('confirmDialog').hide()" />
 								<!-- </h:form> -->
@@ -255,20 +257,20 @@
 							<p:outputLabel value="#{userBean.user.nome}" />
 						</f:facet>
 
-						<p:outputLabel value="Nome:" />
+						<p:outputLabel style="font-weight: bold" value="Nome:" />
 						<p:outputLabel value="#{userBean.user.nome}" />
 
-						<p:outputLabel value="Apelido:" />
+						<p:outputLabel style="font-weight: bold" value="Apelido:" />
 						<p:outputLabel value="#{userBean.user.apelido}" />
 
-						<p:outputLabel value="Email:" />
+						<p:outputLabel style="font-weight: bold" value="Email:" />
 						<p:outputLabel value="#{userBean.user.email}" />
 
-						<p:outputLabel value="Cell:" />
+						<p:outputLabel style="font-weight: bold" value="Cell:" />
 						<p:outputLabel value="#{userBean.user.cell}" />
 
-						<p:outputLabel value="Tipo de usuario:" />
-						<p:outputLabel value="#{userBean.user.role}" />
+						<p:outputLabel style="font-weight: bold" value="Tipo de usuario:" />
+						<p:outputLabel value="#{userBean.user.role.label}" />
 
 						<f:facet name="footer">
 							<p:commandButton value="Ok" onclick="PF('view_dialog').hide()" />

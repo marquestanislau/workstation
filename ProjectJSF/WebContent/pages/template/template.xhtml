@@ -73,21 +73,30 @@
 				</p:menubar>
 				<p:spacer />
 			</h:form>
+
+			<!-- INDICA O STATUS DE UMA ACCAO NA APLICACAO -->
+			<p:ajaxStatus onstart="PF('statusDialog').show()"
+				onsuccess="PF('statusDialog').hide()" />
+
+			<p:dialog widgetVar="statusDialog" modal="false" draggable="false"
+				closable="false" resizable="false" showHeader="false">
+				<p:graphicImage alt="defyugfyug"
+					url="../../res/img/ajax-loading-bar-blue.gif" />
+			</p:dialog>
+
 			<ui:insert name="center">
 				<h1>This is my content</h1>
 			</ui:insert>
 
 		</p:layoutUnit>
+
 		<p:layoutUnit position="south">
 
 			<ui:insert name="south">
-				<f:facet name="header">
-					<p:outputLabel value="Data: " />
-					<p:clock />
-					<p:themeSwitcher>
-						<f:selectItem itemLabel="Selecione um template" />
-					</p:themeSwitcher>
-				</f:facet>
+
+				<p:outputLabel value="Data: " />
+				<p:clock />
+
 			</ui:insert>
 
 		</p:layoutUnit>
