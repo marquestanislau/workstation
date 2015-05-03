@@ -7,13 +7,13 @@
 
 <ui:composition template="/pages/template/template.xhtml">
 	<ui:define name="center">
-		<h:outputLabel value="Registo de Multas" style="font-size: 0%;" />
+		<h:outputLabel value="Registo de Multas" style="font-size: 23px;" />
 		<h:form id="main_frm">
-			<p:growl id="message" showSummary="true" />
+			<p:growl id="message" showSummary="true" showDetail="true" autoUpdate="true" />
 			<p:menubar>
 				<p:menuitem>
 					<p:commandButton value="Salvar" action="#{multaBean.add}"
-						icon="ui-icon-circle-check" update=":main_frm:message"
+						icon="ui-icon-circle-check" update="dataTableMulta"
 						process="main_frm" />
 				</p:menuitem>
 				<p:menuitem>
@@ -93,13 +93,13 @@
 			</p:panelGrid>
 
 			<p:dialog width="600" widgetVar="dialog_view" closable="true"
-				closeOnEscape="true" resizable="false" showEffect="puff">
+				closeOnEscape="true" resizable="false" showEffect="puff" hideEffect="puff">
 				<f:facet name="header">
 					Tipos de Multas existentes no sistema.
 				</f:facet>
 				<p:dataTable id="dataTableMulta" var="multa"
 					value="#{multaBean.multas}" rowKey="#{multa.multa_id}"
-					selectionMode="single" paginator="true" rows="15">
+					selectionMode="single" paginator="true" rows="15" rowsPerPageLabel="sdfsd">
 					<f:facet name="header">
 						<p:outputPanel>
 							<h:outputLabel value="Introduza a chave:" style="align:left" />
@@ -110,14 +110,14 @@
 					<p:column headerText="#ID">
 						<h:outputText value="#{multa.multa_id}" />
 					</p:column>
+					<p:column headerText="#NOME">
+						<h:outputText value="#{multa.nome}" />
+					</p:column>
 					<p:column headerText="GRAVIDADE">
 						<p:outputLabel value="#{multa.gravidade.label}" />
 					</p:column>
 					<p:column headerText="DATA">
 						<p:outputLabel value="#{multa.createdDate}" />
-					</p:column>
-					<p:column headerText="DESCRICAO">
-						<p:outputLabel value="#{multa.descricao}" />
 					</p:column>
 				</p:dataTable>
 			</p:dialog>

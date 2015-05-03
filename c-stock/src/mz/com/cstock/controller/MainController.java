@@ -251,7 +251,7 @@ public class MainController implements Serializable, Initializable {
 		buttonVendas.setGraphic(new ImageView(new Image(getClass()
 				.getResourceAsStream(imagesPath + "share.png"))));
 		buttonReport.setGraphic(new ImageView(new Image(getClass()
-				.getResourceAsStream(imagesPath + "attibutes.png"))));
+				.getResourceAsStream(imagesPath + "add.png"))));
 		// buttonSell.setGraphic(new ImageView(new
 		// Image(getClass().getResourceAsStream(imagesPath +
 		// "Ecommerce.png"))));

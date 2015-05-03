@@ -10,6 +10,7 @@
 	<ui:composition template="/pages/template/template.xhtml">
 		<ui:define name="center">
 			<h:form id="frm">
+				<h:outputLabel value="Lista de usu&aacute;rios cadastrados." style="font-size: 25px;" />
 				<p:menubar>
 					<f:facet name="options">
 						<p:menuitem>
@@ -21,6 +22,9 @@
 						</p:menuitem>
 					</f:facet>
 				</p:menubar>
+				
+				<p:spacer />
+				
 				<p:growl id="growl" showDetail="true" showSummary="true" autoUpdate="true" />
 
 				<p:panelGrid columns="1" layout="grid">
