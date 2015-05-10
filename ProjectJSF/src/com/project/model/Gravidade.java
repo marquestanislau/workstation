@@ -2,9 +2,9 @@ package com.project.model;
 
 public enum Gravidade {
 
-	BAIXA("Baixa"),
+	LEVE("Leve"),
 	MEDIA("Media"),
-	ALTA("Alta");
+	GRAVE("Grave");
 	
 	private String label;
 	

@@ -142,7 +142,7 @@
 						emptyMessage="Sem usuarios cadastrados" id="dataTable" var="user"
 						rows="5" value="#{userBean.users}" paginator="true"
 						selectionMode="single" selection="#{userBean.user}"
-						rowKey="#{user.id}" filteredValue="#{userBean.filteredUsers}">
+						rowKey="#{user.id}" filteredValue="#{userBean.filteredUsers}" rowsPerPageTemplate="5,10,15">
 						<p:ajax event="rowSelect" listener="#{userBean.onRowSelect}"
 							update=":frm:growl" />
 						<p:column filterBy="#{user.nome}" filterMatchMode="contains"

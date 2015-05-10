@@ -53,6 +53,9 @@
 		<p:layoutUnit position="center">
 			<h:form>
 				<p:menubar>
+					<p:menuitem>
+						<p:graphicImage alt="Logo" value="../../res/img/pegasus_logo.png" />
+					</p:menuitem> 
 					<p:menuitem value="Home" icon="ui-icon-home" url="/index.xhtml" />
 					<p:submenu label="Registros" icon="ui-icon ui-icon-circle-plus">
 						<p:menuitem value="Usuarios" icon="ui-icon-person"
@@ -64,9 +67,10 @@
 						<p:menuitem value="Viaturas"
 							icon="ui-icon ui-icon-grip-diagonal-se" />
 					</p:submenu>
+					<p:menuitem value="Multas" url="#" />
 					<p:menuitem value="Relatorios" icon="ui-icon-bookmark" />
 					<f:facet name="options">
-						<h:outputLabel style="font-size: 10px;" value="UserName" />
+						<p:menuitem value="UserName" />
 						<p:spacer width="5" />
 						<p:commandButton value="Sair" icon="ui-icon-power" />
 					</f:facet>
@@ -80,7 +84,7 @@
 
 			<p:dialog widgetVar="statusDialog" modal="false" draggable="false"
 				closable="false" resizable="false" showHeader="false">
-				<p:graphicImage alt="defyugfyug"
+				<p:graphicImage alt="Loading..."
 					url="../../res/img/ajax-loading-bar-blue.gif" />
 			</p:dialog>
 

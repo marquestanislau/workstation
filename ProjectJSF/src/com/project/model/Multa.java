@@ -11,6 +11,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -26,15 +27,34 @@ public class Multa {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer multa_id;
 	
+	@Lob
 	private String descricao;
 	
 	@Temporal(TemporalType.DATE)
 	private Calendar createdDate;
 	
 	private String nome;
+	private String capitulo;
+	private Integer numArtigo;
+	private double valorDaMulta;
 	
-	private Double valorDaMulta;
 	
+	public String getCapitulo() {
+		return capitulo;
+	}
+
+	public void setCapitulo(String capitulo) {
+		this.capitulo = capitulo;
+	}
+
+	public Integer getNumArtigo() {
+		return numArtigo;
+	}
+
+	public void setNumArtigo(Integer numArtigo) {
+		this.numArtigo = numArtigo;
+	}
+
 	@Enumerated(EnumType.STRING)
 	private Gravidade gravidade;
 
@@ -70,11 +90,11 @@ public class Multa {
 		this.nome = nome;
 	}
 
-	public Double getValorDaMulta() {
+	public double getValorDaMulta() {
 		return valorDaMulta;
 	}
 
-	public void setValorDaMulta(Double valorDaMulta) {
+	public void setValorDaMulta(double valorDaMulta) {
 		this.valorDaMulta = valorDaMulta;
 	}
 
