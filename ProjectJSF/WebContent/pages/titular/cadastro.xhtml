@@ -115,7 +115,7 @@
 						selection="#{titularBean.titular}" id="dataTable" rows="5"
 						paginator="true" widgetVar="table_result" var="titular"
 						value="#{titularBean.titulares}" rowKey="#{titular.id}"
-						filteredValue="#{titularBean.filterTitulares}">
+						filteredValue="#{titularBean.filterTitulares}" rowsPerPageTemplate="5,10,15" >
 						
 						<f:facet name="header">
 							<p:outputPanel>

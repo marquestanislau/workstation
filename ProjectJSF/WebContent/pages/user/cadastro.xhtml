@@ -15,7 +15,8 @@
 				<p:menubar>
 					<f:facet name="options">
 						<p:menuitem>
-							<p:commandButton process="@this" value="Lista de usuarios" icon="ui-icon-person"
+							<p:commandButton process="@this" value="Lista de usuarios"
+								icon="ui-icon-person"
 								action="/pages/user/list?faces-redirect=true" />
 						</p:menuitem>
 					</f:facet>
@@ -29,23 +30,25 @@
 					</p:menuitem>
 
 				</p:menubar>
-				
+
 				<p:spacer />
 				<p:growl autoUpdate="true" showDetail="true" showSummary="true" />
-				
+
 				<p:panelGrid>
 					<p:row>
 						<p:column>
 							<h:outputLabel value="Nome: " for="nome" />
 						</p:column>
 						<p:column>
-							<p:inputText id="nome" required="true" value="#{userBean.user.nome}" />
+							<p:inputText id="nome" required="true"
+								value="#{userBean.user.nome}" />
 						</p:column>
 						<p:column>
 							<h:outputLabel for="apelido" value="Apelido: " />
 						</p:column>
 						<p:column>
-							<p:inputText id="apelido" required="true" value="#{userBean.user.apelido}" />
+							<p:inputText id="apelido" required="true"
+								value="#{userBean.user.apelido}" />
 						</p:column>
 					</p:row>
 
@@ -74,12 +77,14 @@
 							<p:outputLabel value="Tipo de usuario: " for="user_Type" />
 						</p:column>
 						<p:column>
-							<p:selectOneMenu value="#{userBean.user.role}" id="user_Type" required="true">
+							<p:selectOneMenu value="#{userBean.user.role}" id="user_Type"
+								required="true">
 								<f:selectItem itemLabel="Selecione..." />
 								<f:selectItems value="#{userBean.roles}" var="rolex"
 									itemValue="#{rolex}" itemLabel="#{rolex.label}" />
 							</p:selectOneMenu>
-							<p:tooltip value="Seleccione entre Administrador ou Normal." for="user_Type" />
+							<p:tooltip value="Seleccione entre Administrador ou Normal."
+								for="user_Type" />
 						</p:column>
 					</p:row>
 
@@ -88,9 +93,10 @@
 							<p:outputLabel for="senha" value="Senha:" />
 						</p:column>
 						<p:column>
-							<p:password feedback="true" required="true" id="senha" weakLabel="Fraco"
-								strongLabel="Segura" goodLabel="Aceitavel"
-								promptLabel="Digite a palavra passe" maxlength="15" placeholder="M&aacute;ximo 15 caracteres" />
+							<p:password feedback="true" required="true" id="senha"
+								weakLabel="Fraco" strongLabel="Segura" goodLabel="Aceitavel"
+								promptLabel="Digite a palavra passe" maxlength="15"
+								placeholder="M&aacute;ximo 15 caracteres" />
 						</p:column>
 					</p:row>
 					<p:row>
@@ -98,8 +104,10 @@
 							<p:outputLabel for="repeataSenha" value="Repita a senha:" />
 						</p:column>
 						<p:column>
-							<p:password placeholder="Repita a senha aqui." maxlength="15" id="repeataSenha" />
-							<p:tooltip value="Deve ser igual ao campo senha" for="repeataSenha" />
+							<p:password placeholder="Repita a senha aqui." maxlength="15"
+								id="repeataSenha" />
+							<p:tooltip value="Deve ser igual ao campo senha"
+								for="repeataSenha" />
 						</p:column>
 					</p:row>
 
@@ -111,38 +119,38 @@
 			<h:form id="frm">
 				<p:growl id="growl" autoUpdate="true" showDetail="true"
 					showSummary="true" />
-				<p:menubar id="menu_search">
-					<p:menuitem>
-						<p:outputLabel value="Nome:" />
-					</p:menuitem>
-					<p:menuitem>
-						<p:spacer width="5" />
-					</p:menuitem>
-					<p:menuitem>
-						<p:inputText id="nome_search" size="100"
-							onkeyup="PF('filteredDataTable').filter()"
-							placeholder="Insira a palavra chave"/>
-					</p:menuitem>
-					<p:menuitem>
-						<p:spacer width="5" />
-					</p:menuitem>
-					<f:facet name="options">
-						<p:menuitem>
-							<p:commandButton icon="ui-icon-search" value="Pesquisar"
-								process="menu_search"
-								action="/pages/user/pesquisaUser?faces-redirect=true" />
-						</p:menuitem>
-					</f:facet>
-				</p:menubar>
-				
-				<p:spacer />
-				
+
 				<p:panelGrid columns="1" layout="grid">
+					<p:spacer />
+					<p:menubar id="menu_search">
+						<p:menuitem>
+							<p:outputLabel value="Nome:" />
+						</p:menuitem>
+						<p:menuitem>
+							<p:spacer width="5" />
+						</p:menuitem>
+						<p:menuitem>
+							<p:inputText id="nome_search" size="100"
+								onkeyup="PF('filteredDataTable').filter()"
+								placeholder="Insira a palavra chave" />
+						</p:menuitem>
+						<p:menuitem>
+							<p:spacer width="5" />
+						</p:menuitem>
+						<f:facet name="options">
+							<p:menuitem>
+								<p:commandButton icon="ui-icon-search" value="Pesquisar"
+									process="menu_search"
+									action="/pages/user/pesquisaUser?faces-redirect=true" />
+							</p:menuitem>
+						</f:facet>
+					</p:menubar>
 					<p:dataTable widgetVar="filteredDataTable"
 						emptyMessage="Sem usuarios cadastrados" id="dataTable" var="user"
 						rows="5" value="#{userBean.users}" paginator="true"
 						selectionMode="single" selection="#{userBean.user}"
-						rowKey="#{user.id}" filteredValue="#{userBean.filteredUsers}" rowsPerPageTemplate="5,10,15">
+						rowKey="#{user.id}" filteredValue="#{userBean.filteredUsers}"
+						rowsPerPageTemplate="5,10,15">
 						<p:ajax event="rowSelect" listener="#{userBean.onRowSelect}"
 							update=":frm:growl" />
 						<p:column filterBy="#{user.nome}" filterMatchMode="contains"
@@ -172,7 +180,7 @@
 						</p:column>
 						<p:column headerText="">
 							<p:commandButton icon="ui-icon-trash"
-								onclick="PF('confirmDialog').show()"/>
+								onclick="PF('confirmDialog').show()" />
 
 							<p:confirmDialog appendTo="@(body)" modal="true"
 								header="Mensagem de confirmacao" widgetVar="confirmDialog"
@@ -182,7 +190,8 @@
 								<!-- <h:form id="confirm_frm"> -->
 								<p:commandButton value="Sim"
 									oncomplete="PF('confirmDialog').hide()"
-									action="#{userBean.deleteUser(user)}" process=":frm:dataTable" update=":frm:dataTable" />
+									action="#{userBean.deleteUser(user)}" process=":frm:dataTable"
+									update=":frm:dataTable" />
 								<p:commandButton value="Nao"
 									onclick="PF('confirmDialog').hide()" />
 								<!-- </h:form> -->
@@ -206,7 +215,8 @@
 				</p:panelGrid>
 
 				<p:dialog resizable="false" closable="true"
-					widgetVar="update_dialog" showEffect="size" closeOnEscape="true" hideEffect="size">
+					widgetVar="update_dialog" showEffect="size" closeOnEscape="true"
+					hideEffect="size">
 
 					<h:form id="frm_update">
 						<p:panelGrid id="userDetail" columns="2">
@@ -222,8 +232,10 @@
 							<p:inputText id="edit_apelido" value="#{userBean.user.apelido}" />
 
 							<p:outputLabel for="edit_email" value="Email:" />
-							<p:inputText size="40" id="edit_email" value="#{userBean.user.email}"
-								validatorMessage="Formato de email invalido!" placeholder="exemplo@email.com">
+							<p:inputText size="40" id="edit_email"
+								value="#{userBean.user.email}"
+								validatorMessage="Formato de email invalido!"
+								placeholder="exemplo@email.com">
 								<f:validateRegex
 									pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
 							</p:inputText>

@@ -7,7 +7,7 @@
 
 <ui:composition template="/pages/template/template.xhtml">
 	<ui:define name="center">
-		<h:outputLabel style="font-size: 40px;" value="Pesquisar usuario" />
+		<h:outputLabel style="font-size: 40px;" value="Pesquisar utilisador" />
 
 		<h:form id="frm">
 			<p:menubar>
@@ -16,7 +16,8 @@
 				</p:menuitem>
 				<f:facet name="options">
 					<p:menuitem>
-					<p:commandButton icon="ui-icon-circle-plus" action="cadastro?faces-redirect=true" value="Novo" />
+						<p:commandButton icon="ui-icon-circle-plus"
+							action="cadastro?faces-redirect=true" value="Novo" />
 					</p:menuitem>
 				</f:facet>
 			</p:menubar>
@@ -32,7 +33,8 @@
 				</p:row>
 				<p:row>
 					<p:column colspan="4">
-						<p:outputLabel style="text-align: center;" value="Procurar pelas datas de registro" />
+						<p:outputLabel style="text-align: center;"
+							value="Procurar pelas datas de registro" />
 					</p:column>
 				</p:row>
 				<p:row>
@@ -40,20 +42,27 @@
 						<p:outputLabel value="De:" />
 					</p:column>
 					<p:column>
-						<p:calendar pattern="dd/MM/yyyy" />
+						<p:calendar id="firstDate" pattern="dd/MM/yyyy" />
+						<p:tooltip for="firstDate"
+							value="Deve ser uma data n&atilde;o muito distante da data do cadastrodo do utilizador ." />
 					</p:column>
 					<p:column>
-						<p:outputLabel value="Ate:" />
+						<p:outputLabel value="At&eacute;:" />
 					</p:column>
 					<p:column>
-						<p:calendar pattern="dd/MM/yyyy" maxdate="#{java.util.Calendar.time}" />
+						<p:calendar pattern="dd/MM/yyyy" id="secondDate"
+							maxdate="#{java.util.Calendar.time}" />
+						<p:tooltip for="secondDate"
+							value="Selecione uma data ap&oacute;s a primeira data." />
 					</p:column>
 				</p:row>
 			</p:panelGrid>
-			
+
 			<p:spacer />
-			
-			<p:dataTable>
+
+			<p:dataTable widgetVar="matchedUser" id="userTableData"
+				paginator="true" rowsPerPageTemplate="5, 10"
+				emptyMessage="Use os campos acima para procurar utilisadores.">
 				<p:column headerText="Nome" />
 				<p:column headerText="Apelido" />
 				<p:column headerText="Email" />
