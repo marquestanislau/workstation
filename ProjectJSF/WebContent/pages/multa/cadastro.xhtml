@@ -108,6 +108,8 @@
 				</p:row>
 			</p:panelGrid>
 
+			<p:spacer />
+			
 			<p:dialog width="700" widgetVar="dialog_view" closable="true"
 				closeOnEscape="true" resizable="false" showEffect="puff"
 				hideEffect="puff">
@@ -116,7 +118,7 @@
 				</f:facet>
 				<p:dataTable id="dataTableMulta" var="multa"
 					value="#{multaBean.multas}" rowKey="#{multa.multa_id}"
-					selectionMode="single" paginator="true" rows="8" emptyMessage="N&atilde;o possui registros.">
+					paginator="true" rows="8" emptyMessage="N&atilde;o possui registros.">
 					<p:column headerText="#ID">
 						<h:outputText value="#{multa.multa_id}" />
 					</p:column>

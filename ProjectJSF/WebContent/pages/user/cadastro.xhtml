@@ -37,27 +37,27 @@
 				<p:panelGrid>
 					<p:row>
 						<p:column>
-							<h:outputLabel value="Nome: " for="nome" />
+							<h:outputLabel value="#{msg.nome}" for="nome" />
 						</p:column>
 						<p:column>
-							<p:inputText id="nome" required="true"
+							<p:inputText label="nome" id="nome" required="true"
 								value="#{userBean.user.nome}" />
 						</p:column>
 						<p:column>
-							<h:outputLabel for="apelido" value="Apelido: " />
+							<h:outputLabel for="apelido" value="#{msg.apelido}" />
 						</p:column>
 						<p:column>
-							<p:inputText id="apelido" required="true"
+							<p:inputText label="apelido" id="apelido" required="true"
 								value="#{userBean.user.apelido}" />
 						</p:column>
 					</p:row>
 
 					<p:row>
 						<p:column>
-							<h:outputLabel for="email" value="Email: " />
+							<h:outputLabel for="email" value="#{msg.email}" />
 						</p:column>
 						<p:column>
-							<p:inputText id="email"
+							<p:inputText label="email" id="email"
 								validatorMessage="Formato de email invalido!"
 								value="#{userBean.user.email}">
 								<f:validateRegex

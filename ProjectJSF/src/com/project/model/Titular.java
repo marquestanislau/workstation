@@ -1,5 +1,6 @@
 package com.project.model;
 
+import java.io.Serializable;
 import java.util.Calendar;
 
 import javax.persistence.Entity;
@@ -10,7 +11,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-public class Titular {
+public class Titular implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

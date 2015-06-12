@@ -1,49 +1,32 @@
 package com.project.beans;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
-import javax.faces.context.FacesContext;
+import javax.faces.bean.ViewScoped;
 
 import org.primefaces.model.DefaultTreeNode;
 import org.primefaces.model.TreeNode;
 
-import com.project.dao.ConnectionFactory;
-import com.project.dao.MultaDao;
 import com.project.model.Gravidade;
 import com.project.model.Multa;
+import com.project.repository.IMulta;
+import com.project.util.FacesUtil;
+import com.project.util.Repositorio;
 
 @ManagedBean
-@RequestScoped
-public class MultaBean {
+@ViewScoped
+public class MultaBean implements Serializable {
 
 	private Multa multa;
 	private List<Multa> multas;
 	@SuppressWarnings("unused")
 	private int totalMultas;
-	private MultaDao dao = null;
-	
-	private TreeNode rootNode;
-	
-	public TreeNode getRootNode() {
-		return rootNode;
-	}
-	
-	public void setRootNode(TreeNode rootNode) {
-		this.rootNode = rootNode;
-	}
-	
-	private void fillNode() {
-		rootNode = new DefaultTreeNode("rootNode", null);
-		DefaultTreeNode nodeOne = new DefaultTreeNode("Nivel 1", rootNode);
-		for(Multa multa: dao.findAll()) {
-			nodeOne.getChildren().add(new DefaultTreeNode(multa));
-		}
-	}
+	private Repositorio repositorio;
+
 	
 	public Gravidade[] getGravidades() {
 		return Gravidade.values();
@@ -71,26 +54,16 @@ public class MultaBean {
 	
 	@PostConstruct
 	public void init() {
-		 dao = new MultaDao(ConnectionFactory.getConnection().createEntityManager());
-		 dao.begin();
-		 setMultas(dao.findAll());
-		 fillNode(); // preenchemento da lista em forma de nodos
+		repositorio = new Repositorio();
+		IMulta multas = repositorio.getMultas();
+		setMultas(multas.todos());
 	}
 	
 	public void add() {
-		FacesContext context = FacesContext.getCurrentInstance();
-		FacesMessage message = new FacesMessage("Salvou com exito.", multa.getNome());
-		
-		dao.create(multa);
-		dao.commit();
-		
-		multas.add(multa);
-		
-		context.addMessage(null, message);
+		IMulta multas = repositorio.getMultas();
+		multas.guardar(multa); // Interface IMulta
+		this.multas.add(multa);
+		FacesUtil.adicionaMensagem(FacesMessage.SEVERITY_INFO, FacesUtil.getMensagemI18n("sucesso"));
 	}
 
-	@PreDestroy
-	private void terminateConnection() {
-		dao.close();
-	}
 }

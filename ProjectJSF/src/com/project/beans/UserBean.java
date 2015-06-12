@@ -1,31 +1,31 @@
 package com.project.beans;
 
+import java.io.Serializable;
 import java.util.Calendar;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
-import javax.faces.context.FacesContext;
+import javax.faces.bean.ViewScoped;
 
 import org.primefaces.event.SelectEvent;
 
-import com.project.dao.ConnectionFactory;
-import com.project.dao.UserDao;
 import com.project.model.Role;
 import com.project.model.User;
+import com.project.repository.IUsusario;
+import com.project.util.FacesUtil;
+import com.project.util.Repositorio;
 
 @ManagedBean
-@RequestScoped
-public class UserBean {
+@ViewScoped
+public class UserBean implements Serializable {
 
 	private User user;
 	private List<User> users;
 	private List<User> filteredUsers;
 	private int totalUsers;
-	private UserDao dao = null;
+	private Repositorio repositorio;
 	
 	public void setFilteredUsers(List<User> filteredUsers) {
 		this.filteredUsers = filteredUsers;
@@ -52,18 +52,13 @@ public class UserBean {
 	}
 	
 	public String addUser() {
-		System.out.println("Managed bean working");
-		FacesContext context = FacesContext.getCurrentInstance();
-		
+		IUsusario usuarios = repositorio.getUsuarios();
 		user.setCreated(Calendar.getInstance());
-
-		dao.create(user);
-		dao.commit();
+		usuarios.guardar(user);
 		users.add(user);
+		FacesUtil.adicionaMensagem(FacesMessage.SEVERITY_INFO, FacesUtil.getMensagemI18n("sucesso"));
 		
-		context.addMessage(null, new FacesMessage("Salvou com exito!") );
-		
-		return "pages/user/cadastro?faces-redirect=false";
+		return "/pages/user/cadastro";
 	}
 	
 	public List<User> getUsers() {
@@ -72,24 +67,19 @@ public class UserBean {
 		
 	@PostConstruct
 	public void init() {
-		dao = new UserDao(ConnectionFactory.getConnection().createEntityManager());
-		dao.begin();
-		users = dao.findAll();
-	}
-	
-	@PreDestroy
-	private void destroy() {
-		dao.close();
+		repositorio =  new Repositorio();
+		IUsusario usuario = repositorio.getUsuarios();
+		users = usuario.todos();
 	}
 	
 	public User read() {
-		User user = dao.read(3L);
+		IUsusario usuarios = repositorio.getUsuarios();
+		usuarios.porCodigo(user.getId());
 		return user;
 	}
 	
 	public void onRowSelect(SelectEvent event) {
-		FacesMessage message = new FacesMessage("Usuario selecionado: ", ((User)event.getObject()).getNome());
-		FacesContext.getCurrentInstance().addMessage(null, message);
+		FacesUtil.adicionaMensagem(FacesMessage.SEVERITY_INFO, ((User)event.getObject()).getNome());
 	}
 	
 	public int getTotalUsers() {
@@ -98,28 +88,12 @@ public class UserBean {
 	}
 	
 	public void update() {
-		FacesContext context = FacesContext.getCurrentInstance();
-		FacesMessage message = new FacesMessage("Usuario Actualizado", user.getNome());
-		
-		if(dao.update(user) != null) {
-			dao.commit();
-			context.addMessage(null, message);
-		} else {
-			FacesMessage errorMessage = new FacesMessage("Usuario nao existe.", "Selecione um usuario na tabela");
-			errorMessage.setSeverity(FacesMessage.SEVERITY_ERROR);
-			context.addMessage(null, errorMessage);
-		}
-		
+		IUsusario usuarios = repositorio.getUsuarios();
+		usuarios.guardar(user);
+		FacesUtil.adicionaMensagem(FacesMessage.SEVERITY_INFO, FacesUtil.getMensagemI18n("sucesso"));
 	}
 	
 	public void deleteUser(User u) {
-		FacesContext context = FacesContext.getCurrentInstance();
-		FacesMessage message = new FacesMessage("Usuario removido!");
-		
-		dao.delete(u);
-		dao.commit();
-		users.remove(u);
-		
-		context.addMessage(null, message);
+	
 	}
 }

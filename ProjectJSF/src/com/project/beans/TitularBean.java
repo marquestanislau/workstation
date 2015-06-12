@@ -1,31 +1,32 @@
 package com.project.beans;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
 import org.primefaces.event.SelectEvent;
 
-import com.project.dao.ConnectionFactory;
-import com.project.dao.TitularDao;
 import com.project.model.Titular;
+import com.project.repository.ITitular;
+import com.project.util.FacesUtil;
+import com.project.util.Repositorio;
 
 @ManagedBean
-@RequestScoped
-public class TitularBean {
+@ViewScoped
+public class TitularBean implements Serializable {
 	
 	private Titular titular;
 	private List<Titular> titulares;
 	private int totalTitulares;
 	private List<Titular> filterTitulares;
-	private TitularDao dao = null;
+	private Repositorio repositorio;
 	
 	public TitularBean() {
 		titular = new Titular();
@@ -58,39 +59,29 @@ public class TitularBean {
 	
 	@PostConstruct
 	public void initList() {
-		dao = new TitularDao(ConnectionFactory.getConnection().createEntityManager());
-		dao.begin();
-		setTitulares(dao.findAll());
+		repositorio = new Repositorio();
+		setTitulares(repositorio.getTitulares().todos());
 	}
 	
-	@PreDestroy
-	private void quit() {
-		dao.close();
-	}
-	
+
 	public String saveTitular() {
-		FacesContext context = FacesContext.getCurrentInstance();
 		
 		titular.setCreatedDate(Calendar.getInstance());
-		dao.create(titular);
-		dao.commit();
+		ITitular titulares = repositorio.getTitulares();
+		titulares.guardar(titular);		
+		this.titulares.add(titular);
 		
-		titulares.add(titular);
-		FacesMessage message = new FacesMessage("Salvou com exito!", titular.getNome());
-		context.addMessage(null, message);
+		FacesUtil.adicionaMensagem(FacesMessage.SEVERITY_INFO, FacesUtil.getMensagemI18n("sucesso"));
 		
 		return "/pages/titular/cadastro?faces-redirect=false";
 	}
 
 	public void delete(Titular t) {
-		FacesContext context = FacesContext.getCurrentInstance();
-		FacesMessage message = new FacesMessage("Removido!", t.getNome());
+		ITitular titulares = repositorio.getTitulares();
+		titulares.remover(titular);
+		this.titulares.remove(t);
+		FacesUtil.adicionaMensagem(FacesMessage.SEVERITY_INFO, FacesUtil.getMensagemI18n("sucesso_apagar"));
 		
-		dao.delete(t);
-		dao.commit();
-		titulares.remove(t);
-		
-		context.addMessage(null, message);
 	}
 	
 	public List<String> complete(String query) {
@@ -108,14 +99,9 @@ public class TitularBean {
 	}
 	
 	public void update() {
-		
-		dao.update(titular);
-		dao.commit();
-		
-		FacesContext context = FacesContext.getCurrentInstance();
-		FacesMessage message = new FacesMessage("Actualizado com sucesso!");
-		
-		context.addMessage(null, message);
+		ITitular titulares = repositorio.getTitulares();
+		titulares.guardar(titular);
+		FacesUtil.adicionaMensagem(FacesMessage.SEVERITY_INFO, FacesUtil.getMensagemI18n("sucesso"));
 	}
 	
 	public void onRowSelect(SelectEvent event) {

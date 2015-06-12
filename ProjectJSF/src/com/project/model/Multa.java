@@ -3,6 +3,7 @@
  */
 package com.project.model;
 
+import java.io.Serializable;
 import java.util.Calendar;
 
 import javax.persistence.Entity;
@@ -21,7 +22,7 @@ import javax.persistence.TemporalType;
  */
 
 @Entity
-public class Multa {
+public class Multa implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

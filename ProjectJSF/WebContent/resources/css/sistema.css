@@ -1,0 +1,47 @@
+@CHARSET "ISO-8859-1";
+
+*, html {
+	font-size: 12px;
+	margin:0;
+}
+
+#rodape {
+	border-top: solid thin gray;
+	background-color: #EEE;
+}
+
+#cabecalho .ui-menubar {
+	background: none;
+	border: none;
+	background-color: #0f0c0c;
+	height: 40px;
+	border-radius: 0 0;
+	padding: 10px;
+}
+#cabecalho .ui-menubar .ui-widget-content {
+	background: none;
+	background-color: #333;
+	border:none;	
+}
+
+#cabecalho .ui-menubar .ui-menuitem-text {
+	color: white;
+	font-weight: bold;
+	font-size: 14px;
+}
+
+#cabecalho .ui-menuitem-link:hover {
+	background: none;
+	background-color: #0f0c0c;
+}
+
+#cabecalho .ui-menuitem-link:selected {
+	background: none;
+	background-color: #333;
+}
+#logo {
+	font-size: 28px;
+	font-weight: bold;
+	color: white;
+	font-family: "URW Gothic L";
+}
