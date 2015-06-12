@@ -1,0 +1,27 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+	
+	<h:form>
+		<p:menubar>
+			<p:menuitem value="Home" icon="ui-icon-home" url="/home.xhtml" />
+			<p:submenu label="Registros" icon="ui-icon ui-icon-circle-plus">
+				<p:menuitem value="Usuarios" icon="ui-icon-person"
+					url="/pages/user/cadastro.xhtml" />
+				<p:menuitem value="Multas" icon="ui-icon-note"
+					url="/pages/multa/cadastro.xhtml" />
+				<p:menuitem value="Titulares" icon="ui-icon ui-icon-contact"
+					url="/pages/titular/cadastro.xhtml" />
+				<p:menuitem value="Viaturas" icon="ui-icon ui-icon-grip-diagonal-se" />
+			</p:submenu>
+			<p:menuitem value="Multas" url="#" />
+			<p:menuitem value="Relatorios" icon="ui-icon-bookmark" />
+			<f:facet name="options">
+				<h1 id="logo">Pegasus</h1>
+			</f:facet>
+		</p:menubar>
+		<p:spacer />
+	</h:form>
+</ui:composition>
