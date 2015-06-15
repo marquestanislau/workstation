@@ -45,3 +45,11 @@
 	color: white;
 	font-family: "URW Gothic L";
 }
+.cor_admin {
+	color: blue;
+	font-weight: bold;
+}
+
+.cor_normal {
+	color: #019922;
+}

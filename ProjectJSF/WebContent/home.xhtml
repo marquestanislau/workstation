@@ -7,7 +7,41 @@
 	xmlns:p="http://primefaces.org/ui">
 	
 	<ui:define name="center">
-		<h1>Bem vindo</h1>
+	
+		<div class="ui-grid">
+			<div class="ui-grid-row">
+				<div class="ui-grid-col-8">
+					<p:chart type="pie" model="#{modeloGrafico.modelo}" />		
+				</div>			
+				<div class="ui-grid-col-4">
+					<h:form>
+					<p:panelMenu>
+						<p:submenu label="any text">
+							<p:menuitem value="TTT" />
+							<p:menuitem value="TTT" />
+							<p:menuitem value="TTT" />
+							<p:menuitem value="TTT" />
+						</p:submenu>
+						<p:submenu label="any text">
+							<p:menuitem value="TTT" />
+							<p:menuitem value="TTT" />
+							<p:menuitem value="TTT" />
+							<p:menuitem value="TTT" />
+						</p:submenu>
+						<p:submenu label="Texting">
+							<p:submenu label="any text">
+								<p:menuitem value="TTT" />
+								<p:menuitem value="TTT" />
+								<p:menuitem value="TTT" />
+								<p:menuitem value="TTT" />
+							</p:submenu>
+						</p:submenu>
+					</p:panelMenu>
+					</h:form>
+				</div>
+			</div>
+		</div>
+		<p:spacer />
 	</ui:define>
 	
 </ui:composition>

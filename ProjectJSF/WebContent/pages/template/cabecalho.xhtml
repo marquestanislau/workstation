@@ -5,7 +5,7 @@
 	xmlns:p="http://primefaces.org/ui">
 	
 	<h:form>
-		<p:menubar>
+		<p:menubar id="mbar">
 			<p:menuitem value="Home" icon="ui-icon-home" url="/home.xhtml" />
 			<p:submenu label="Registros" icon="ui-icon ui-icon-circle-plus">
 				<p:menuitem value="Usuarios" icon="ui-icon-person"
@@ -22,6 +22,7 @@
 				<h1 id="logo">Pegasus</h1>
 			</f:facet>
 		</p:menubar>
+		<p:sticky target="mbar"></p:sticky>
 		<p:spacer />
 	</h:form>
 </ui:composition>

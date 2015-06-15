@@ -26,6 +26,11 @@
 							icon="ui-icon-circle-check" update=":frm:dataTable" />
 					</p:menuitem>
 					<p:menuitem>
+						<span class="ui-separator">
+							<span class="ui-icon ui-icon-grip-dotted-vertical" />
+						</span>
+					</p:menuitem>
+					<p:menuitem>
 						<p:commandButton value="Novo" icon="ui-icon-plus" type="reset" />
 					</p:menuitem>
 
@@ -176,7 +181,7 @@
 						</p:column>
 						<p:column headerText="Role" filterMatchMode="contains"
 							filterBy="#{user.role}">
-							<p:outputLabel value="#{user.role.label}" />
+							<p:outputLabel value="#{user.role.label}" styleClass="#{user.role eq 'ADMIN' ? 'cor_admin' : 'cor_normal'}" />
 						</p:column>
 						<p:column headerText="">
 							<p:commandButton icon="ui-icon-trash"
