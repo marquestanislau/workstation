@@ -2,7 +2,6 @@ package com.project.repository;
 
 import java.util.List;
 
-import com.project.model.Multa;
 import com.project.model.Titular;
 
 public interface ITitular {

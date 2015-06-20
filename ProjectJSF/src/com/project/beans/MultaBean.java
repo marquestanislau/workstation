@@ -8,9 +8,6 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
-import org.primefaces.model.DefaultTreeNode;
-import org.primefaces.model.TreeNode;
-
 import com.project.model.Gravidade;
 import com.project.model.Multa;
 import com.project.repository.IMulta;
@@ -21,6 +18,7 @@ import com.project.util.Repositorio;
 @ViewScoped
 public class MultaBean implements Serializable {
 
+	private static final long serialVersionUID = -8381848586659825946L;
 	private Multa multa;
 	private List<Multa> multas;
 	@SuppressWarnings("unused")

@@ -11,6 +11,7 @@ import org.primefaces.model.chart.PieChartModel;
 @ViewScoped
 public class GraficoBean implements Serializable {
 	
+	private static final long serialVersionUID = -4348852215030723895L;
 	private PieChartModel modelo;
 
 	public GraficoBean() {

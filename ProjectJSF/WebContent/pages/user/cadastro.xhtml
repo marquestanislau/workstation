@@ -38,14 +38,15 @@
 
 				<p:spacer />
 				<p:growl autoUpdate="true" showDetail="true" showSummary="true" />
-
+				<p:fieldset legend="Coloque os dados do novo utilizador">
+				
 				<p:panelGrid>
 					<p:row>
 						<p:column>
 							<h:outputLabel value="#{msg.nome}" for="nome" />
 						</p:column>
 						<p:column>
-							<p:inputText label="nome" id="nome" required="true"
+							<p:inputText size="50" label="nome" id="nome" required="true"
 								value="#{userBean.user.nome}" />
 						</p:column>
 						<p:column>
@@ -62,7 +63,7 @@
 							<h:outputLabel for="email" value="#{msg.email}" />
 						</p:column>
 						<p:column>
-							<p:inputText label="email" id="email"
+							<p:inputText size="50"  label="email" id="email"
 								validatorMessage="Formato de email invalido!"
 								value="#{userBean.user.email}">
 								<f:validateRegex
@@ -74,7 +75,7 @@
 							<h:outputLabel for="cell" value="Cell: " />
 						</p:column>
 						<p:column>
-							<p:inputMask id="cell" required="true" mask="(+258)-999-999-999"
+							<p:inputMask size="50" id="cell" required="true" mask="(+258)-999-999-999"
 								value="#{userBean.user.cell}" />
 							<p:watermark value="(+258)-123-456-789" for="cell" />
 						</p:column>
@@ -98,7 +99,7 @@
 							<p:outputLabel for="senha" value="Senha:" />
 						</p:column>
 						<p:column>
-							<p:password feedback="true" required="true" id="senha"
+							<p:password size="40"  feedback="true" required="true" id="senha"
 								weakLabel="Fraco" strongLabel="Segura" goodLabel="Aceitavel"
 								promptLabel="Digite a palavra passe" maxlength="15"
 								placeholder="M&aacute;ximo 15 caracteres" />
@@ -109,7 +110,7 @@
 							<p:outputLabel for="repeataSenha" value="Repita a senha:" />
 						</p:column>
 						<p:column>
-							<p:password placeholder="Repita a senha aqui." maxlength="15"
+							<p:password size="40" placeholder="Repita a senha aqui." maxlength="15"
 								id="repeataSenha" />
 							<p:tooltip value="Deve ser igual ao campo senha"
 								for="repeataSenha" />
@@ -117,6 +118,8 @@
 					</p:row>
 
 				</p:panelGrid>
+				
+				</p:fieldset>
 			</h:form>
 
 			<p:spacer />
@@ -172,7 +175,7 @@
 						</p:column>
 						<p:column headerText="Data de registo">
 							<p:outputLabel value="#{user.created.time}">
-								<f:convertDateTime pattern="dd/MM/yy" type="date" />
+								<f:convertDateTime pattern="dd, MMMM yyyy" locale="pt_BR" type="date" />
 							</p:outputLabel>
 						</p:column>
 						<p:column headerText="Contacto" filterBy="#{user.cell}"

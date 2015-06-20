@@ -6,45 +6,32 @@
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-	<title>Autenticacao</title>
-	<style>
-#center {
-	margin-top: 25%;
-}
-
-* {
-	font-size: small;
-}
-
-body {
-	background-color: #gray;
-}
-</style>
+	<title>#{msg.autenticacao_titulo}</title>
+	<h:outputStylesheet library="css" name="sistema.css" />
 </h:head>
 <h:body>
 	<center>
-		<div id="center">
-			<p:growl id="msg" autoUpdate="true" showDetail="false"
+		<div id="conteudo_login">
+			<p:messages id="msg" autoUpdate="true" showDetail="false"
 				showSummary="true" />
 			<h:form>
 				<p:panelGrid columns="2">
 					<f:facet name="header">
-						<p:outputPanel>
-							<h:graphicImage value="resources/img/login.png" alt="login" />
-							<h:outputLabel value="Efectue a autenticacao" />
-						</p:outputPanel>
+						<h:outputLabel value="#{msg.login_header}" />
 					</f:facet>
-					<p:outputLabel for="nome" value="Nome: " />
-					<p:inputText maxlength="15" id="nome" required="true"
-						value="#{userBean.user.nome}" />
-					<p:outputLabel for="senha" value="senha: " />
-					<p:password maxlength="15" id="senha" required="true" />
-					<f:facet name="footer">
-						<p:commandButton icon="ui-icon-circle-check" value="Entrar" />
-						<p:commandButton icon="ui-icon-circle-close" type="reset"
-							value="Cancelar" />
-					</f:facet>
+					<p:outputLabel for="nome" value="#{msg.nome}" />
+					<p:inputText maxlength="30" id="nome" required="true" size="30" />
+					<p:outputLabel for="senha" value="#{msg.senha}" />
+					<p:password maxlength="15" size="30" id="senha" required="true" />
+					<p:spacer />
+					<h:panelGroup>
+						<p:commandButton icon="ui-icon-circle-check"
+							value="#{msg.autenticar}" />
+						<p:spacer width="10" />
+						<p:link value="#{msg.esqueci_a_senha}" />
+					</h:panelGroup>
 				</p:panelGrid>
+				<h:outputLink value="asjdbgy" title="kdfuh" />
 			</h:form>
 		</div>
 	</center>

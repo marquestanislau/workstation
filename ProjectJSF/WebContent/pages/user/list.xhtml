@@ -10,22 +10,25 @@
 	<ui:composition template="/pages/template/template.xhtml">
 		<ui:define name="center">
 			<h:form id="frm">
-				<h:outputLabel value="Lista de usu&aacute;rios cadastrados." style="font-size: 25px;" />
+				<h:outputLabel value="Lista de usu&aacute;rios cadastrados."
+					style="font-size: 25px;" />
 				<p:menubar>
 					<f:facet name="options">
 						<p:menuitem>
 							<p:commandButton type="button" icon="ui-icon-plus"
-							onclick="PF('saveDialog').show()" value="Novo Cadastro" />
+								onclick="PF('saveDialog').show()" value="Novo Cadastro" />
 						</p:menuitem>
 						<p:menuitem>
-							<p:commandButton type="button" value="Imprimir" icon="ui-icon-print" />
+							<p:commandButton type="button" value="Imprimir"
+								icon="ui-icon-print" />
 						</p:menuitem>
 					</f:facet>
 				</p:menubar>
-				
+
 				<p:spacer />
-				
-				<p:growl id="growl" showDetail="true" showSummary="true" autoUpdate="true" />
+
+				<p:growl id="growl" showDetail="true" showSummary="true"
+					autoUpdate="true" />
 
 				<p:panelGrid columns="1" layout="grid">
 
@@ -53,7 +56,8 @@
 							<p:outputLabel value="#{user.cell}" />
 						</p:column>
 						<p:column headerText="Role">
-							<p:outputLabel value="#{user.role}" styleClass="#{user.role eq 'ADMIN'? 'cor_admin' : 'cor_normal'}" />
+							<p:outputLabel value="#{user.role.label}"
+								styleClass="#{user.role eq 'ADMIN'? 'cor_admin' : 'cor_normal'}" />
 						</p:column>
 						<p:column headerText="">
 							<p:commandButton update=":frm:viewUser"
@@ -98,85 +102,78 @@
 
 				<h:form id="process_frm">
 					<p:dialog widgetVar="saveDialog" closeOnEscape="true"
-						closable="true" header="Cadastro de Usuarios" showEffect="drop" hideEffect="puff">
+						closable="true" header="Cadastro de Usuarios" showEffect="drop"
+						hideEffect="puff">
 						<h:outputLabel style="font-size: 35px;"
 							value="Efectue o registo de usuarios." />
-						
-						<p:panelGrid>
-							<p:row>
-								<p:column>
-									<h:outputLabel value="Nome: " for="nome" />
-								</p:column>
-								<p:column>
-									<p:inputText id="nome" required="true" value="#{userBean.user.nome}" />
-								</p:column>
-								<p:column>
-									<h:outputLabel for="apelido" value="Apelido: " />
-								</p:column>
-								<p:column>
-									<p:inputText id="apelido" required="true" value="#{userBean.user.apelido}" />
-								</p:column>
-							</p:row>
 
-							<p:row>
-								<p:column>
-									<h:outputLabel for="email" value="Email: " />
-								</p:column>
-								<p:column>
+						<p:panel header="Dados pessoais do utilizador">
+							<p:panelGrid columns="4">
+								<h:outputLabel value="Nome: " for="nome" />
+								<p:inputText id="nome" required="true"
+									value="#{userBean.user.nome}" />
+								<h:outputLabel for="apelido" value="Apelido: " />
+								<p:inputText id="apelido" required="true"
+									value="#{userBean.user.apelido}" />
+								<h:outputLabel value="Data de Nascimento: " for="nome" />
+								<p:calendar />
+								<h:outputLabel value="Detalhes: " for="nome" />
+								<p:inputTextarea cols="30" />
+							</p:panelGrid>
+						</p:panel>
+						<p:spacer />
+						<p:panel header="Informacoes de contacto">
+							<p:panelGrid columns="4">
+								<h:outputLabel value="Email: " for="nome" />
+								<h:panelGroup>
 									<p:inputText id="email"
 										validatorMessage="Formato de email invalido!"
 										value="#{userBean.user.email}">
 										<f:validateRegex
 											pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
 									</p:inputText>
-									<p:watermark for="email" value="exemplo@mail.com"></p:watermark>
-								</p:column>
-								<p:column>
-									<h:outputLabel for="cell" value="Cell: " />
-								</p:column>
-								<p:column>
-									<p:inputMask required="true" id="cell" mask="(+258)-999-999-999"
-										value="#{userBean.user.cell}" />
+									<p:watermark for="email" value="exemplo@mail.com" />
+								</h:panelGroup>
+								<h:outputLabel value="Telemovel: " for="nome" />
+								<h:panelGroup>
+									<p:inputMask required="true" id="cell"
+										mask="(+258)-999-999-999" value="#{userBean.user.cell}" />
 									<p:watermark value="(+258)-123-456-789" for="cell" />
-								</p:column>
-								<p:column>
-									<p:outputLabel value="Tipo de usuario: " for="userType" />
-								</p:column>
-								<p:column>
-									<p:selectOneMenu required="true" id="userType" value="#{userBean.user.role}">
-										<f:selectItem itemLabel="Selecione..." />
-										<f:selectItems value="#{userBean.roles}" var="rolex"
-											itemValue="#{rolex}" itemLabel="#{rolex.label}" />
-									</p:selectOneMenu>
-								</p:column>
-							</p:row>
-
-							<p:row>
-								<p:column>
-									<p:outputLabel value="Senha:" for="senha" />
-								</p:column>
-								<p:column colspan="3">
-									<p:password size="50" feedback="true" weakLabel="Fraco" required="true" id="senha"
-										strongLabel="Segura" goodLabel="Aceitavel"
-										promptLabel="Digite a palavra passe" maxlength="15" />
-								</p:column>
-							</p:row>
-							<p:row>
-								<p:column>
-									<p:outputLabel value="Repita a senha:" for="repeatSenha" />
-								</p:column>
-								<p:column colspan="3">
-									<p:password size="50" maxlength="15" id="repeatSenha" required="true" />
-								</p:column>
-							</p:row>
-						</p:panelGrid>
+								</h:panelGroup>
+								<h:outputLabel value="Telemovel alternativo: " for="nome" />
+								<p:inputMask mask="" />
+							</p:panelGrid>
+						</p:panel>
+						<p:spacer />
+						<p:panel header="Informacoes de registo">
+							<p:panelGrid columns="2">
+								<h:outputLabel value="Nome do usuario: " for="nome" />
+								<p:inputText />
+								<h:outputLabel value="Senha: " for="nome" />
+								<p:password size="50" feedback="true" weakLabel="Fraco"
+									required="true" id="senha" strongLabel="Segura"
+									goodLabel="Aceitavel" promptLabel="Digite a palavra passe"
+									maxlength="15" />
+								<h:outputLabel value="Repita a senha: " for="nome" />
+								<p:password size="50" maxlength="15" id="repeatSenha"
+									required="true" />
+								<p:outputLabel value="Permissao:" />
+								<p:selectOneMenu required="true" id="userType"
+									value="#{userBean.user.role}">
+									<f:selectItem itemLabel="Selecione..." />
+									<f:selectItems value="#{userBean.roles}" var="rolex"
+										itemValue="#{rolex}" itemLabel="#{rolex.label}" />
+								</p:selectOneMenu>
+							</p:panelGrid>
+						</p:panel>
 
 						<f:facet name="footer">
 							<p:outputPanel>
 								<p:commandButton icon="ui-icon-circle-plus" value="Salvar"
 									action="#{userBean.addUser}" update=":frm:dataTable"
 									process="process_frm" />
-								<p:commandButton value="Novo" icon="ui-icon-refresh" type="reset" />
+								<p:commandButton value="Novo" icon="ui-icon-refresh"
+									type="reset" />
 							</p:outputPanel>
 						</f:facet>
 					</p:dialog>

@@ -24,6 +24,11 @@ import javax.persistence.TemporalType;
 @Entity
 public class Multa implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3629918149751880128L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer multa_id;

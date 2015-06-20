@@ -124,6 +124,10 @@
 						</f:facet>
 						
 						<p:ajax event="rowSelect" listener="#{titularBean.onRowSelect}" />
+						
+						<p:column headerText="ID">
+							<p:outputLabel value="#{titular.id}" />
+						</p:column>						
 						<p:column headerText="Nome" filterBy="#{titular.nome}" filterMatchMode="contains" sortBy="#{titular.nome}">
 							<p:outputLabel value="#{titular.nome}" />
 						</p:column>
@@ -135,6 +139,11 @@
 						</p:column>
 						<p:column headerText="Num Carta" filterMatchMode="exact" filterBy="#{titular.numeroCarta}">
 							<p:outputLabel value="#{titular.numeroCarta}" />
+						</p:column>
+						<p:column headerText="Data Registo">
+							<p:outputLabel value="#{titular.createdDate.time}">
+								<f:convertDateTime pattern="dd, MMMM yyyy" locale="pt_BR"/>
+							</p:outputLabel>
 						</p:column>
 						<p:column>
 							<p:commandButton action="#{titularBean.delete(titular)}"

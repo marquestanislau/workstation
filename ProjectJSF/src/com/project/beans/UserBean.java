@@ -21,6 +21,7 @@ import com.project.util.Repositorio;
 @ViewScoped
 public class UserBean implements Serializable {
 
+	private static final long serialVersionUID = -6686020001982914849L;
 	private User user;
 	private List<User> users;
 	private List<User> filteredUsers;

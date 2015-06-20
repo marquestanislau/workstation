@@ -16,6 +16,7 @@ public class UsuariosHibernate implements IUsusario {
 		this.session = session;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<User> todos() {
 		return session.createCriteria(User.class).addOrder(Order.asc("nome"))

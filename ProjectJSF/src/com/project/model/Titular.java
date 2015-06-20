@@ -13,6 +13,10 @@ import javax.persistence.TemporalType;
 @Entity
 public class Titular implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3521769834741073032L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;

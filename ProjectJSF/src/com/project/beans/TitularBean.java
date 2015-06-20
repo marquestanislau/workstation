@@ -22,6 +22,10 @@ import com.project.util.Repositorio;
 @ViewScoped
 public class TitularBean implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2368099963579837467L;
 	private Titular titular;
 	private List<Titular> titulares;
 	private int totalTitulares;
@@ -29,7 +33,7 @@ public class TitularBean implements Serializable {
 	private Repositorio repositorio;
 	
 	public TitularBean() {
-		titular = new Titular();
+		this.titular = new Titular();
 	}
 	
 	//metodos usados para search automatico nas datatables
@@ -70,7 +74,7 @@ public class TitularBean implements Serializable {
 		ITitular titulares = repositorio.getTitulares();
 		titulares.guardar(titular);		
 		this.titulares.add(titular);
-		
+		this.titular = new Titular();
 		FacesUtil.adicionaMensagem(FacesMessage.SEVERITY_INFO, FacesUtil.getMensagemI18n("sucesso"));
 		
 		return "/pages/titular/cadastro?faces-redirect=false";
