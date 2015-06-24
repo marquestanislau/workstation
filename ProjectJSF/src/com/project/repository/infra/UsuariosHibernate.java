@@ -6,9 +6,9 @@ import org.hibernate.Session;
 import org.hibernate.criterion.Order;
 
 import com.project.model.User;
-import com.project.repository.IUsusario;
+import com.project.repository.IUsuario;
 
-public class UsuariosHibernate implements IUsusario {
+public class UsuariosHibernate implements IUsuario {
 
 	private Session session;
 
@@ -32,5 +32,12 @@ public class UsuariosHibernate implements IUsusario {
 	public User porCodigo(Long codigo) {
 		return (User) session.get(User.class, codigo);
 	}
+
+	@Override
+	public void apagar(User user) {
+		this.session.delete(user);
+	}
+	
+	
 
 }

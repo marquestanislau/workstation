@@ -13,7 +13,7 @@ import org.primefaces.event.SelectEvent;
 
 import com.project.model.Role;
 import com.project.model.User;
-import com.project.repository.IUsusario;
+import com.project.repository.IUsuario;
 import com.project.util.FacesUtil;
 import com.project.util.Repositorio;
 
@@ -53,7 +53,7 @@ public class UserBean implements Serializable {
 	}
 	
 	public String addUser() {
-		IUsusario usuarios = repositorio.getUsuarios();
+		IUsuario usuarios = repositorio.getUsuarios();
 		user.setCreated(Calendar.getInstance());
 		usuarios.guardar(user);
 		users.add(user);
@@ -69,12 +69,12 @@ public class UserBean implements Serializable {
 	@PostConstruct
 	public void init() {
 		repositorio =  new Repositorio();
-		IUsusario usuario = repositorio.getUsuarios();
+		IUsuario usuario = repositorio.getUsuarios();
 		users = usuario.todos();
 	}
 	
 	public User read() {
-		IUsusario usuarios = repositorio.getUsuarios();
+		IUsuario usuarios = repositorio.getUsuarios();
 		usuarios.porCodigo(user.getId());
 		return user;
 	}
@@ -89,12 +89,14 @@ public class UserBean implements Serializable {
 	}
 	
 	public void update() {
-		IUsusario usuarios = repositorio.getUsuarios();
+		IUsuario usuarios = repositorio.getUsuarios();
 		usuarios.guardar(user);
 		FacesUtil.adicionaMensagem(FacesMessage.SEVERITY_INFO, FacesUtil.getMensagemI18n("sucesso"));
 	}
 	
 	public void deleteUser(User u) {
-	
+		IUsuario usuarios = repositorio.getUsuarios();
+		usuarios.apagar(u);
+		FacesUtil.adicionaMensagem(FacesMessage.SEVERITY_INFO, FacesUtil.getMensagemI18n("sucesso_apagar"));
 	}
 }
