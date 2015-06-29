@@ -122,7 +122,7 @@
 					<p:column headerText="#ID">
 						<h:outputText value="#{multa.multa_id}" />
 					</p:column>
-					<p:column headerText="#NOME" filterBy="#{multa.nome}" sortBy="#{multa.nome}" filterMatchMode="contains">
+					<p:column headerText="NOME" filterBy="#{multa.nome}" sortBy="#{multa.nome}" filterMatchMode="contains">
 						<h:outputText value="#{multa.nome}" />
 					</p:column>
 					<p:column headerText="GRAVIDADE" filterBy="#{multa.gravidade.label}" >
@@ -134,6 +134,10 @@
 					<p:column headerText="DATA">
 						<p:outputLabel value="#{multa.createdDate}" />
 					</p:column>
+					<p:column headerText="Valor da Multa">
+						<p:outputLabel value="#{multa.valorDaMulta}" />
+					</p:column>
+					
 				</p:dataTable>
 			</p:dialog>
 		</h:form>

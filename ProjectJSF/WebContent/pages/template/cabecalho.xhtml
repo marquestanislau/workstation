@@ -6,14 +6,14 @@
 	
 	<h:form>
 		<p:menubar id="mbar">
-			<p:menuitem value="Home" icon="ui-icon-home" url="/home.xhtml" />
+			<p:menuitem value="Home" icon="ui-icon-home" outcome="/home.xhtml" />
 			<p:submenu label="Registros" icon="ui-icon ui-icon-circle-plus">
 				<p:menuitem outcome="/pages/user/cadastro.xhtml" value="Usuarios" icon="ui-icon-person"
 					 />
 				<p:menuitem value="Multas" icon="ui-icon-note"
-					url="/pages/multa/cadastro.xhtml" />
+					outcome="/pages/multa/cadastro.xhtml" />
 				<p:menuitem value="Titulares" icon="ui-icon ui-icon-contact"
-					url="/pages/titular/cadastro.xhtml" />
+					outcome="/pages/titular/cadastro.xhtml" />
 				<p:menuitem value="Viaturas" icon="ui-icon ui-icon-grip-diagonal-se" />
 			</p:submenu>
 			<p:menuitem value="Multas" url="#" />
