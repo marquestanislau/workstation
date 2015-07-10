@@ -15,31 +15,30 @@
 				<p:menubar>
 					<f:facet name="options">
 						<p:menuitem>
-							<p:commandButton process="@this" value="Lista de usuarios"
+							<p:commandButton process="@this" value="#{msg.lista_utilizador}"
 								icon="ui-icon-person"
 								action="/pages/user/list?faces-redirect=true" />
 						</p:menuitem>
 					</f:facet>
 					<p:menuitem>
 						<p:commandButton title="Clica para submeter os dados"
-							action="#{userBean.addUser}" value="Salvar"
+							action="#{userBean.addUser}" value="#{msg.salvar}"
 							icon="ui-icon-circle-check" update=":frm:dataTable" />
 					</p:menuitem>
 					<p:menuitem>
-						<span class="ui-separator">
-							<span class="ui-icon ui-icon-grip-dotted-vertical" />
+						<span class="ui-separator"> <span
+							class="ui-icon ui-icon-grip-dotted-vertical" />
 						</span>
 					</p:menuitem>
 					<p:menuitem>
-						<p:commandButton value="Novo" icon="ui-icon-plus" type="reset" />
+						<p:commandButton value="#{msg.novo}" icon="ui-icon-plus" type="reset" />
 					</p:menuitem>
 
 				</p:menubar>
 
 				<p:spacer />
 				<p:growl autoUpdate="true" showDetail="true" showSummary="true" />
-				<p:fieldset legend="Coloque os dados do novo utilizador">
-				
+
 				<p:panelGrid>
 					<p:row>
 						<p:column>
@@ -53,7 +52,7 @@
 							<h:outputLabel for="apelido" value="#{msg.apelido}" />
 						</p:column>
 						<p:column>
-							<p:inputText label="apelido" id="apelido" required="true"
+							<p:inputText label="#{msg.apelido}" id="apelido" required="true"
 								value="#{userBean.user.apelido}" />
 						</p:column>
 					</p:row>
@@ -63,29 +62,29 @@
 							<h:outputLabel for="email" value="#{msg.email}" />
 						</p:column>
 						<p:column>
-							<p:inputText size="50"  label="email" id="email"
+							<p:inputText size="50" label="email" id="email"
 								validatorMessage="Formato de email invalido!"
 								value="#{userBean.user.email}">
 								<f:validateRegex
 									pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
 							</p:inputText>
-							<p:watermark for="email" value="exemplo@mail.com"></p:watermark>
+							<p:watermark for="email" value="#{msg.water_email}"></p:watermark>
 						</p:column>
 						<p:column>
-							<h:outputLabel for="cell" value="Cell: " />
+							<h:outputLabel for="cell" value="#{msg.contacto}" />
 						</p:column>
 						<p:column>
-							<p:inputMask size="50" id="cell" required="true" mask="(+258)-999-999-999"
-								value="#{userBean.user.cell}" />
+							<p:inputMask size="50" id="cell" required="true"
+								mask="(+258)-999-999-999" value="#{userBean.user.cell}" />
 							<p:watermark value="(+258)-123-456-789" for="cell" />
 						</p:column>
 						<p:column>
-							<p:outputLabel value="Tipo de usuario: " for="user_Type" />
+							<p:outputLabel value="#{msg.tipo_usuario}" for="user_Type" />
 						</p:column>
 						<p:column>
 							<p:selectOneMenu value="#{userBean.user.role}" id="user_Type"
 								required="true">
-								<f:selectItem itemLabel="Selecione..." />
+								<f:selectItem itemLabel="#{msg.water_selecione}" />
 								<f:selectItems value="#{userBean.roles}" var="rolex"
 									itemValue="#{rolex}" itemLabel="#{rolex.label}" />
 							</p:selectOneMenu>
@@ -96,10 +95,10 @@
 
 					<p:row>
 						<p:column>
-							<p:outputLabel for="senha" value="Senha:" />
+							<p:outputLabel for="senha" value="#{msg.senha}" />
 						</p:column>
 						<p:column>
-							<p:password size="40"  feedback="true" required="true" id="senha"
+							<p:password size="40" feedback="true" required="true" id="senha"
 								weakLabel="Fraco" strongLabel="Segura" goodLabel="Aceitavel"
 								promptLabel="Digite a palavra passe" maxlength="15"
 								placeholder="M&aacute;ximo 15 caracteres" />
@@ -107,19 +106,18 @@
 					</p:row>
 					<p:row>
 						<p:column>
-							<p:outputLabel for="repeataSenha" value="Repita a senha:" />
+							<p:outputLabel for="repeataSenha" value="#{msg.senha_repetida}" />
 						</p:column>
 						<p:column>
-							<p:password size="40" placeholder="Repita a senha aqui." maxlength="15"
-								id="repeataSenha" />
+							<p:password size="40" placeholder="#{msg.water_senha_rep}"
+								maxlength="15" id="repeataSenha" />
 							<p:tooltip value="Deve ser igual ao campo senha"
 								for="repeataSenha" />
 						</p:column>
 					</p:row>
 
 				</p:panelGrid>
-				
-				</p:fieldset>
+
 			</h:form>
 
 			<p:spacer />
@@ -132,7 +130,7 @@
 					<p:spacer />
 					<p:menubar id="menu_search">
 						<p:menuitem>
-							<p:outputLabel value="Nome:" />
+							<p:outputLabel value="#{msg.nome}" />
 						</p:menuitem>
 						<p:menuitem>
 							<p:spacer width="5" />
@@ -140,14 +138,14 @@
 						<p:menuitem>
 							<p:inputText id="nome_search" size="100"
 								onkeyup="PF('filteredDataTable').filter()"
-								placeholder="Insira a palavra chave" />
+								placeholder="#{msg.water_procurar}" />
 						</p:menuitem>
 						<p:menuitem>
 							<p:spacer width="5" />
 						</p:menuitem>
 						<f:facet name="options">
 							<p:menuitem>
-								<p:commandButton icon="ui-icon-search" value="Pesquisar"
+								<p:commandButton icon="ui-icon-search" value="#{msg.procurar}"
 									process="menu_search"
 									action="/pages/user/pesquisaUser?faces-redirect=true" />
 							</p:menuitem>
@@ -162,29 +160,31 @@
 						<p:ajax event="rowSelect" listener="#{userBean.onRowSelect}"
 							update=":frm:growl" />
 						<p:column filterBy="#{user.nome}" filterMatchMode="contains"
-							headerText="Nome">
+							headerText="#{msg.nome}">
 							<p:outputLabel value="#{user.nome}" style="font-weight: bold;" />
 						</p:column>
 						<p:column filterBy="#{user.apelido}" filterMatchMode="contains"
-							headerText="Apelido">
+							headerText="#{msg.apelido}">
 							<p:outputLabel value="#{user.apelido}" />
 						</p:column>
-						<p:column headerText="Email" filterBy="#{user.email}"
+						<p:column headerText="#{msg.email}" filterBy="#{user.email}"
 							filterMatchMode="contains">
 							<p:outputLabel value="#{user.email}" />
 						</p:column>
-						<p:column headerText="Data de registo">
+						<p:column headerText="#{msg.list_data_registo}">
 							<p:outputLabel value="#{user.created.time}">
-								<f:convertDateTime pattern="dd, MMMM yyyy" locale="pt_BR" type="date" />
+								<f:convertDateTime pattern="dd, MMMM yyyy" locale="pt_BR"
+									type="date" />
 							</p:outputLabel>
 						</p:column>
-						<p:column headerText="Contacto" filterBy="#{user.cell}"
+						<p:column headerText="#{msg.contacto}" filterBy="#{user.cell}"
 							filterMatchMode="contains">
 							<p:outputLabel value="#{user.cell}" />
 						</p:column>
-						<p:column headerText="Role" filterMatchMode="contains"
+						<p:column headerText="#{msg.list_role}" filterMatchMode="contains"
 							filterBy="#{user.role}">
-							<p:outputLabel value="#{user.role.label}" styleClass="#{user.role eq 'ADMIN' ? 'cor_admin' : 'cor_normal'}" />
+							<p:outputLabel value="#{user.role.label}"
+								styleClass="#{user.role eq 'ADMIN' ? 'cor_admin' : 'cor_normal'}" />
 						</p:column>
 						<p:column headerText="">
 							<p:commandButton icon="ui-icon-trash"
@@ -215,7 +215,7 @@
 						<p:columnGroup type="footer">
 							<p:row>
 								<p:column colspan="6" style="text-align: right;"
-									footerText="Numero total de usuarios:" />
+									footerText="#{msg.list_numero_utilizadores}" />
 								<p:column footerText="#{userBean.totalUsers}" />
 							</p:row>
 						</p:columnGroup>
@@ -254,7 +254,7 @@
 
 							<p:outputLabel value="Tipo de usuario:" />
 							<p:selectOneMenu value="#{userBean.user.role}">
-								<f:selectItem itemLabel="Selecione..." />
+								<f:selectItem itemLabel="#{msg.water_selecione}" />
 								<f:selectItems value="#{userBean.roles}" var="rolex"
 									itemValue="#{rolex}" itemLabel="#{rolex.label}" />
 							</p:selectOneMenu>

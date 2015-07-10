@@ -10,16 +10,16 @@
 	<ui:composition template="/pages/template/template.xhtml">
 		<ui:define name="center">
 			<h:form id="frm">
-				<h:outputLabel value="Lista de usu&aacute;rios cadastrados."
+				<h:outputLabel value="#{msg.list_subtitulo}"
 					style="font-size: 25px;" />
 				<p:menubar>
 					<f:facet name="options">
 						<p:menuitem>
 							<p:commandButton type="button" icon="ui-icon-plus"
-								onclick="PF('saveDialog').show()" value="Novo Cadastro" />
+								onclick="PF('saveDialog').show()" value="#{msg.list_novo}" />
 						</p:menuitem>
 						<p:menuitem>
-							<p:commandButton type="button" value="Imprimir"
+							<p:commandButton type="button" value="#{msg.list_imprimir}"
 								icon="ui-icon-print" />
 						</p:menuitem>
 					</f:facet>
@@ -34,40 +34,40 @@
 
 					<p:dataTable emptyMessage="Sem usuarios cadastrados" id="dataTable"
 						var="user" rows="10" value="#{userBean.users}" paginator="true"
-						selectionMode="single" selection="#{userBean.user}"
+						selectionMode="single" rowsPerPageTemplate="10,15,20" selection="#{userBean.user}"
 						rowKey="#{user.id}">
 						<p:ajax event="rowSelect" listener="#{userBean.onRowSelect}"
 							update=":frm:growl" />
-						<p:column headerText="Nome">
+						<p:column headerText="#{msg.list_nome}">
 							<p:outputLabel value="#{user.nome}" />
 						</p:column>
-						<p:column headerText="Apelido">
+						<p:column headerText="#{msg.list_apelido}">
 							<p:outputLabel value="#{user.apelido}" />
 						</p:column>
-						<p:column headerText="Email">
+						<p:column headerText="#{msg.list_email}">
 							<p:outputLabel value="#{user.email}" />
 						</p:column>
-						<p:column headerText="Data de registro">
+						<p:column headerText="#{msg.list_data_registo}">
 							<p:outputLabel value="#{user.created.time}">
 								<f:convertDateTime pattern="dd/MM/yy" type="date" />
 							</p:outputLabel>
 						</p:column>
-						<p:column headerText="Contacto">
+						<p:column headerText="#{msg.list_contacto}">
 							<p:outputLabel value="#{user.cell}" />
 						</p:column>
-						<p:column headerText="Role">
+						<p:column headerText="#{msg.list_role}">
 							<p:outputLabel value="#{user.role.label}"
 								styleClass="#{user.role eq 'ADMIN'? 'cor_admin' : 'cor_normal'}" />
 						</p:column>
 						<p:column headerText="">
 							<p:commandButton update=":frm:viewUser"
 								oncomplete="PF('view_dialog').show()" icon="ui-icon-search"
-								process="dataTable" value="Detalhes" />
+								process="dataTable" value="#{msg.list_detalhes}" />
 						</p:column>
 						<p:columnGroup type="footer">
 							<p:row>
 								<p:column colspan="6" style="text-align: right;"
-									footerText="Numero total de usuarios:" />
+									footerText="#{msg.list_numero_utilizadores}" />
 								<p:column footerText="#{userBean.totalUsers}" />
 							</p:row>
 						</p:columnGroup>
@@ -83,20 +83,23 @@
 							<p:outputLabel value="#{userBean.user.nome}" />
 						</f:facet>
 
-						<p:outputLabel value="Nome:" />
+						<p:outputLabel value="#{msg.list_nome}" />
 						<p:outputLabel value="#{userBean.user.nome}" />
 
-						<p:outputLabel value="Apelido:" />
+						<p:outputLabel value="#{msg.list_apelido}" />
 						<p:outputLabel value="#{userBean.user.apelido}" />
 
-						<p:outputLabel value="Email:" />
+						<p:outputLabel value="#{msg.list_email}" />
 						<p:outputLabel value="#{userBean.user.email}" />
 
-						<p:outputLabel value="Cell:" />
+						<p:outputLabel value="#{msg.list_contacto}" />
 						<p:outputLabel value="#{userBean.user.cell}" />
 
-						<p:outputLabel value="Tipo de usuario:" />
+						<p:outputLabel value="#{msg.list_role}" />
 						<p:outputLabel value="#{userBean.user.role.label}" />
+						<f:facet name="footer">
+							<p:button value="#{msg.list_view_fechar}" onclick="PF('view_dialog').show()"/>
+						</f:facet>
 					</p:panelGrid>
 				</p:dialog>
 
@@ -105,28 +108,28 @@
 						closable="true" header="Cadastro de Usuarios" showEffect="drop"
 						hideEffect="puff">
 						<h:outputLabel style="font-size: 35px;"
-							value="Efectue o registo de usuarios." />
+							value="#{msg.list_diag_titulo}" />
 
-						<p:panel header="Dados pessoais do utilizador">
+						<p:panel header="#{msg.list_diag_dados_pessoais}">
 							<p:panelGrid columns="4">
-								<h:outputLabel value="Nome: " for="nome" />
-								<p:inputText id="nome" required="true"
+								<h:outputLabel value="#{msg.list_nome}" for="nome" />
+								<p:inputText label="#{msg.list_nome}" id="nome" required="true"
 									value="#{userBean.user.nome}" />
-								<h:outputLabel for="apelido" value="Apelido: " />
-								<p:inputText id="apelido" required="true"
+								<h:outputLabel for="apelido" value="#{msg.list_apelido}" />
+								<p:inputText label="#{msg.list_apelido}" id="apelido" required="true"
 									value="#{userBean.user.apelido}" />
-								<h:outputLabel value="Data de Nascimento: " for="nome" />
-								<p:calendar />
-								<h:outputLabel value="Detalhes: " for="nome" />
-								<p:inputTextarea cols="30" />
+								<h:outputLabel value="#{msg.list_diag_data_nascimento}" for="data_nascimento" />
+								<p:calendar id="data_nascimento" />
+								<h:outputLabel value="#{msg.list_detalhes}" for="detalhes" />
+								<p:inputTextarea label="#{msg.list_detalhes}" id="detalhes" cols="30" />
 							</p:panelGrid>
 						</p:panel>
 						<p:spacer />
-						<p:panel header="Informacoes de contacto">
+						<p:panel header="#{msg.list_diag_info_contacto}">
 							<p:panelGrid columns="4">
-								<h:outputLabel value="Email: " for="nome" />
+								<h:outputLabel value="#{msg.list_email}" for="email" />
 								<h:panelGroup>
-									<p:inputText id="email"
+									<p:inputText label="#{msg.list_email}" id="email"
 										validatorMessage="Formato de email invalido!"
 										value="#{userBean.user.email}">
 										<f:validateRegex
@@ -134,30 +137,30 @@
 									</p:inputText>
 									<p:watermark for="email" value="exemplo@mail.com" />
 								</h:panelGroup>
-								<h:outputLabel value="Telemovel: " for="nome" />
+								<h:outputLabel value="#{msg.list_contacto}" for="cell" />
 								<h:panelGroup>
-									<p:inputMask required="true" id="cell"
+									<p:inputMask label="#{msg.list_contacto}" required="true" id="cell"
 										mask="(+258)-999-999-999" value="#{userBean.user.cell}" />
 									<p:watermark value="(+258)-123-456-789" for="cell" />
 								</h:panelGroup>
-								<h:outputLabel value="Telemovel alternativo: " for="nome" />
-								<p:inputMask mask="" />
+								<h:outputLabel value="#{msg.list_diag_contacto_alternativo}" for="cell_alt" />
+								<p:inputMask id="cell_alt" label="" mask="" />
 							</p:panelGrid>
 						</p:panel>
 						<p:spacer />
-						<p:panel header="Informacoes de registo">
+						<p:panel header="#{msg.list_diag_info_registo}">
 							<p:panelGrid columns="2">
-								<h:outputLabel value="Nome do usuario: " for="nome" />
-								<p:inputText />
-								<h:outputLabel value="Senha: " for="nome" />
+								<h:outputLabel value="#{msg.list_diag_nome_usuario}" for="username" />
+								<p:inputText id="user_name" />
+								<h:outputLabel value="#{msg.list_diag_senha}" for="senha" />
 								<p:password size="50" feedback="true" weakLabel="Fraco"
 									required="true" id="senha" strongLabel="Segura"
 									goodLabel="Aceitavel" promptLabel="Digite a palavra passe"
 									maxlength="15" />
-								<h:outputLabel value="Repita a senha: " for="nome" />
+								<h:outputLabel value="#{msg.list_diag_senha_rep}" for="repeatSenha" />
 								<p:password size="50" maxlength="15" id="repeatSenha"
 									required="true" />
-								<p:outputLabel value="Permissao:" />
+								<p:outputLabel value="#{msg.list_role}" />
 								<p:selectOneMenu required="true" id="userType"
 									value="#{userBean.user.role}">
 									<f:selectItem itemLabel="Selecione..." />
@@ -169,10 +172,10 @@
 
 						<f:facet name="footer">
 							<p:outputPanel>
-								<p:commandButton icon="ui-icon-circle-plus" value="Salvar"
+								<p:commandButton icon="ui-icon-circle-plus" value="#{msg.list_diag_salvar}"
 									action="#{userBean.addUser}" update=":frm:dataTable"
 									process="process_frm" />
-								<p:commandButton value="Novo" icon="ui-icon-refresh"
+								<p:commandButton value="#{msg.list_diag_novo}" icon="ui-icon-refresh"
 									type="reset" />
 							</p:outputPanel>
 						</f:facet>

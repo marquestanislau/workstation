@@ -6,18 +6,18 @@
 	
 	<h:form>
 		<p:menubar id="mbar">
-			<p:menuitem value="Home" icon="ui-icon-home" outcome="/home.xhtml" />
-			<p:submenu label="Registros" icon="ui-icon ui-icon-circle-plus">
-				<p:menuitem outcome="/pages/user/cadastro.xhtml" value="Usuarios" icon="ui-icon-person"
+			<p:menuitem value="#{msg.home}" icon="ui-icon-home" outcome="/home.xhtml" />
+			<p:submenu label="#{msg.registo}" icon="ui-icon ui-icon-circle-plus">
+				<p:menuitem outcome="/pages/user/cadastro.xhtml" value="#{msg.usuario}" icon="ui-icon-person"
 					 />
-				<p:menuitem value="Multas" icon="ui-icon-note"
+				<p:menuitem value="#{msg.multa}" icon="ui-icon-note"
 					outcome="/pages/multa/cadastro.xhtml" />
-				<p:menuitem value="Titulares" icon="ui-icon ui-icon-contact"
+				<p:menuitem value="#{msg.titular}" icon="ui-icon ui-icon-contact"
 					outcome="/pages/titular/cadastro.xhtml" />
 				<p:menuitem value="Viaturas" icon="ui-icon ui-icon-grip-diagonal-se" />
 			</p:submenu>
-			<p:menuitem value="Multas" url="#" />
-			<p:menuitem value="Relatorios" icon="ui-icon-bookmark" />
+			<p:menuitem value="#{msg.multa}" icon="ui-icon-clipboard" url="#" />
+			<p:menuitem value="#{msg.relatorio}" icon="ui-icon-bookmark" />
 			<f:facet name="options">
 				<h1 id="logo">Pegasus</h1>
 			</f:facet>

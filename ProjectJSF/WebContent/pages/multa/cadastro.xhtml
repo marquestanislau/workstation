@@ -13,13 +13,13 @@
 				autoUpdate="true" />
 			<p:menubar>
 				<p:menuitem>
-					<p:commandButton value="Salvar" action="#{multaBean.add}"
+					<p:commandButton value="#{msg.salvar}" action="#{multaBean.add}"
 						icon="ui-icon-circle-check" update="dataTableMulta"
 						process="main_frm" />
 				</p:menuitem>
 				<p:menuitem>
 					<p:commandButton icon="ui-icon-arrowrefresh-1-w" type="reset"
-						value="Novo" />
+						value="#{msg.novo}" />
 				</p:menuitem>
 				<f:facet name="options">
 
