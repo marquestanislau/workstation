@@ -10,11 +10,11 @@
 		<h:form id="frm">
 			<p:menubar>
 				<p:menuitem>
-					<p:commandButton action="#{titularBean.saveTitular}" value="Salvar"
+					<p:commandButton action="#{titularBean.saveTitular}" value="#{msg.salvar}"
 						icon="ui-icon-circle-check" update=":tab_frm:tabview:dataTable" />
 				</p:menuitem>
 				<p:menuitem>
-					<p:commandButton value="Novo" type="reset"
+					<p:commandButton value="#{msg.novo}" type="reset"
 						icon="ui-icon-circle-close" />
 				</p:menuitem>
 				<f:facet name="options">
@@ -31,35 +31,35 @@
 				</f:facet>
 			</p:menubar>
 			<p:spacer />
-			<p:panelGrid>
+			<p:panelGrid style="width: 100%">
 				<p:growl id="message" showDetail="true" autoUpdate="true"
 					showSummary="true" />
 				<p:row>
 					<p:column>
-						<p:outputLabel for="nome" value="Nome:" />
+						<p:outputLabel for="nome" value="#{msg.nome}" />
 					</p:column>
 					<p:column>
-						<p:inputText required="true" id="nome"
+						<p:inputText required="true" id="nome" size="40"
 							value="#{titularBean.titular.nome}" />
 						<p:watermark value="Digite o seu nome" for="nome" />
 					</p:column>
 					<p:column>
-						<p:outputLabel for="apelido" value="Apelido:" />
+						<p:outputLabel for="apelido" value="#{msg.apelido}" />
 					</p:column>
 					<p:column>
-						<p:inputText id="apelido" required="true"
+						<p:inputText id="apelido" required="true" size="40"
 							value="#{titularBean.titular.apelido}" />
 					</p:column>
 				</p:row>
 				<p:row>
 					<p:column>
-						<p:outputLabel value="Numero da carta:" />
+						<p:outputLabel value="#{msg.num_carta}" />
 					</p:column>
 					<p:column>
 						<p:inputText value="#{titularBean.titular.numeroCarta}" />
 					</p:column>
 					<p:column>
-						<p:outputLabel value="Quarteirao:" />
+						<p:outputLabel value="#{msg.num_quarteirao}" />
 					</p:column>
 					<p:column>
 						<p:inputText value="#{titularBean.titular.numQuarteirao}" />
@@ -67,7 +67,7 @@
 				</p:row>
 				<p:row>
 					<p:column>
-						<p:outputLabel value="Bairro:" />
+						<p:outputLabel value="#{msg.bairro}" />
 					</p:column>
 					<p:column colspan="3">
 						<p:inputText size="100" value="#{titularBean.titular.bairro}" />
@@ -75,7 +75,7 @@
 				</p:row>
 				<p:row>
 					<p:column>
-						<p:outputLabel value="Rua:" />
+						<p:outputLabel value="#{msg.rua}" />
 					</p:column>
 					<p:column colspan="3">
 						<p:inputText size="60" value="#{titularBean.titular.rua}" />
@@ -83,13 +83,13 @@
 				</p:row>
 				<p:row>
 					<p:column>
-						<p:outputLabel value="Numero da casa:" />
+						<p:outputLabel value="#{msg.num_casa}" />
 					</p:column>
 					<p:column>
 						<p:inputText value="#{titularBean.titular.numCasa}" />
 					</p:column>
 					<p:column>
-						<p:outputLabel value="Contacto:" />
+						<p:outputLabel value="#{msg.contacto}" />
 					</p:column>
 					<p:column>
 						<p:inputMask id="contacto" value="#{titularBean.titular.contacto}"
@@ -99,7 +99,7 @@
 				</p:row>
 				<p:row>
 					<p:column>
-						<p:outputLabel value="Caixa Postal:" />
+						<p:outputLabel value="#{msg.caixa_postal}" />
 					</p:column>
 					<p:column>
 						<p:inputText value="#{titularBean.titular.caixaPostal}" />

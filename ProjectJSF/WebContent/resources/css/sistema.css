@@ -8,19 +8,21 @@
 #rodape {
 	border-top: solid thin gray;
 	background-color: #EEE;
+	margin-top: 20px;
+	text-align: center;
 }
 
 #cabecalho .ui-menubar {
 	background: none;
 	border: none;
-	background-color: #006699;
+	background-color: #424548;
 	height: 40px;
 	border-radius: 0 0;
 	padding: 10px;
 }
 #cabecalho .ui-menubar .ui-widget-content {
 	background: none;
-	background-color: #333;
+	background-color: #348cb5;
 	border:none;	
 }
 
@@ -45,6 +47,12 @@
 	color: yellow;
 	font-family: "URW Gothic L";
 }
+
+#conteudo {
+	padding-left: 10px;
+	padding-right: 10px
+}
+
 .cor_admin {
 	color: blue;
 	font-weight: bold;
@@ -52,4 +60,10 @@
 
 .cor_normal {
 	color: #019922;
+}
+.shortcut {
+	padding: 5px;
+}
+.shortcut:hover {
+	background-color : #5D5861;
 }
