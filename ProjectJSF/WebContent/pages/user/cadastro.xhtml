@@ -209,7 +209,7 @@
 							<p:commandButton update=":frm:frm_update:userDetail"
 								oncomplete="PF('update_dialog').show()" icon="ui-icon-pencil"
 								process="dataTable" />
-							<p:commandButton update=":frm:viewUser"
+							<p:commandButton update=":frm:view_form:viewUser"
 								oncomplete="PF('view_dialog').show()" icon="ui-icon-search"
 								process="dataTable" />
 						</p:column>
@@ -272,34 +272,37 @@
 				<p:dialog widgetVar="view_dialog" closable="true"
 					closeOnEscape="true" modal="false" resizable="false"
 					showEffect="slide" hideEffect="slide">
-					<p:panelGrid id="viewUser" columns="2">
-						<f:facet name="header">
-							<p:outputLabel value="Detalhes de: " />
+					<h:form id="view_form">
+						<p:panelGrid id="viewUser" columns="2">
+							<f:facet name="header">
+								<p:outputLabel value="Detalhes de: " />
+								<p:outputLabel value="#{userBean.user.nome}" />
+								<p:outputLabel value=" #{userBean.user.apelido}" />
+							</f:facet>
+
+							<p:outputLabel style="font-weight: bold" value="Nome:" />
 							<p:outputLabel value="#{userBean.user.nome}" />
-							<p:outputLabel value=" #{userBean.user.apelido}" />
-						</f:facet>
 
-						<p:outputLabel style="font-weight: bold" value="Nome:" />
-						<p:outputLabel value="#{userBean.user.nome}" />
+							<p:outputLabel style="font-weight: bold" value="Apelido:" />
+							<p:outputLabel value="#{userBean.user.apelido}" />
 
-						<p:outputLabel style="font-weight: bold" value="Apelido:" />
-						<p:outputLabel value="#{userBean.user.apelido}" />
+							<p:outputLabel style="font-weight: bold" value="Email:" />
+							<p:outputLabel value="#{userBean.user.email}" />
 
-						<p:outputLabel style="font-weight: bold" value="Email:" />
-						<p:outputLabel value="#{userBean.user.email}" />
+							<p:outputLabel style="font-weight: bold" value="Cell:" />
+							<p:outputLabel value="#{userBean.user.cell}" />
 
-						<p:outputLabel style="font-weight: bold" value="Cell:" />
-						<p:outputLabel value="#{userBean.user.cell}" />
-
-						<p:outputLabel style="font-weight: bold" value="Tipo de usuario:" />
-						<p:outputLabel value="#{userBean.user.role.label}" />
-
-					</p:panelGrid>
-					<f:facet name="footer">
-						<p:commandButton value="Ok" icon="ui-icon-check"
-							onclick="PF('view_dialog').hide()" />
-						<p:commandButton process="@this" value="Enviar" actionListener="#{envioEmailUtilizadorBean.enviarEmail}" icon="ui-icon-mail-open" />
-					</f:facet>
+							<p:outputLabel style="font-weight: bold" value="Tipo de usuario:" />
+							<p:outputLabel value="#{userBean.user.role.label}" />
+							<f:facet name="footer">
+								<p:commandButton value="#{msg.view_dialog_ok}" icon="ui-icon-check"
+									onclick="PF('view_dialog').hide()" />
+								<p:commandButton process="view_form" value="#{msg.view_dialog_email}"
+									action="#{userBean.enviarEmail}"
+									icon="ui-icon-mail-open" />
+							</f:facet>
+						</p:panelGrid>
+					</h:form>
 				</p:dialog>
 			</h:form>
 

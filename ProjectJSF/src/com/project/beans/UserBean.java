@@ -13,6 +13,7 @@ import org.primefaces.event.SelectEvent;
 
 import com.project.model.Role;
 import com.project.model.User;
+import com.project.report.mail.ConfiguradorEmail;
 import com.project.repository.IUsuario;
 import com.project.util.FacesUtil;
 import com.project.util.Repositorio;
@@ -27,6 +28,7 @@ public class UserBean implements Serializable {
 	private List<User> filteredUsers;
 	private int totalUsers;
 	private Repositorio repositorio;
+	private ConfiguradorEmail mailer;
 	
 	public void setFilteredUsers(List<User> filteredUsers) {
 		this.filteredUsers = filteredUsers;
@@ -99,4 +101,15 @@ public class UserBean implements Serializable {
 		usuarios.apagar(u);
 		FacesUtil.adicionaMensagem(FacesMessage.SEVERITY_INFO, FacesUtil.getMensagemI18n("sucesso_apagar"));
 	}
+	
+	public void enviarEmail() {
+		System.out.println("Enviando...");
+		this.mailer = new ConfiguradorEmail(user);
+		try {
+			mailer.enviarEmailParaUtilizador();
+			FacesUtil.adicionaMensagem(FacesMessage.SEVERITY_INFO, FacesUtil.getMensagemI18n("view_dialog_sucesso"));
+		} catch (Exception e) {
+			FacesUtil.adicionaMensagem(FacesMessage.SEVERITY_ERROR, FacesUtil.getMensagemI18n("view_dialog_erro"));
+		}
+}
 }
