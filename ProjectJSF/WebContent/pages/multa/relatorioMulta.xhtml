@@ -1,0 +1,37 @@
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	template="/pages/template/template.xhtml">
+
+	<ui:define name="center">
+		<h:form id="procurar_form">
+			<p:messages autoUpdate="true" showSummary="false" showDetail="true"/>
+			<p:toolbar style="margin-bottom: 10px;">
+				<f:facet name="left">
+					<p:commandButton process="@form" action="#{procuraMultasBean.action}" icon="ui-icon-print"
+						value="#{msg.relatorio_imprimir}" />
+				</f:facet>
+			</p:toolbar>
+			<p:panelGrid columns="2" style="width: 100%;">
+				<p:outputLabel value="#{msg.relatorio_data}" />
+				<p:columnGroup>
+					<p:calendar required="true" label="#{msg.relatorio_data}" size="40" />
+					<p:spacer width="20" />
+					<p:outputLabel value="#{msg.relatorio_a}" />
+					<p:spacer width="20" />
+					<p:calendar size="40" />
+				</p:columnGroup>
+				<p:outputLabel value="#{msg.relatorio_status}" />
+				<p:columnGroup>
+					<p:selectBooleanCheckbox itemLabel="#{msg.relatorio_pago}" style="margin-right: 5px;" />
+					<p:selectBooleanCheckbox itemLabel="#{msg.relatorio_divida}" style="margin-right: 5px;" />
+					<p:selectBooleanCheckbox itemLabel="#{msg.relatorio_cancelada}" style="margin-rigth: 5px;" />
+				</p:columnGroup>
+			</p:panelGrid>
+		</h:form>
+	</ui:define>
+
+</ui:composition>
