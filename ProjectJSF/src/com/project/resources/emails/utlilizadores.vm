@@ -1,0 +1,14 @@
+<html>
+	<body>
+		<h1>Ola <strong style="color: blue;">$nome</strong>, </ br>seja bem vindo ao PEGASUS</h1>
+		<table>
+			<tr>
+				<td>$nome</td>
+			</tr>
+			<tr>
+				<td>$apelido</td>
+			</tr>
+		</table>
+		<p> Se recebeu este email e porque registou o seu nome no sistema.</>
+	</body>
+</html>
