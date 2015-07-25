@@ -7,7 +7,7 @@ import javax.faces.bean.ViewScoped;
 
 import org.primefaces.model.chart.PieChartModel;
 
-@ManagedBean(name="modeloGrafico")
+@ManagedBean
 @ViewScoped
 public class GraficoBean implements Serializable {
 	

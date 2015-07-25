@@ -22,10 +22,7 @@ import com.project.util.Repositorio;
 @ViewScoped
 public class TitularBean implements Serializable {
 	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 2368099963579837467L;
+	private static final long serialVersionUID = 1L;
 	private Titular titular;
 	private List<Titular> titulares;
 	private int totalTitulares;

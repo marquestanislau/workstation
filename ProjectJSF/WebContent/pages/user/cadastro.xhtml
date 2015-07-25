@@ -31,7 +31,8 @@
 						</span>
 					</p:menuitem>
 					<p:menuitem>
-						<p:commandButton value="#{msg.novo}" icon="ui-icon-plus" type="reset" />
+						<p:commandButton value="#{msg.novo}" icon="ui-icon-plus"
+							type="reset" />
 					</p:menuitem>
 
 				</p:menubar>
@@ -275,6 +276,7 @@
 						<f:facet name="header">
 							<p:outputLabel value="Detalhes de: " />
 							<p:outputLabel value="#{userBean.user.nome}" />
+							<p:outputLabel value=" #{userBean.user.apelido}" />
 						</f:facet>
 
 						<p:outputLabel style="font-weight: bold" value="Nome:" />
@@ -292,11 +294,12 @@
 						<p:outputLabel style="font-weight: bold" value="Tipo de usuario:" />
 						<p:outputLabel value="#{userBean.user.role.label}" />
 
-						<f:facet name="footer">
-							<p:commandButton value="Ok" onclick="PF('view_dialog').hide()" />
-						</f:facet>
-
 					</p:panelGrid>
+					<f:facet name="footer">
+						<p:commandButton value="Ok" icon="ui-icon-check"
+							onclick="PF('view_dialog').hide()" />
+						<p:commandButton process="@this" value="Enviar" actionListener="#{envioEmailUtilizadorBean.enviarEmail}" icon="ui-icon-mail-open" />
+					</f:facet>
 				</p:dialog>
 			</h:form>
 

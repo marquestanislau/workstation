@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 public class FacesUtil {
 
 	public static void adicionaMensagem(Severity tipo, String txt) {
-		FacesMessage message = new FacesMessage(tipo, txt, txt);
+		FacesMessage message = new FacesMessage(tipo, txt, null);
 		FacesContext.getCurrentInstance().addMessage(null, message);
 	}
 

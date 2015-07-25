@@ -94,6 +94,16 @@
 			<artifactId>all-themes</artifactId>
 			<version>1.0.9</version>
 		</dependency>
+		<dependency>
+			<groupId>org.codemonkey.simplejavamail</groupId>
+			<artifactId>simple-java-mail</artifactId>
+			<version>2.3</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.7.12</version>
+		</dependency>
 	</dependencies>
 	<repositories>
 		<repository>

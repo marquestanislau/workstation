@@ -13,9 +13,6 @@ import com.project.repository.infra.UsuariosHibernate;
 
 public class Repositorio implements Serializable {
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1921518600016820244L;
 
 	private Session getSession() {
