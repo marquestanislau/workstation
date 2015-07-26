@@ -8,6 +8,7 @@ import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletResponse;
 
 import com.project.report.ReportUtl;
+import com.project.util.Repositorio;
 
 @ManagedBean
 @RequestScoped
@@ -25,7 +26,7 @@ public class RelatoriosBean implements Serializable {
 		FacesContext context = FacesContext.getCurrentInstance();
 		HttpServletResponse response = (HttpServletResponse)context.getExternalContext().getResponse();
 		try {
-			this.reports.exportarParaPdf("relatorio_utilizador", response);
+			this.reports.exportarParaPdf("relatorio_utilizador", new Repositorio().getUsuarios().todos() ,response);
 			context.responseComplete();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
