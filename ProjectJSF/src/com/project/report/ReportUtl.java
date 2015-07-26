@@ -20,12 +20,18 @@ public class ReportUtl {
 	public void exportarParaPdf(String relatorio, List<User> usuarios,
 			HttpServletResponse resposta) throws Exception {
 		JRBeanCollectionDataSource beanCollectionDataSource = new JRBeanCollectionDataSource(
-				usuarios);
+				usuarios, true);
 		@SuppressWarnings("rawtypes")
 		JasperPrint jasperPrint = JasperFillManager.fillReport(getClass()
 				.getResourceAsStream(reportPath + relatorio + ".jasper"),
 				new HashMap(), beanCollectionDataSource);
-		JasperExportManager.exportReportToPdfStream(jasperPrint, resposta.getOutputStream());
+
+		// resposta.setContentType("application/pdf");
+		// resposta.setHeader("Content-Disposition",
+		// "attachment; filename=\""+relatorio);
+
+		JasperExportManager.exportReportToPdfStream(jasperPrint,
+				resposta.getOutputStream());
 	}
 
 }

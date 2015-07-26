@@ -27,10 +27,9 @@ public class User implements Serializable {
 	@Enumerated(EnumType.STRING)
 	private Role role;
 	private String password;
-	
 	@Temporal(TemporalType.DATE)
 	private Calendar created;
-	
+
 	public Long getId() {
 		return id;
 	}
@@ -94,11 +93,11 @@ public class User implements Serializable {
 	public void setApelido(String apelido) {
 		this.apelido = apelido;
 	}
-	
+
 	public String getPassword() {
 		return password;
 	}
-	
+
 	public void setPassword(String password) {
 		this.password = password;
 	}

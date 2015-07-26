@@ -6,27 +6,13 @@
 	<queryString language="SQL">
 		<![CDATA[select * from User]]>
 	</queryString>
-	<field name="id" class="java.lang.Long">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="apelido" class="java.lang.String">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="cell" class="java.lang.String">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="created" class="java.sql.Date">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="email" class="java.lang.String">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="nome" class="java.lang.String">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="role" class="java.lang.String">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
+	<field name="id" class="java.lang.Long"/>
+	<field name="apelido" class="java.lang.String"/>
+	<field name="cell" class="java.lang.String"/>
+	<field name="created" class="java.sql.Date"/>
+	<field name="email" class="java.lang.String"/>
+	<field name="nome" class="java.lang.String"/>
+	<field name="role" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -50,14 +36,14 @@
 				<reportElement x="0" y="0" width="553" height="20" backcolor="#006666" uuid="69d5095c-728a-47e7-9793-89c7c6a452c9"/>
 			</rectangle>
 			<staticText>
-				<reportElement x="0" y="0" width="36" height="20" forecolor="#FFFFFF" uuid="4986550c-fe16-4d24-b7e0-f0ae43b2bf68"/>
+				<reportElement x="0" y="0" width="60" height="20" forecolor="#FFFFFF" uuid="4986550c-fe16-4d24-b7e0-f0ae43b2bf68"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Consolas" size="12"/>
 				</textElement>
 				<text><![CDATA[Id]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="36" y="0" width="79" height="20" forecolor="#FFFFFF" uuid="89145b1f-b3ce-42d0-9b05-de74d7a05c4d"/>
+				<reportElement x="60" y="0" width="79" height="20" forecolor="#FFFFFF" uuid="89145b1f-b3ce-42d0-9b05-de74d7a05c4d"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Consolas" size="12"/>
 				</textElement>
@@ -71,13 +57,6 @@
 				<text><![CDATA[Contacto]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="237" y="0" width="79" height="20" forecolor="#FFFFFF" uuid="98145651-5505-4f3b-90e4-67e433013294"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Consolas" size="12"/>
-				</textElement>
-				<text><![CDATA[Data. Reg]]></text>
-			</staticText>
-			<staticText>
 				<reportElement x="316" y="0" width="79" height="20" forecolor="#FFFFFF" uuid="9d0ec2aa-de85-42fd-9356-15c3770a2b1c"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Consolas" size="12"/>
@@ -85,7 +64,7 @@
 				<text><![CDATA[Email]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="395" y="0" width="79" height="20" forecolor="#FFFFFF" uuid="18ad5fe1-d563-4e08-8447-cf970d182b16"/>
+				<reportElement x="395" y="0" width="114" height="20" forecolor="#FFFFFF" uuid="18ad5fe1-d563-4e08-8447-cf970d182b16"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Consolas" size="12"/>
 				</textElement>
@@ -96,14 +75,14 @@
 	<detail>
 		<band height="20" splitType="Stretch">
 			<textField>
-				<reportElement x="0" y="0" width="36" height="20" uuid="442380ee-cfc8-4a98-95ff-f11d29f0eb94"/>
+				<reportElement x="0" y="0" width="60" height="20" uuid="442380ee-cfc8-4a98-95ff-f11d29f0eb94"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Carlito"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="36" y="0" width="79" height="20" uuid="8d30c3e2-2b69-4b9e-8c52-e34add6fbf6c"/>
+				<reportElement x="60" y="0" width="79" height="20" uuid="8d30c3e2-2b69-4b9e-8c52-e34add6fbf6c"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Carlito"/>
 				</textElement>
@@ -117,13 +96,6 @@
 				<textFieldExpression><![CDATA[$F{cell}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="237" y="0" width="79" height="20" uuid="cf0dab9d-ca8d-4e04-bd3c-f0a2593c32a3"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Carlito"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{created}]]></textFieldExpression>
-			</textField>
-			<textField>
 				<reportElement x="316" y="0" width="79" height="20" uuid="dd038abc-80da-4b2b-9bbe-cc27d6cd258b"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Carlito"/>
@@ -131,7 +103,7 @@
 				<textFieldExpression><![CDATA[$F{email}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="395" y="0" width="79" height="20" forecolor="#006699" uuid="896825ea-0e3b-43a9-a1e4-815b31572b4d"/>
+				<reportElement x="395" y="0" width="114" height="20" forecolor="#006699" uuid="896825ea-0e3b-43a9-a1e4-815b31572b4d"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Carlito" isBold="true"/>
 				</textElement>
@@ -142,7 +114,7 @@
 	<pageFooter>
 		<band height="22" splitType="Stretch">
 			<textField>
-				<reportElement x="453" y="0" width="100" height="20" uuid="9b77a7ae-15d1-42e2-b31a-593cbd7a9e9e"/>
+				<reportElement x="408" y="0" width="100" height="20" uuid="9b77a7ae-15d1-42e2-b31a-593cbd7a9e9e"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>

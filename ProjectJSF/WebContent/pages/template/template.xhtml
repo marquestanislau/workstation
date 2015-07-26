@@ -5,39 +5,39 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
 
-	<h:head>
-		<title>PT-Saver</title>
-		<h:outputStylesheet library="css" name="sistema.css" />
-	</h:head>
-	<h:body>
+<h:head>
+	<title>PT-Saver</title>
+	<h:outputStylesheet library="css" name="sistema.css" />
+</h:head>
+<h:body>
 
-		<!-- INDICA O STATUS DE UMA ACCAO NA APLICACAO -->
-		<p:ajaxStatus onstart="PF('statusDialog').show()"
-			onsuccess="PF('statusDialog').hide()" />
-	
-		<p:dialog widgetVar="statusDialog" modal="false" draggable="false"
-			closable="false" resizable="false" showHeader="false">
-			<p:graphicImage alt="Loading..."
-				url="../../resources/img/ajax-loading-bar-blue.gif" />
-		</p:dialog>
-		
-		<div id="cabecalho">
-			<ui:insert name="cabecalho">
-				<ui:include src="/pages/template/cabecalho.xhtml" />
-			</ui:insert>
-		</div>
-		
-		<div id="conteudo">
-			<ui:insert name="center">
-				<h1>This is my content</h1>
-			</ui:insert>
-		</div>
-		
-		<div id="rodape">
-			<ui:insert name="rodape">
-				<ui:include src="/pages/template/rodape.xhtml" />
-			</ui:insert>
-		</div>
-	
-	</h:body>
+	<!-- INDICA O STATUS DE UMA ACCAO NA APLICACAO -->
+	<p:ajaxStatus onstart="PF('statusDialog').show()"
+		onsuccess="PF('statusDialog').hide()" />
+
+	<p:dialog widgetVar="statusDialog" modal="false" draggable="false"
+		closable="false" resizable="false" showHeader="false">
+		<p:graphicImage library="img" name="ajax-loading-bar-blue.gif"
+			alt="Loading..." />
+	</p:dialog>
+
+	<div id="cabecalho">
+		<ui:insert name="cabecalho">
+			<ui:include src="/pages/template/cabecalho.xhtml" />
+		</ui:insert>
+	</div>
+
+	<div id="conteudo">
+		<ui:insert name="center">
+			<h1>This is my content</h1>
+		</ui:insert>
+	</div>
+
+	<div id="rodape">
+		<ui:insert name="rodape">
+			<ui:include src="/pages/template/rodape.xhtml" />
+		</ui:insert>
+	</div>
+
+</h:body>
 </html>

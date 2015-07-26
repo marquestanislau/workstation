@@ -29,7 +29,7 @@ public class RelatoriosBean implements Serializable {
 			this.reports.exportarParaPdf("relatorio_utilizador", new Repositorio().getUsuarios().todos() ,response);
 			context.responseComplete();
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		}
 	}
 }
