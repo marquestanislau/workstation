@@ -75,8 +75,9 @@
 							<h:outputLabel for="cell" value="#{msg.contacto}" />
 						</p:column>
 						<p:column>
-							<p:inputMask size="50" id="cell" required="true"
-								mask="(+258)-999-999-999" value="#{userBean.user.cell}" />
+							<p:inputMask size="50" label="#{msg.contacto}" id="cell"
+								required="true" mask="(+258)-999-999-999"
+								value="#{userBean.user.cell}" />
 							<p:watermark value="(+258)-123-456-789" for="cell" />
 						</p:column>
 						<p:column>
@@ -110,8 +111,10 @@
 							<p:outputLabel for="repeataSenha" value="#{msg.senha_repetida}" />
 						</p:column>
 						<p:column>
-							<p:password size="40" placeholder="#{msg.water_senha_rep}"
-								maxlength="15" id="repeataSenha" />
+							<p:password label="#{msg.senha_repetida}" size="40"
+								placeholder="#{msg.water_senha_rep}" maxlength="15"
+								id="repeataSenha" required="true" />
+							<p:message for="repeataSenha" showDetail="true" />
 							<p:tooltip value="Deve ser igual ao campo senha"
 								for="repeataSenha" />
 						</p:column>
@@ -295,12 +298,13 @@
 							<p:outputLabel style="font-weight: bold" value="Tipo de usuario:" />
 							<p:outputLabel value="#{userBean.user.role.label}" />
 							<f:facet name="footer">
-								<p:commandButton value="#{msg.view_dialog_ok}" icon="ui-icon-check"
-									onclick="PF('view_dialog').hide()" />
-									<p:spacer width="10" />
-								<p:commandButton process="view_form" value="#{msg.view_dialog_email}"
-									action="#{userBean.enviarEmail}"
-									icon="ui-icon-mail-open" />
+								<p:commandButton value="#{msg.view_dialog_ok}"
+									icon="ui-icon-check" onclick="PF('view_dialog').hide()" />
+								<p:spacer width="10" />
+								<p:commandButton process="view_form"
+									value="#{msg.view_dialog_email}"
+									action="#{userBean.enviarEmail}" icon="ui-icon-mail-open"
+									oncomplete="PF('view_dialog').hide()" />
 							</f:facet>
 						</p:panelGrid>
 					</h:form>

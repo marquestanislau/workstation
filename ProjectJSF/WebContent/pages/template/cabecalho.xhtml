@@ -3,23 +3,27 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
-	
+
 	<h:form>
 		<p:menubar id="mbar">
-			<p:menuitem value="#{msg.home}" icon="ui-icon-home" outcome="/home.xhtml" />
+			<p:menuitem value="#{msg.home}" icon="ui-icon-home"
+				outcome="/home.xhtml" />
 			<p:submenu label="#{msg.registo}" icon="ui-icon ui-icon-circle-plus">
-				<p:menuitem outcome="/pages/user/cadastro.xhtml" value="#{msg.usuario}" icon="ui-icon-person"
-					 />
+				<p:menuitem outcome="/pages/user/cadastro.xhtml"
+					value="#{msg.usuario}" icon="ui-icon-person" />
+				<p:separator />
 				<p:menuitem value="#{msg.multa}" icon="ui-icon-note"
 					outcome="/pages/multa/cadastro.xhtml" />
 				<p:menuitem value="#{msg.titular}" icon="ui-icon ui-icon-contact"
 					outcome="/pages/titular/cadastro.xhtml" />
+				<p:separator />
 				<p:menuitem value="Viaturas" icon="ui-icon ui-icon-grip-diagonal-se" />
 			</p:submenu>
 			<p:menuitem value="#{msg.multa}" icon="ui-icon-clipboard" url="#" />
-			<p:menuitem value="#{msg.relatorio}" icon="ui-icon-bookmark" outcome="/pages/multa/relatorioMulta" />
+			<p:menuitem value="#{msg.relatorio}" icon="ui-icon-bookmark"
+				outcome="/pages/multa/relatorioMulta" />
 			<f:facet name="options">
-				<h1 id="logo">Pegasus</h1>
+				<h1 id="logo" style="margin-right: 50px;">Pegasus</h1>
 			</f:facet>
 		</p:menubar>
 		<p:sticky target="mbar"></p:sticky>

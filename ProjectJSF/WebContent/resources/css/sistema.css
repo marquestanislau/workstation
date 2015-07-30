@@ -2,7 +2,7 @@
 
 *, html {
 	font-size: 11px;
-	margin:0;
+	margin: 0;
 }
 
 #rodape {
@@ -15,32 +15,43 @@
 #cabecalho .ui-menubar {
 	background: none;
 	border: none;
-	background-color: #424548;
+	background-color: #5DB2FF;
 	height: 40px;
 	border-radius: 0 0;
 	padding: 10px;
 }
+
 #cabecalho .ui-menubar .ui-widget-content {
 	background: none;
-	background-color: #348cb5;
-	border:none;	
+	background-color: #FFFFFF;
+	border: none;
+	box-shadow: 0 0;
+	border-radius: 0 0;
+	border: 2px #5DB2FF solid;
+	border-top: none;
+}
+
+#cabecalho .ui-menubar .ui-widget-content .ui-menuitem-text {
+	color: black;
 }
 
 #cabecalho .ui-menubar .ui-menuitem-text {
 	color: white;
-	font-weight: bold;
+	font-weight: normal;
+	/*font-weight: normal;*/
 	font-size: 14px;
 }
-
+/****
 #cabecalho .ui-menuitem-link:hover {
 	background: none;
-	background-color: #0f0c0c;
-}
-
+	background-color: #4787C2;
+	border: none;
+}***/
 #cabecalho .ui-menuitem-link:selected {
 	background: none;
-	background-color: #333;
+	background-color: #4787C2;
 }
+
 #logo {
 	font-size: 28px;
 	font-weight: bold;
@@ -61,9 +72,26 @@
 .cor_normal {
 	color: #019922;
 }
+
 .shortcut {
 	padding: 5px;
 }
+
 .shortcut:hover {
-	background-color : #5D5861;
+	background-color: #EAEAEA;
+}
+
+.login {
+	background-color: #f2eded;
+	paddind: 20px 20px;
+	border-radius: 10px;
+	border: solid thin gray;
+}
+
+.login tr {
+	paddind: 100px;
+}
+
+.login .label {
+	text-align: right;
 }

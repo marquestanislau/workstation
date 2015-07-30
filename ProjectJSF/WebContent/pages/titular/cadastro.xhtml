@@ -10,12 +10,18 @@
 		<h:form id="frm">
 			<p:menubar>
 				<p:menuitem>
-					<p:commandButton action="#{titularBean.saveTitular}" value="#{msg.salvar}"
-						icon="ui-icon-circle-check" update=":tab_frm:tabview:dataTable" />
+					<p:commandButton action="#{titularBean.saveTitular}"
+						value="#{msg.salvar}" icon="ui-icon-circle-check"
+						update=":tab_frm:tabview:dataTable" />
+				</p:menuitem>
+				<p:menuitem>
+					<span class="ui-separator"> <span
+						class="ui-icon ui-icon-grip-dotted-vertical" />
+					</span>
 				</p:menuitem>
 				<p:menuitem>
 					<p:commandButton value="#{msg.novo}" type="reset"
-						icon="ui-icon-circle-close" />
+						icon="fa fa-plus-circle" />
 				</p:menuitem>
 				<f:facet name="options">
 					<p:menuitem>
@@ -110,26 +116,22 @@
 		<p:spacer />
 		<h:form id="tab_frm">
 			<p:tabView id="tabview">
-				<p:tab id="tab" title="Resultado">
+				<p:tab id="tab" title="#{msg.titular_tab_text_lista_de_titulares}">
 					<p:dataTable scrollable="true" selectionMode="single"
 						selection="#{titularBean.titular}" id="dataTable" rows="5"
 						paginator="true" widgetVar="table_result" var="titular"
 						value="#{titularBean.titulares}" rowKey="#{titular.id}"
-						filteredValue="#{titularBean.filterTitulares}" rowsPerPageTemplate="5,10,15" >
-						
-						<f:facet name="header">
-							<p:outputPanel>
-								<p:inputText placeholder="Use uma palavra chave" id="filter_text" onkeyup="PF('table_result').filter()" />
-							</p:outputPanel>
-						</f:facet>
-						
+						filteredValue="#{titularBean.filterTitulares}"
+						rowsPerPageTemplate="5,10,15">
+
 						<p:ajax event="rowSelect" listener="#{titularBean.onRowSelect}" />
-						
+
 						<p:column headerText="ID">
 							<p:outputLabel value="#{titular.id}" />
-						</p:column>						
-						<p:column headerText="Nome" filterBy="#{titular.nome}" filterMatchMode="contains" sortBy="#{titular.nome}">
-							<p:outputLabel value="#{titular.nome}" />
+						</p:column>
+						<p:column headerText="Nome" filterBy="#{titular.nome}"
+							filterMatchMode="contains" sortBy="#{titular.nome}">
+							<p:outputLabel style="font-weight: bold;" value="#{titular.nome}" />
 						</p:column>
 						<p:column headerText="Apelido">
 							<p:outputLabel value="#{titular.apelido}" />
@@ -137,12 +139,13 @@
 						<p:column headerText="Contacto">
 							<p:outputLabel value="#{titular.contacto}" />
 						</p:column>
-						<p:column headerText="Num Carta" filterMatchMode="exact" filterBy="#{titular.numeroCarta}">
+						<p:column headerText="Num Carta" filterMatchMode="exact"
+							filterBy="#{titular.numeroCarta}">
 							<p:outputLabel value="#{titular.numeroCarta}" />
 						</p:column>
 						<p:column headerText="Data Registo">
 							<p:outputLabel value="#{titular.createdDate.time}">
-								<f:convertDateTime pattern="dd, MMMM yyyy" locale="pt_BR"/>
+								<f:convertDateTime pattern="dd, MMMM yyyy" locale="pt_BR" />
 							</p:outputLabel>
 						</p:column>
 						<p:column>

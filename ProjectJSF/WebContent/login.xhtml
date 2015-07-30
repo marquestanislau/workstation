@@ -11,17 +11,13 @@
 </h:head>
 <h:body>
 	<center>
-		<div id="conteudo_login">
-			<p:messages id="msg" autoUpdate="true" showDetail="false"
-				showSummary="true" />
+		<div id="conteudo_login" style="width: 350px; margin-top: 200px;">
+			<h:outputLabel style="font: 40px bold;" value="#{msg.login_header}" />
 			<h:form>
-				<p:panelGrid columns="2">
-					<f:facet name="header">
-						<h:outputLabel value="#{msg.login_header}" />
-					</f:facet>
-					<p:outputLabel for="nome" value="#{msg.nome}" />
+				<h:panelGrid styleClass="login" columns="2" style="width: 100%;">
+					<p:outputLabel styleClass="label" for="nome" value="#{msg.nome}" />
 					<p:inputText maxlength="30" id="nome" required="true" size="30" />
-					<p:outputLabel for="senha" value="#{msg.senha}" />
+					<p:outputLabel styleClass="label" for="senha" value="#{msg.senha}" />
 					<p:password maxlength="15" size="30" id="senha" required="true" />
 					<p:spacer />
 					<h:panelGroup>
@@ -30,8 +26,9 @@
 						<p:spacer width="10" />
 						<p:link value="#{msg.esqueci_a_senha}" />
 					</h:panelGroup>
-				</p:panelGrid>
-				<h:outputLink value="asjdbgy" title="kdfuh" />
+				</h:panelGrid>
+				<p:messages id="msg" autoUpdate="true" showDetail="false"
+					showSummary="true" />
 			</h:form>
 		</div>
 	</center>
