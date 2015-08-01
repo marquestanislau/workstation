@@ -103,7 +103,8 @@
 							<p:password size="40" feedback="true" required="true" id="senha"
 								weakLabel="Fraco" strongLabel="Segura" goodLabel="Aceitavel"
 								promptLabel="Digite a palavra passe" maxlength="15"
-								placeholder="M&aacute;ximo 15 caracteres" />
+								placeholder="M&aacute;ximo 15 caracteres"
+								value="#{userBean.user.password}" />
 						</p:column>
 					</p:row>
 					<p:row>
@@ -113,7 +114,8 @@
 						<p:column>
 							<p:password label="#{msg.senha_repetida}" size="40"
 								placeholder="#{msg.water_senha_rep}" maxlength="15"
-								id="repeataSenha" required="true" />
+								id="repeataSenha" required="true"
+								value="#{userBean.senhaSecundaria}" immediate="@this" />
 							<p:message for="repeataSenha" showDetail="true" />
 							<p:tooltip value="Deve ser igual ao campo senha"
 								for="repeataSenha" />

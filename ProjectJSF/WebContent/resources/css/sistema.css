@@ -95,3 +95,6 @@
 .login .label {
 	text-align: right;
 }
+.ui-inputfield {
+	border-radius: 0 0;
+}

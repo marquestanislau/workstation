@@ -27,12 +27,10 @@ public class HibernateSessionFilter implements Filter {
 			trx = session.beginTransaction();
 			
 			request.setAttribute("session", session);
-			System.out.println("Init ...");
 			
 			chain.doFilter(request, response);
 			
 			trx.commit();
-			System.out.println("closing ...");
 		} catch (Exception e) {
 			if(trx != null) {
 				trx.rollback();

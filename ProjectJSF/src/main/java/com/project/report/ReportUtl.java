@@ -1,5 +1,6 @@
 package com.project.report;
 
+import java.io.File;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
@@ -17,6 +18,7 @@ import net.sf.jasperreports.engine.export.JRPdfExporter;
 
 import com.project.model.User;
 
+@SuppressWarnings("deprecation")
 public class ReportUtl {
 
 	private static final String reportPath = "/relatorios/";
@@ -25,22 +27,29 @@ public class ReportUtl {
 
 	public void exportarParaPdf(String relatorio, List<User> usuarios,
 			HttpServletResponse resposta) throws Exception, JRException {
+		
 		this.resposta = resposta;
-		InputStream relatorioStream = this.getClass().getResourceAsStream(
-				reportPath + relatorio + ".jasper");
-		System.out.println(relatorioStream.toString());
-		System.out.println(reportPath + relatorio + ".jasper");
-		JasperPrint print = JasperFillManager.fillReport(relatorioStream,
-				this.parametros, new JRBeanCollectionDataSource(usuarios));
+		File file = new File(reportPath.concat(relatorio).concat(".jasper"));
 		
-		JRExporter exportador = new JRPdfExporter();
-		exportador.setParameter(JRExporterParameter.OUTPUT_STREAM, this.resposta.getOutputStream());
-		exportador.setParameter(JRExporterParameter.JASPER_PRINT, print);
-		
-		this.resposta.setContentType("application/pdf");
-		this.resposta.setHeader("Content-Disposition", "attachment; filename=\""
-				+ relatorio + "\"");
-		exportador.exportReport();
+		InputStream relatorioStream = this.getClass().getResourceAsStream(file.getAbsolutePath());
+
+		if (relatorioStream != null) {
+			this.parametros.put("nome", "nome");
+			JasperPrint print = JasperFillManager.fillReport(relatorioStream,
+					this.parametros, new JRBeanCollectionDataSource(usuarios));
+
+			@SuppressWarnings("rawtypes")
+			JRExporter exportador = new JRPdfExporter();
+			exportador.setParameter(JRExporterParameter.OUTPUT_STREAM,
+					this.resposta.getOutputStream());
+			exportador.setParameter(JRExporterParameter.JASPER_PRINT, print);
+
+			this.resposta.setContentType("application/pdf");
+			this.resposta.setHeader("Content-Disposition",
+					"attachment; filename=\"" + relatorio + "\"");
+			JasperFillManager.fillReport(relatorioStream, parametros, new JRBeanCollectionDataSource(usuarios));
+			exportador.exportReport();
+		}
 	}
 
 }

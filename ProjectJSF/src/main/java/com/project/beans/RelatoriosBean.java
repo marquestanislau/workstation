@@ -32,7 +32,7 @@ public class RelatoriosBean implements Serializable {
 		try {
 			this.reports.exportarParaPdf("relatorio_utilizador",
 					new Repositorio().getUsuarios().todos(), response);
-			context.responseComplete();
+		//	context.responseComplete();
 		} catch (Exception e) {
 			e.printStackTrace();
 			FacesUtil.adicionaMensagem(FacesMessage.SEVERITY_ERROR,

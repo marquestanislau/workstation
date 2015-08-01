@@ -29,11 +29,16 @@ public class UserBean implements Serializable {
 	private int totalUsers;
 	private Repositorio repositorio;
 	private ConfiguradorEmail mailer;
-	
+	private String senhaSecundaria;
+
+	public UserBean() {
+		user = new User();
+	}
+
 	public void setFilteredUsers(List<User> filteredUsers) {
 		this.filteredUsers = filteredUsers;
 	}
-	
+
 	public List<User> getFilteredUsers() {
 		return filteredUsers;
 	}
@@ -45,71 +50,98 @@ public class UserBean implements Serializable {
 	public void setUser(User user) {
 		this.user = user;
 	}
-	
-	public UserBean() {
-		user = new User();
-	}
-	
+
 	public Role[] getRoles() {
 		return Role.values();
 	}
-	
-	public String addUser() {
-		IUsuario usuarios = repositorio.getUsuarios();
-		user.setCreated(Calendar.getInstance());
-		usuarios.guardar(user);
-		users.add(user);
-		FacesUtil.adicionaMensagem(FacesMessage.SEVERITY_INFO, FacesUtil.getMensagemI18n("sucesso"));
-		
-		return "/pages/user/cadastro";
+
+	public void addUser() {
+		if (saoIguais()) {
+
+			IUsuario usuarios = repositorio.getUsuarios();
+			user.setCreated(Calendar.getInstance());
+
+			try {
+				usuarios.guardar(user);
+				users.add(user);
+				FacesUtil.adicionaMensagem(FacesMessage.SEVERITY_INFO,
+						FacesUtil.getMensagemI18n("sucesso"));
+			} catch (Exception e) {
+				FacesUtil.adicionaMensagem(FacesMessage.SEVERITY_INFO,
+						FacesUtil.getMensagemI18n("erro"));
+			}
+			
+		} else {
+			FacesUtil.adicionaMensagem(FacesMessage.SEVERITY_INFO,
+					FacesUtil.getMensagemI18n("erro_senha"));
+		}
+
 	}
-	
+
 	public List<User> getUsers() {
 		return users;
 	}
-		
+
 	@PostConstruct
 	public void init() {
-		repositorio =  new Repositorio();
+		repositorio = new Repositorio();
 		IUsuario usuario = repositorio.getUsuarios();
 		users = usuario.todos();
 	}
-	
+
 	public User read() {
 		IUsuario usuarios = repositorio.getUsuarios();
 		usuarios.porCodigo(user.getId());
 		return user;
 	}
-	
+
 	public void onRowSelect(SelectEvent event) {
-		FacesUtil.adicionaMensagem(FacesMessage.SEVERITY_INFO, ((User)event.getObject()).getNome());
+		FacesUtil.adicionaMensagem(FacesMessage.SEVERITY_INFO,
+				((User) event.getObject()).getNome());
 	}
-	
+
 	public int getTotalUsers() {
 		totalUsers = users.size();
 		return totalUsers;
 	}
-	
+
 	public void update() {
 		IUsuario usuarios = repositorio.getUsuarios();
 		usuarios.guardar(user);
-		FacesUtil.adicionaMensagem(FacesMessage.SEVERITY_INFO, FacesUtil.getMensagemI18n("sucesso"));
+		FacesUtil.adicionaMensagem(FacesMessage.SEVERITY_INFO,
+				FacesUtil.getMensagemI18n("sucesso"));
 	}
-	
+
 	public void deleteUser(User u) {
 		IUsuario usuarios = repositorio.getUsuarios();
 		usuarios.apagar(u);
-		FacesUtil.adicionaMensagem(FacesMessage.SEVERITY_INFO, FacesUtil.getMensagemI18n("sucesso_apagar"));
+		FacesUtil.adicionaMensagem(FacesMessage.SEVERITY_INFO,
+				FacesUtil.getMensagemI18n("sucesso_apagar"));
 	}
-	
+
 	public void enviarEmail() {
-		System.out.println("Enviando...");
 		this.mailer = new ConfiguradorEmail(user);
 		try {
 			mailer.enviarEmailParaUtilizador();
-			FacesUtil.adicionaMensagem(FacesMessage.SEVERITY_INFO, FacesUtil.getMensagemI18n("view_dialog_sucesso"));
+			FacesUtil.adicionaMensagem(FacesMessage.SEVERITY_INFO,
+					FacesUtil.getMensagemI18n("view_dialog_sucesso"));
 		} catch (Exception e) {
-			FacesUtil.adicionaMensagem(FacesMessage.SEVERITY_ERROR, FacesUtil.getMensagemI18n("view_dialog_erro"));
+			FacesUtil.adicionaMensagem(FacesMessage.SEVERITY_ERROR,
+					FacesUtil.getMensagemI18n("view_dialog_erro"));
 		}
-}
+	}
+
+	public String getSenhaSecundaria() {
+		if (senhaSecundaria == null)
+			senhaSecundaria = new String();
+		return senhaSecundaria;
+	}
+
+	public void setSenhaSecundaria(String senhaSecundaria) {
+		this.senhaSecundaria = senhaSecundaria;
+	}
+
+	private boolean saoIguais() {
+		return this.user.getPassword().contentEquals(senhaSecundaria);
+	}
 }
