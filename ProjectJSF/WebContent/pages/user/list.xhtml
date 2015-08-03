@@ -29,8 +29,7 @@
 			<p:growl id="growl" showDetail="true" showSummary="true"
 				autoUpdate="true" />
 
-			<p:panelGrid columns="1" layout="grid">
-
+	
 				<p:dataTable emptyMessage="Sem usuarios cadastrados" id="dataTable"
 					var="user" rows="10" value="#{userBean.users}" paginator="true"
 					selectionMode="single" rowsPerPageTemplate="10,15,20"
@@ -58,54 +57,19 @@
 						<p:outputLabel value="#{user.role.label}"
 							styleClass="#{user.role eq 'ADMIN'? 'cor_admin' : 'cor_normal'}" />
 					</p:column>
-					<p:column headerText="">
-						<p:commandButton update=":frm:viewUser"
-							oncomplete="PF('view_dialog').show()" icon="ui-icon-search"
-							process="dataTable" value="#{msg.list_detalhes}" />
-					</p:column>
 					<p:columnGroup type="footer">
 						<p:row>
-							<p:column colspan="6" style="text-align: right;"
+							<p:column colspan="5" style="text-align: right;"
 								footerText="#{msg.list_numero_utilizadores}" />
 							<p:column footerText="#{userBean.totalUsers}" />
 						</p:row>
 					</p:columnGroup>
 				</p:dataTable>
-			</p:panelGrid>
-
-			<p:dialog widgetVar="view_dialog" closable="true"
-				closeOnEscape="true" modal="false" showEffect="slide"
-				hideEffect="slide">
-				<p:panelGrid id="viewUser" columns="2">
-					<f:facet name="header">
-						<p:outputLabel value="Detalhes de: " />
-						<p:outputLabel value="#{userBean.user.nome}" />
-					</f:facet>
-
-					<p:outputLabel value="#{msg.list_nome}" />
-					<p:outputLabel value="#{userBean.user.nome}" />
-
-					<p:outputLabel value="#{msg.list_apelido}" />
-					<p:outputLabel value="#{userBean.user.apelido}" />
-
-					<p:outputLabel value="#{msg.list_email}" />
-					<p:outputLabel value="#{userBean.user.email}" />
-
-					<p:outputLabel value="#{msg.list_contacto}" />
-					<p:outputLabel value="#{userBean.user.cell}" />
-
-					<p:outputLabel value="#{msg.list_role}" />
-					<p:outputLabel value="#{userBean.user.role.label}" />
-					<f:facet name="footer">
-						<p:button value="#{msg.list_view_fechar}"
-							onclick="PF('view_dialog').show()" />
-					</f:facet>
-				</p:panelGrid>
-			</p:dialog>
+			
 
 			<h:form id="process_frm">
 				<p:dialog widgetVar="saveDialog" closeOnEscape="true"
-					closable="true" header="Cadastro de Usuarios" showEffect="drop"
+					closable="true" modal="true" header="Cadastro de Usuarios" showEffect="drop"
 					hideEffect="puff">
 					<h:outputLabel style="font-size: 35px;"
 						value="#{msg.list_diag_titulo}" />

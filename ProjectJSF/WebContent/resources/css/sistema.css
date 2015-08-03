@@ -15,7 +15,7 @@
 #cabecalho .ui-menubar {
 	background: none;
 	border: none;
-	background-color: #5DB2FF;
+	background-color: #091651;
 	height: 40px;
 	border-radius: 0 0;
 	padding: 10px;
@@ -27,7 +27,7 @@
 	border: none;
 	box-shadow: 0 0;
 	border-radius: 0 0;
-	border: 2px #5DB2FF solid;
+	border: 2px #091651 solid;
 	border-top: none;
 }
 

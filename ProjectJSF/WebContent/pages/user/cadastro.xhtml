@@ -56,6 +56,7 @@
 							<p:inputText label="#{msg.apelido}" id="apelido" required="true"
 								value="#{userBean.user.apelido}" />
 						</p:column>
+						<p:column colspan="2" />
 					</p:row>
 
 					<p:row>
@@ -106,6 +107,7 @@
 								placeholder="M&aacute;ximo 15 caracteres"
 								value="#{userBean.user.password}" />
 						</p:column>
+						<p:column colspan="4" />
 					</p:row>
 					<p:row>
 						<p:column>
@@ -120,6 +122,7 @@
 							<p:tooltip value="Deve ser igual ao campo senha"
 								for="repeataSenha" />
 						</p:column>
+						<p:column colspan="4" />
 					</p:row>
 
 				</p:panelGrid>
@@ -163,6 +166,7 @@
 						selectionMode="single" selection="#{userBean.user}"
 						rowKey="#{user.id}" filteredValue="#{userBean.filteredUsers}"
 						rowsPerPageTemplate="5,10,15">
+
 						<p:ajax event="rowSelect" listener="#{userBean.onRowSelect}"
 							update=":frm:growl" />
 						<p:column filterBy="#{user.nome}" filterMatchMode="contains"
@@ -196,17 +200,19 @@
 							<p:commandButton icon="ui-icon-trash"
 								onclick="PF('confirmDialog').show()" />
 
-							<p:confirmDialog appendTo="@(body)" modal="true"
-								header="Mensagem de confirmacao" widgetVar="confirmDialog"
-								message="Deseja apagar usuario?" showEffect="slide"
-								hideEffect="slide" id="confrimDialog">
+							<p:confirmDialog modal="true" header="#{msg.confirm_dialog}"
+								widgetVar="confirmDialog" message="#{msg.confirm_dialog_yes_no}"
+								showEffect="puff" hideEffect="puff" id="confrimDialog">
 
 								<!-- <h:form id="confirm_frm"> -->
-								<p:commandButton value="Sim"
+								<p:commandButton value="#{msg.confirm_dialog_yes}"
 									oncomplete="PF('confirmDialog').hide()"
-									action="#{userBean.deleteUser(user)}" process=":frm:dataTable"
-									update=":frm:dataTable" />
-								<p:commandButton value="Nao"
+									action="#{userBean.deleteUser}" process=":frm:dataTable"
+									update=":frm:dataTable">
+									<f:setPropertyActionListener value="#{user}"
+										target="#{userBean.utilizadorSelecionado}" />
+								</p:commandButton>
+								<p:commandButton value="#{msg.confirm_dialog_no}"
 									onclick="PF('confirmDialog').hide()" />
 								<!-- </h:form> -->
 							</p:confirmDialog>
@@ -312,7 +318,6 @@
 					</h:form>
 				</p:dialog>
 			</h:form>
-
 		</ui:define>
 	</ui:composition>
 </h:body>

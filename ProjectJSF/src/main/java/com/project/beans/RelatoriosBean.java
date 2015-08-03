@@ -1,5 +1,6 @@
 package com.project.beans;
 
+import java.io.IOException;
 import java.io.Serializable;
 
 import javax.faces.application.FacesMessage;
@@ -8,9 +9,12 @@ import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletResponse;
 
+import net.sf.jasperreports.engine.JRException;
+
 import com.project.report.ReportUtl;
 import com.project.util.FacesUtil;
 import com.project.util.Repositorio;
+import com.project.util.excepcoes.RelatorioVazioException;
 
 @ManagedBean
 @RequestScoped
@@ -33,10 +37,16 @@ public class RelatoriosBean implements Serializable {
 			this.reports.exportarParaPdf("relatorio_utilizador.jasper",
 					new Repositorio().getUsuarios().todos(), response);
 			context.responseComplete();
-		} catch (Exception e) {
+		} catch (JRException e) {
 			e.printStackTrace();
 			FacesUtil.adicionaMensagem(FacesMessage.SEVERITY_ERROR,
 					FacesUtil.getMensagemI18n("relatorio_erro"));
+		} catch (IOException e) {
+			FacesUtil.adicionaMensagem(FacesMessage.SEVERITY_ERROR,
+					FacesUtil.getMensagemI18n("relatorio_erro"));
+		} catch (RelatorioVazioException e) {
+			FacesUtil.adicionaMensagem(FacesMessage.SEVERITY_ERROR,
+					FacesUtil.getMensagemI18n("relatorio_vazio"));
 		}
 		
 	}

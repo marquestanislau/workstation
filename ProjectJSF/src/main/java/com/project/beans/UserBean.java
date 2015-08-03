@@ -24,6 +24,7 @@ public class UserBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	private User user;
+	private User utilizadorSelecionado;
 	private List<User> users;
 	private List<User> filteredUsers;
 	private int totalUsers;
@@ -33,6 +34,7 @@ public class UserBean implements Serializable {
 
 	public UserBean() {
 		user = new User();
+		utilizadorSelecionado = new User();
 	}
 
 	public void setFilteredUsers(List<User> filteredUsers) {
@@ -45,6 +47,14 @@ public class UserBean implements Serializable {
 
 	public User getUser() {
 		return user;
+	}
+	
+	public User getUtilizadorSelecionado() {
+		return utilizadorSelecionado;
+	}
+	
+	public void setUtilizadorSelecionado(User utilizadorSelecionado) {
+		this.utilizadorSelecionado = utilizadorSelecionado;
 	}
 
 	public void setUser(User user) {
@@ -112,9 +122,10 @@ public class UserBean implements Serializable {
 				FacesUtil.getMensagemI18n("sucesso"));
 	}
 
-	public void deleteUser(User u) {
+	public void deleteUser() {
 		IUsuario usuarios = repositorio.getUsuarios();
-		usuarios.apagar(u);
+		usuarios.apagar(this.utilizadorSelecionado);
+		users.remove(this.utilizadorSelecionado);
 		FacesUtil.adicionaMensagem(FacesMessage.SEVERITY_INFO,
 				FacesUtil.getMensagemI18n("sucesso_apagar"));
 	}
