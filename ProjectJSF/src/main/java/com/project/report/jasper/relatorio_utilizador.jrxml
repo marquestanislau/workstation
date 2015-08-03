@@ -57,14 +57,14 @@
 				<text><![CDATA[Contacto]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="316" y="0" width="79" height="20" forecolor="#FFFFFF" uuid="9d0ec2aa-de85-42fd-9356-15c3770a2b1c"/>
+				<reportElement x="238" y="0" width="132" height="20" forecolor="#FFFFFF" uuid="9d0ec2aa-de85-42fd-9356-15c3770a2b1c"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Consolas" size="12"/>
 				</textElement>
 				<text><![CDATA[Email]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="395" y="0" width="114" height="20" forecolor="#FFFFFF" uuid="18ad5fe1-d563-4e08-8447-cf970d182b16"/>
+				<reportElement x="383" y="0" width="126" height="20" forecolor="#FFFFFF" uuid="18ad5fe1-d563-4e08-8447-cf970d182b16"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Consolas" size="12"/>
 				</textElement>
@@ -96,14 +96,14 @@
 				<textFieldExpression><![CDATA[$F{cell}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="316" y="0" width="79" height="20" uuid="dd038abc-80da-4b2b-9bbe-cc27d6cd258b"/>
+				<reportElement x="239" y="0" width="131" height="20" uuid="dd038abc-80da-4b2b-9bbe-cc27d6cd258b"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Carlito"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{email}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="395" y="0" width="114" height="20" forecolor="#006699" uuid="896825ea-0e3b-43a9-a1e4-815b31572b4d"/>
+				<reportElement x="383" y="0" width="126" height="20" forecolor="#006699" uuid="896825ea-0e3b-43a9-a1e4-815b31572b4d"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Carlito" isBold="true"/>
 				</textElement>

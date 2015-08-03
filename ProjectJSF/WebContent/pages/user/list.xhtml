@@ -13,11 +13,14 @@
 						<p:commandButton type="button" icon="ui-icon-plus"
 							onclick="PF('saveDialog').show()" value="#{msg.list_novo}" />
 					</p:menuitem>
-					<p:menuitem>
-						<p:commandButton value="#{msg.list_imprimir}" icon="ui-icon-print"
-							process="@this"
-							action="#{relatoriosBean.gerarRelatorioUtilizadores}" />
-					</p:menuitem>
+					<h:form id="print_form">
+						<p:menuitem>
+							<p:commandButton value="#{msg.list_imprimir}"
+								icon="ui-icon-print" process="@this"
+								action="#{relatoriosBean.gerarRelatorioUtilizadores}"
+								ajax="false" />
+						</p:menuitem>
+					</h:form>
 				</f:facet>
 			</p:menubar>
 

@@ -24,19 +24,20 @@ public class RelatoriosBean implements Serializable {
 	}
 
 	public void gerarRelatorioUtilizadores() {
-		System.out.println("Working on reports..");
 		FacesContext context = FacesContext.getCurrentInstance();
 		HttpServletResponse response = (HttpServletResponse) context
 				.getExternalContext().getResponse();
+		response.reset();
 
 		try {
-			this.reports.exportarParaPdf("relatorio_utilizador",
+			this.reports.exportarParaPdf("relatorio_utilizador.jasper",
 					new Repositorio().getUsuarios().todos(), response);
-		//	context.responseComplete();
+			context.responseComplete();
 		} catch (Exception e) {
 			e.printStackTrace();
 			FacesUtil.adicionaMensagem(FacesMessage.SEVERITY_ERROR,
 					FacesUtil.getMensagemI18n("relatorio_erro"));
 		}
+		
 	}
 }
