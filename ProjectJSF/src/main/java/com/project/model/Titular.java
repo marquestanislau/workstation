@@ -13,23 +13,20 @@ import javax.persistence.TemporalType;
 @Entity
 public class Titular implements Serializable {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 3521769834741073032L;
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 	private String nome;
 	private String apelido;
-	private int numeroCarta;
+	private Integer numeroCarta;
 	@Temporal(TemporalType.DATE)
 	private Calendar createdDate;
 	private String rua;
 	private String caixaPostal;
 	private String bairro;
-	private int numQuarteirao;
-	private int numCasa;
+	private Integer numQuarteirao;
+	private Integer numCasa;
 	private String contacto;
 
 	public Integer getId() {
@@ -56,11 +53,11 @@ public class Titular implements Serializable {
 		this.apelido = apelido;
 	}
 
-	public int getNumeroCarta() {
+	public Integer getNumeroCarta() {
 		return numeroCarta;
 	}
 
-	public void setNumeroCarta(int numeroCarta) {
+	public void setNumeroCarta(Integer numeroCarta) {
 		this.numeroCarta = numeroCarta;
 	}
 
@@ -96,19 +93,19 @@ public class Titular implements Serializable {
 		this.bairro = bairro;
 	}
 
-	public int getNumQuarteirao() {
+	public Integer getNumQuarteirao() {
 		return numQuarteirao;
 	}
 
-	public void setNumQuarteirao(int numQuarteirao) {
+	public void setNumQuarteirao(Integer numQuarteirao) {
 		this.numQuarteirao = numQuarteirao;
 	}
 
-	public int getNumCasa() {
+	public Integer getNumCasa() {
 		return numCasa;
 	}
 
-	public void setNumCasa(int numCasa) {
+	public void setNumCasa(Integer numCasa) {
 		this.numCasa = numCasa;
 	}
 
@@ -119,5 +116,5 @@ public class Titular implements Serializable {
 	public void setContacto(String contacto) {
 		this.contacto = contacto;
 	}
-	
+
 }
