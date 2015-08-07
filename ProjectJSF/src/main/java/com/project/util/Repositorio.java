@@ -6,7 +6,7 @@ import org.hibernate.Session;
 
 import com.project.repository.IMulta;
 import com.project.repository.ITitular;
-import com.project.repository.IUsuario;
+import com.project.repository.IUtilizador;
 import com.project.repository.infra.MultasHibernate;
 import com.project.repository.infra.TitularesHibernate;
 import com.project.repository.infra.UsuariosHibernate;
@@ -19,7 +19,7 @@ public class Repositorio implements Serializable {
 		return (Session) FacesUtil.getRequestAttribute("session");
 	}
 	
-	public IUsuario getUsuarios() {
+	public IUtilizador getUsuarios() {
 		return new UsuariosHibernate(getSession());
 	}
 	

@@ -12,53 +12,53 @@ import javax.faces.bean.ViewScoped;
 import org.primefaces.event.SelectEvent;
 
 import com.project.model.Role;
-import com.project.model.User;
+import com.project.model.Utilizador;
 import com.project.report.mail.ConfiguradorEmail;
-import com.project.repository.IUsuario;
+import com.project.repository.IUtilizador;
 import com.project.util.FacesUtil;
 import com.project.util.Repositorio;
 
 @ManagedBean
 @ViewScoped
-public class UserBean implements Serializable {
+public class UtilizadorBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	private User user;
-	private User utilizadorSelecionado;
-	private List<User> users;
-	private List<User> filteredUsers;
+	private Utilizador utilizador;
+	private Utilizador utilizadorSelecionado;
+	private List<Utilizador> users;
+	private List<Utilizador> filteredUsers;
 	private int totalUsers;
 	private Repositorio repositorio;
 	private ConfiguradorEmail mailer;
 	private String senhaSecundaria;
 
-	public UserBean() {
-		user = new User();
-		utilizadorSelecionado = new User();
+	public UtilizadorBean() {
+		utilizador = new Utilizador();
+		utilizadorSelecionado = new Utilizador();
 	}
 
-	public void setFilteredUsers(List<User> filteredUsers) {
+	public void setFilteredUsers(List<Utilizador> filteredUsers) {
 		this.filteredUsers = filteredUsers;
 	}
 
-	public List<User> getFilteredUsers() {
+	public List<Utilizador> getFilteredUsers() {
 		return filteredUsers;
 	}
 
-	public User getUser() {
-		return user;
+	public Utilizador getUser() {
+		return utilizador;
 	}
 	
-	public User getUtilizadorSelecionado() {
+	public Utilizador getUtilizadorSelecionado() {
 		return utilizadorSelecionado;
 	}
 	
-	public void setUtilizadorSelecionado(User utilizadorSelecionado) {
+	public void setUtilizadorSelecionado(Utilizador utilizadorSelecionado) {
 		this.utilizadorSelecionado = utilizadorSelecionado;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setUser(Utilizador user) {
+		this.utilizador = user;
 	}
 
 	public Role[] getRoles() {
@@ -68,12 +68,12 @@ public class UserBean implements Serializable {
 	public void addUser() {
 		if (saoIguais()) {
 
-			IUsuario usuarios = repositorio.getUsuarios();
-			user.setCreated(Calendar.getInstance());
+			IUtilizador usuarios = repositorio.getUsuarios();
+			utilizador.setCreated(Calendar.getInstance());
 
 			try {
-				usuarios.guardar(user);
-				users.add(user);
+				usuarios.guardar(utilizador);
+				users.add(utilizador);
 				FacesUtil.adicionaMensagem(FacesMessage.SEVERITY_INFO,
 						FacesUtil.getMensagemI18n("sucesso"));
 			} catch (Exception e) {
@@ -88,26 +88,26 @@ public class UserBean implements Serializable {
 
 	}
 
-	public List<User> getUsers() {
+	public List<Utilizador> getUsers() {
 		return users;
 	}
 
 	@PostConstruct
 	public void init() {
 		repositorio = new Repositorio();
-		IUsuario usuario = repositorio.getUsuarios();
+		IUtilizador usuario = repositorio.getUsuarios();
 		users = usuario.todos();
 	}
 
-	public User read() {
-		IUsuario usuarios = repositorio.getUsuarios();
-		usuarios.porCodigo(user.getId());
-		return user;
+	public Utilizador read() {
+		IUtilizador usuarios = repositorio.getUsuarios();
+		usuarios.porCodigo(utilizador.getId());
+		return utilizador;
 	}
 
 	public void onRowSelect(SelectEvent event) {
 		FacesUtil.adicionaMensagem(FacesMessage.SEVERITY_INFO,
-				((User) event.getObject()).getNome());
+				((Utilizador) event.getObject()).getNome());
 	}
 
 	public int getTotalUsers() {
@@ -116,14 +116,14 @@ public class UserBean implements Serializable {
 	}
 
 	public void update() {
-		IUsuario usuarios = repositorio.getUsuarios();
-		usuarios.guardar(user);
+		IUtilizador usuarios = repositorio.getUsuarios();
+		usuarios.guardar(utilizador);
 		FacesUtil.adicionaMensagem(FacesMessage.SEVERITY_INFO,
 				FacesUtil.getMensagemI18n("sucesso"));
 	}
 
 	public void deleteUser() {
-		IUsuario usuarios = repositorio.getUsuarios();
+		IUtilizador usuarios = repositorio.getUsuarios();
 		usuarios.apagar(this.utilizadorSelecionado);
 		users.remove(this.utilizadorSelecionado);
 		FacesUtil.adicionaMensagem(FacesMessage.SEVERITY_INFO,
@@ -131,7 +131,7 @@ public class UserBean implements Serializable {
 	}
 
 	public void enviarEmail() {
-		this.mailer = new ConfiguradorEmail(user);
+		this.mailer = new ConfiguradorEmail(utilizador);
 		try {
 			mailer.enviarEmailParaUtilizador();
 			FacesUtil.adicionaMensagem(FacesMessage.SEVERITY_INFO,
@@ -153,6 +153,6 @@ public class UserBean implements Serializable {
 	}
 
 	private boolean saoIguais() {
-		return this.user.getPassword().contentEquals(senhaSecundaria);
+		return this.utilizador.getPassword().contentEquals(senhaSecundaria);
 	}
 }

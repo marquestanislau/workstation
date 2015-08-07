@@ -4,9 +4,6 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
-
-<h:head>
-</h:head>
 <h:body>
 	<ui:composition template="/pages/template/template.xhtml">
 		<ui:define name="center">
@@ -22,7 +19,7 @@
 					</f:facet>
 					<p:menuitem>
 						<p:commandButton title="Clica para submeter os dados"
-							action="#{userBean.addUser}" value="#{msg.salvar}"
+							action="#{utilizadorBean.addUser}" value="#{msg.salvar}"
 							icon="ui-icon-circle-check" update=":frm:dataTable" />
 					</p:menuitem>
 					<p:menuitem>
@@ -47,14 +44,14 @@
 						</p:column>
 						<p:column>
 							<p:inputText size="50" label="nome" id="nome" required="true"
-								value="#{userBean.user.nome}" />
+								value="#{utilizadorBean.user.nome}" />
 						</p:column>
 						<p:column>
 							<h:outputLabel for="apelido" value="#{msg.apelido}" />
 						</p:column>
 						<p:column>
 							<p:inputText label="#{msg.apelido}" id="apelido" required="true"
-								value="#{userBean.user.apelido}" />
+								value="#{utilizadorBean.user.apelido}" />
 						</p:column>
 						<p:column colspan="2" />
 					</p:row>
@@ -66,7 +63,7 @@
 						<p:column>
 							<p:inputText size="50" label="email" id="email"
 								validatorMessage="Formato de email invalido!"
-								value="#{userBean.user.email}">
+								value="#{utilizadorBean.user.email}">
 								<f:validateRegex
 									pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
 							</p:inputText>
@@ -78,17 +75,17 @@
 						<p:column>
 							<p:inputMask size="50" label="#{msg.contacto}" id="cell"
 								required="true" mask="(+258)-999-999-999"
-								value="#{userBean.user.cell}" />
+								value="#{utilizadorBean.user.cell}" />
 							<p:watermark value="(+258)-123-456-789" for="cell" />
 						</p:column>
 						<p:column>
 							<p:outputLabel value="#{msg.tipo_usuario}" for="user_Type" />
 						</p:column>
 						<p:column>
-							<p:selectOneMenu value="#{userBean.user.role}" id="user_Type"
+							<p:selectOneMenu value="#{utilizadorBean.user.role}" id="user_Type"
 								required="true">
 								<f:selectItem itemLabel="#{msg.water_selecione}" />
-								<f:selectItems value="#{userBean.roles}" var="rolex"
+								<f:selectItems value="#{utilizadorBean.roles}" var="rolex"
 									itemValue="#{rolex}" itemLabel="#{rolex.label}" />
 							</p:selectOneMenu>
 							<p:tooltip value="Seleccione entre Administrador ou Normal."
@@ -105,7 +102,7 @@
 								weakLabel="Fraco" strongLabel="Segura" goodLabel="Aceitavel"
 								promptLabel="Digite a palavra passe" maxlength="15"
 								placeholder="M&aacute;ximo 15 caracteres"
-								value="#{userBean.user.password}" />
+								value="#{utilizadorBean.user.password}" />
 						</p:column>
 						<p:column colspan="4" />
 					</p:row>
@@ -117,7 +114,7 @@
 							<p:password label="#{msg.senha_repetida}" size="40"
 								placeholder="#{msg.water_senha_rep}" maxlength="15"
 								id="repeataSenha" required="true"
-								value="#{userBean.senhaSecundaria}" immediate="@this" />
+								value="#{utilizadorBean.senhaSecundaria}" immediate="@this" />
 							<p:message for="repeataSenha" showDetail="true" />
 							<p:tooltip value="Deve ser igual ao campo senha"
 								for="repeataSenha" />
@@ -162,13 +159,16 @@
 					</p:menubar>
 					<p:dataTable widgetVar="filteredDataTable"
 						emptyMessage="Sem usuarios cadastrados" id="dataTable" var="user"
-						rows="5" value="#{userBean.users}" paginator="true"
-						selectionMode="single" selection="#{userBean.user}"
-						rowKey="#{user.id}" filteredValue="#{userBean.filteredUsers}"
+						rows="5" value="#{utilizadorBean.users}" paginator="true"
+						selectionMode="single" selection="#{utilizadorBean.user}"
+						rowKey="#{user.id}" filteredValue="#{utilizadorBean.filteredUsers}"
 						rowsPerPageTemplate="5,10,15">
 
-						<p:ajax event="rowSelect" listener="#{userBean.onRowSelect}"
+						<p:ajax event="rowSelect" listener="#{utilizadorBean.onRowSelect}"
 							update=":frm:growl" />
+						<p:column headerText="#ID">
+							<p:outputLabel value="#{user.id}" />
+						</p:column>
 						<p:column filterBy="#{user.nome}" filterMatchMode="contains"
 							headerText="#{msg.nome}">
 							<p:outputLabel value="#{user.nome}" style="font-weight: bold;" />
@@ -207,10 +207,10 @@
 								<!-- <h:form id="confirm_frm"> -->
 								<p:commandButton value="#{msg.confirm_dialog_yes}"
 									oncomplete="PF('confirmDialog').hide()"
-									action="#{userBean.deleteUser}" process=":frm:dataTable"
+									action="#{utilizadorBean.deleteUser}" process=":frm:dataTable"
 									update=":frm:dataTable">
 									<f:setPropertyActionListener value="#{user}"
-										target="#{userBean.utilizadorSelecionado}" />
+										target="#{utilizadorBean.utilizadorSelecionado}" />
 								</p:commandButton>
 								<p:commandButton value="#{msg.confirm_dialog_no}"
 									onclick="PF('confirmDialog').hide()" />
@@ -228,7 +228,7 @@
 							<p:row>
 								<p:column colspan="6" style="text-align: right;"
 									footerText="#{msg.list_numero_utilizadores}" />
-								<p:column footerText="#{userBean.totalUsers}" />
+								<p:column footerText="#{utilizadorBean.totalUsers}" />
 							</p:row>
 						</p:columnGroup>
 					</p:dataTable>
@@ -242,18 +242,18 @@
 						<p:panelGrid id="userDetail" columns="2">
 							<f:facet name="header">
 								<p:outputLabel value="Detalhes de: " />
-								<p:outputLabel value="#{userBean.user.nome}" />
+								<p:outputLabel value="#{utilizadorBean.user.nome}" />
 							</f:facet>
 
 							<p:outputLabel for="edit_nome" value="Nome:" />
-							<p:inputText id="edit_nome" value="#{userBean.user.nome}" />
+							<p:inputText id="edit_nome" value="#{utilizadorBean.user.nome}" />
 
 							<p:outputLabel for="edit_apelido" value="Apelido:" />
-							<p:inputText id="edit_apelido" value="#{userBean.user.apelido}" />
+							<p:inputText id="edit_apelido" value="#{utilizadorBean.user.apelido}" />
 
 							<p:outputLabel for="edit_email" value="Email:" />
 							<p:inputText size="40" id="edit_email"
-								value="#{userBean.user.email}"
+								value="#{utilizadorBean.user.email}"
 								validatorMessage="Formato de email invalido!"
 								placeholder="exemplo@email.com">
 								<f:validateRegex
@@ -262,18 +262,18 @@
 
 							<p:outputLabel value="Cell:" />
 							<p:inputMask mask="(+258)-999-999-999"
-								value="#{userBean.user.cell}" />
+								value="#{utilizadorBean.user.cell}" />
 
 							<p:outputLabel value="Tipo de usuario:" />
-							<p:selectOneMenu value="#{userBean.user.role}">
+							<p:selectOneMenu value="#{utilizadorBean.user.role}">
 								<f:selectItem itemLabel="#{msg.water_selecione}" />
-								<f:selectItems value="#{userBean.roles}" var="rolex"
+								<f:selectItems value="#{utilizadorBean.roles}" var="rolex"
 									itemValue="#{rolex}" itemLabel="#{rolex.label}" />
 							</p:selectOneMenu>
 
 							<f:facet name="footer">
 								<p:commandButton icon="ui-icon-refresh"
-									action="#{userBean.update}" update=":frm:dataTable"
+									action="#{utilizadorBean.update}" update=":frm:dataTable"
 									value="Actualizar" />
 							</f:facet>
 						</p:panelGrid>
@@ -287,31 +287,31 @@
 						<p:panelGrid id="viewUser" columns="2">
 							<f:facet name="header">
 								<p:outputLabel value="Detalhes de: " />
-								<p:outputLabel value="#{userBean.user.nome}" />
-								<p:outputLabel value=" #{userBean.user.apelido}" />
+								<p:outputLabel value="#{utilizadorBean.user.nome}" />
+								<p:outputLabel value=" #{utilizadorBean.user.apelido}" />
 							</f:facet>
 
 							<p:outputLabel style="font-weight: bold" value="Nome:" />
-							<p:outputLabel value="#{userBean.user.nome}" />
+							<p:outputLabel value="#{utilizadorBean.user.nome}" />
 
 							<p:outputLabel style="font-weight: bold" value="Apelido:" />
-							<p:outputLabel value="#{userBean.user.apelido}" />
+							<p:outputLabel value="#{utilizadorBean.user.apelido}" />
 
 							<p:outputLabel style="font-weight: bold" value="Email:" />
-							<p:outputLabel value="#{userBean.user.email}" />
+							<p:outputLabel value="#{utilizadorBean.user.email}" />
 
 							<p:outputLabel style="font-weight: bold" value="Cell:" />
-							<p:outputLabel value="#{userBean.user.cell}" />
+							<p:outputLabel value="#{utilizadorBean.user.cell}" />
 
 							<p:outputLabel style="font-weight: bold" value="Tipo de usuario:" />
-							<p:outputLabel value="#{userBean.user.role.label}" />
+							<p:outputLabel value="#{utilizadorBean.user.role.label}" />
 							<f:facet name="footer">
 								<p:commandButton value="#{msg.view_dialog_ok}"
 									icon="ui-icon-check" onclick="PF('view_dialog').hide()" />
 								<p:spacer width="10" />
 								<p:commandButton process="view_form"
 									value="#{msg.view_dialog_email}"
-									action="#{userBean.enviarEmail}" icon="ui-icon-mail-open"
+									action="#{utilizadorBean.enviarEmail}" icon="ui-icon-mail-open"
 									oncomplete="PF('view_dialog').hide()" />
 							</f:facet>
 						</p:panelGrid>

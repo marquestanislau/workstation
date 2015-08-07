@@ -14,12 +14,12 @@ import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
-import com.project.model.User;
+import com.project.model.Utilizador;
 import com.project.util.excepcoes.RelatorioVazioException;
 
 public class ReportUtl {
 
-	public void exportarParaPdf(String relatorio, List<User> usuarios,
+	public void exportarParaPdf(String relatorio, List<Utilizador> usuarios,
 			HttpServletResponse resposta) throws IOException, JRException,
 			RelatorioVazioException {
 

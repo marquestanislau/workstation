@@ -1,25 +1,25 @@
 package com.project.service;
 
-import com.project.model.User;
-import com.project.repository.IUsuario;
+import com.project.model.Utilizador;
+import com.project.repository.IUtilizador;
 
 public class GestaoUsuarios {
 
-	private IUsuario usuarios;
+	private IUtilizador usuarios;
 	
-	public GestaoUsuarios(IUsuario usuarios) {
+	public GestaoUsuarios(IUtilizador usuarios) {
 		this.usuarios = usuarios;
 	}
 	
-	public void guardar(User user) {
+	public void guardar(Utilizador user) {
 		this.usuarios.guardar(user);
 	}
 
-	public IUsuario getUsuarios() {
+	public IUtilizador getUsuarios() {
 		return usuarios;
 	}
 
-	public void setUsuarios(IUsuario usuarios) {
+	public void setUsuarios(IUtilizador usuarios) {
 		this.usuarios = usuarios;
 	}
 	

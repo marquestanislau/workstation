@@ -9,7 +9,7 @@ import org.codemonkey.simplejavamail.MailException;
 import org.codemonkey.simplejavamail.Mailer;
 import org.codemonkey.simplejavamail.TransportStrategy;
 
-import com.project.model.User;
+import com.project.model.Utilizador;
 import com.project.util.FacesUtil;
 import com.project.util.excepcoes.EmailNaoExisteException;
 
@@ -18,9 +18,9 @@ public class ConfiguradorEmail implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Email email;
-	private User user;
+	private Utilizador user;
 	
-	public ConfiguradorEmail(User user) {
+	public ConfiguradorEmail(Utilizador user) {
 		this.email = new Email();
 		this.user = user;
 	}
@@ -45,7 +45,7 @@ public class ConfiguradorEmail implements Serializable {
 		mailerSender.sendMail(email);
 	}
 	
-	public User getUser() {
+	public Utilizador getUser() {
 		return user;
 	}
 	

@@ -5,10 +5,10 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.criterion.Order;
 
-import com.project.model.User;
-import com.project.repository.IUsuario;
+import com.project.model.Utilizador;
+import com.project.repository.IUtilizador;
 
-public class UsuariosHibernate implements IUsuario {
+public class UsuariosHibernate implements IUtilizador {
 
 	private Session session;
 
@@ -18,23 +18,23 @@ public class UsuariosHibernate implements IUsuario {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<User> todos() {
-		return session.createCriteria(User.class).addOrder(Order.asc("nome"))
+	public List<Utilizador> todos() {
+		return session.createCriteria(Utilizador.class).addOrder(Order.asc("nome"))
 				.list();
 	}
 
 	@Override
-	public void guardar(User user) {
+	public void guardar(Utilizador user) {
 		session.merge(user);
 	}
 
 	@Override
-	public User porCodigo(Long codigo) {
-		return (User) session.get(User.class, codigo);
+	public Utilizador porCodigo(Integer codigo) {
+		return (Utilizador) session.get(Utilizador.class, codigo);
 	}
 
 	@Override
-	public void apagar(User user) {
+	public void apagar(Utilizador user) {
 		this.session.delete(user);
 	}
 	
