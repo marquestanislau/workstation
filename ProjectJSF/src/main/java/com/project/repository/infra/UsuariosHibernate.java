@@ -37,7 +37,5 @@ public class UsuariosHibernate implements IUtilizador {
 	public void apagar(Utilizador user) {
 		this.session.delete(user);
 	}
-	
-	
 
 }
