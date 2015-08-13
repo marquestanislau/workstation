@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+	<h:head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+		<title>#{msg.autenticacao_titulo}</title>
+		<h:outputStylesheet library="css" name="sistema.css" />
+	</h:head>
+	<h:body>
+		<center>
+			<div id="conteudo_login" style="width: 350px; margin-top: 200px;">
+				<h:outputLabel style="font: 40px bold;" value="#{msg.login_header}" />
+				<h:form>
+					<h:panelGrid styleClass="login" columns="2" style="width: 100%;">
+						<p:outputLabel styleClass="label" for="nome" value="#{msg.nome}" />
+						<p:inputText maxlength="30" id="nome" required="true" size="30" />
+						<p:outputLabel styleClass="label" for="senha" value="#{msg.senha}" />
+						<p:password maxlength="15" size="30" id="senha" required="true" />
+						<p:spacer />
+						<h:panelGroup>
+							<p:commandButton icon="ui-icon-circle-check"
+								value="#{msg.autenticar}" />
+							<p:spacer width="10" />
+							<p:link value="#{msg.esqueci_a_senha}" />
+						</h:panelGroup>
+					</h:panelGrid>
+					<p:messages id="msg" autoUpdate="true" showDetail="false"
+						showSummary="true" />
+				</h:form>
+			</div>
+		</center>
+	</h:body>
+</html>

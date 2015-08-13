@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/layout/template.xhtml">
+	<ui:define name="center">
+		<h:outputLabel style="font-size: 40px;" value="Pesquisar utilisador" />
+
+		<h:form id="frm">
+			<p:menubar>
+				<p:menuitem>
+					<p:commandButton icon="ui-icon-search" value="Pesquisar" />
+				</p:menuitem>
+				<f:facet name="options">
+					<p:menuitem>
+						<p:commandButton icon="ui-icon-circle-plus"
+							action="cadastro?faces-redirect=true" value="Novo" />
+					</p:menuitem>
+				</f:facet>
+			</p:menubar>
+			<p:spacer />
+			<p:panelGrid style="width: 100%;">
+				<p:row>
+					<p:column>
+						<p:outputLabel value="Nome:" />
+					</p:column>
+					<p:column>
+						<p:inputText />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column colspan="4">
+						<p:outputLabel style="text-align: center; font-weigth: bold;"
+							value="Procurar pelas datas de registro" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column>
+						<p:outputLabel value="De:" />
+					</p:column>
+					<p:column>
+						<p:calendar id="firstDate" pattern="dd/MM/yyyy" />
+						<p:tooltip for="firstDate"
+							value="Deve ser uma data n&atilde;o muito distante da data do cadastrodo do utilizador ." />
+					</p:column>
+					<p:column>
+						<p:outputLabel value="At&eacute;:" />
+					</p:column>
+					<p:column>
+						<p:calendar pattern="dd/MM/yyyy" id="secondDate"
+							maxdate="#{java.util.Calendar.time}" />
+						<p:tooltip for="secondDate"
+							value="Selecione uma data ap&oacute;s a primeira data." />
+					</p:column>
+				</p:row>
+			</p:panelGrid>
+
+			<p:spacer />
+
+			<p:dataTable widgetVar="matchedUser" id="userTableData"
+				paginator="true" rowsPerPageTemplate="5, 10"
+				emptyMessage="Use os campos acima para procurar utilisadores.">
+				<p:column headerText="Nome" />
+				<p:column headerText="Apelido" />
+				<p:column headerText="Email" />
+				<p:column headerText="Contacto" />
+				<p:column headerText="Previlegio" />
+			</p:dataTable>
+		</h:form>
+	</ui:define>
+</ui:composition>
+
+</html>

@@ -1,0 +1,154 @@
+<ui:composition template="/layout/template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+	
+	<ui:define name="center">
+		<h:outputLabel value="Registo de Multas" style="font-size: 23px;" />
+		<h:form id="main_frm">
+			<p:growl id="message" showSummary="true" showDetail="true"
+				autoUpdate="true" />
+			<p:menubar>
+				<p:menuitem>
+					<p:commandButton value="#{msg.salvar}" action="#{multaBean.add}"
+						icon="ui-icon-circle-check" update="dataTableMulta"
+						process="main_frm" />
+				</p:menuitem>
+				<p:menuitem>
+					<span class="ui-separator"> <span
+						class="ui-icon ui-icon-grip-dotted-vertical" />
+					</span>
+				</p:menuitem>
+				<p:menuitem>
+					<p:commandButton icon="ui-icon-arrowrefresh-1-w" type="reset"
+						value="#{msg.novo}" />
+				</p:menuitem>
+				<f:facet name="options">
+
+					<p:menuitem>
+						<p:commandButton onclick="PF('dialog_view').show()" value="Multas" />
+						<p:commandButton icon="ui-icon-search" value="Lista"
+							action="/pages/multa/lista?faces-redirect=true" />
+					</p:menuitem>
+
+				</f:facet>
+			</p:menubar>
+
+			<p:spacer />
+
+			<p:panelGrid style="width: 100%;">
+				<p:row>
+					<p:column>
+						<p:outputLabel for="nome" value="Designa&ccedil;&atilde;o:" />
+					</p:column>
+					<p:column>
+						<p:inputText value="#{multaBean.multa.nome}" id="nome" size="45" />
+					</p:column>
+					<p:column>
+						<p:outputLabel value="Tipo:" />
+					</p:column>
+					<p:column>
+						<p:selectOneMenu>
+							<f:selectItem itemLabel="Selecione um tipo..." />
+						</p:selectOneMenu>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column>
+						<p:outputLabel for="gravidade" value="Contravencao:" />
+					</p:column>
+					<p:column>
+						<p:selectOneMenu id="gravidade"
+							value="#{multaBean.multa.gravidade}">
+							<f:selectItem itemLabel="Selecione..." />
+							<f:selectItems value="#{multaBean.gravidades}" var="gravity"
+								itemValue="#{gravity}" itemLabel="#{gravity.label}" />
+						</p:selectOneMenu>
+					</p:column>
+					<p:column>
+						<p:outputLabel for="valor" value="Valor da multa:" />
+					</p:column>
+					<p:column>
+						<p:inputText value="#{multaBean.multa.valorDaMulta}" id="valor">
+							<f:convertNumber pattern="000.00" />
+						</p:inputText>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column>
+						<p:outputLabel for="data" value="#{msg.data}" />
+					</p:column>
+					<p:column>
+						<p:calendar id="data" showButtonPanel="true" pattern="dd/MM/yyyy"
+							navigator="true" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column>
+						<p:outputLabel style="padding-bottom: 45%;" for="desc"
+							value="#{msg.desc}" />
+					</p:column>
+					<p:column>
+						<p:editor value="#{multaBean.multa.descricao}" id="desc" cols="50"
+							rows="10" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column>
+						<p:outputLabel for="artigo" value="Artigo numero:" />
+					</p:column>
+					<p:column>
+						<p:inputText id="artigo" value="#{multaBean.multa.numArtigo}">
+							<f:convertNumber minIntegerDigits="1" />
+						</p:inputText>
+					</p:column>
+					<p:column>
+						<p:outputLabel for="cap" value="Capitulo:" />
+					</p:column>
+					<p:column>
+						<p:inputText id="cap" value="#{multaBean.multa.capitulo}" />
+					</p:column>
+				</p:row>
+			</p:panelGrid>
+
+			<p:spacer />
+
+			<p:dialog width="700" widgetVar="dialog_view" closable="true"
+				closeOnEscape="true" resizable="false" showEffect="puff"
+				hideEffect="puff">
+				<f:facet name="header">
+					<p:outputLabel style="font-weight: bold; font-size: 15px;"
+						value="Tipos de Multas existentes no sistema." />
+				</f:facet>
+				<p:dataTable id="dataTableMulta" var="multa"
+					value="#{multaBean.multas}" rowKey="#{multa.multa_id}"
+					paginator="true" rows="8"
+					emptyMessage="N&atilde;o possui registros.">
+					<p:column headerText="#ID">
+						<h:outputText value="#{multa.multa_id}" />
+					</p:column>
+					<p:column headerText="NOME" filterBy="#{multa.nome}"
+						sortBy="#{multa.nome}" filterMatchMode="contains">
+						<h:outputText value="#{multa.nome}" />
+					</p:column>
+					<p:column headerText="GRAVIDADE"
+						filterBy="#{multa.gravidade.label}">
+						<f:facet name="filterBy">
+							<p:outputLabel value="dhfg"></p:outputLabel>
+						</f:facet>
+						<p:outputLabel value="#{multa.gravidade.label}" />
+					</p:column>
+					<p:column headerText="DATA">
+						<p:outputLabel value="#{multa.createdDate}" />
+					</p:column>
+					<p:column headerText="Valor da Multa">
+						<p:outputLabel value="#{multa.valorDaMulta}" />
+					</p:column>
+
+				</p:dataTable>
+			</p:dialog>
+		</h:form>
+	</ui:define>
+</ui:composition>

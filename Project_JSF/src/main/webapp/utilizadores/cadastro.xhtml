@@ -1,0 +1,316 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:body>
+	<ui:composition template="/layout/template.xhtml">
+		<ui:define name="center">
+			<p:growl autoUpdate="true" showDetail="true" showSummary="true" />
+			<h:form id="user_frm">
+				<p:menubar style="margin-top: 10px;">
+					<f:facet name="options">
+						<p:menuitem>
+							<p:commandButton process="@this" value="#{msg.lista_utilizador}"
+								icon="ui-icon-person"
+								action="list?faces-redirect=true" />
+						</p:menuitem>
+					</f:facet>
+					<p:menuitem>
+						<p:commandButton title="Clica para submeter os dados"
+							action="#{utilizadorBean.addUser}" value="#{msg.salvar}"
+							icon="ui-icon-circle-check" update=":frm:dataTable" />
+					</p:menuitem>
+					<p:menuitem>
+						<span class="ui-separator"> <span
+							class="ui-icon ui-icon-grip-dotted-vertical" />
+						</span>
+					</p:menuitem>
+					<p:menuitem>
+						<p:commandButton value="#{msg.novo}" icon="ui-icon-plus"
+							type="reset" />
+					</p:menuitem>
+				</p:menubar>
+				<p:spacer />
+				<p:panelGrid style="width: 100%; margin-top: 10px;">
+					<p:row>
+						<p:column>
+							<h:outputLabel value="#{msg.nome}" for="nome" />
+						</p:column>
+						<p:column>
+							<p:inputText size="50" label="nome" id="nome" required="true"
+								value="#{utilizadorBean.user.nome}" />
+						</p:column>
+						<p:column>
+							<h:outputLabel for="apelido" value="#{msg.apelido}" />
+						</p:column>
+						<p:column>
+							<p:inputText label="#{msg.apelido}" id="apelido" required="true"
+								value="#{utilizadorBean.user.apelido}" />
+						</p:column>
+						<p:column colspan="2" />
+					</p:row>
+					<p:row>
+						<p:column>
+							<h:outputLabel for="email" value="#{msg.email}" />
+						</p:column>
+						<p:column>
+							<p:inputText size="50" label="email" id="email"
+								validatorMessage="Formato de email invalido!"
+								value="#{utilizadorBean.user.email}">
+								<f:validateRegex
+									pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+							</p:inputText>
+							<p:watermark for="email" value="#{msg.water_email}"></p:watermark>
+						</p:column>
+						<p:column>
+							<h:outputLabel for="cell" value="#{msg.contacto}" />
+						</p:column>
+						<p:column>
+							<p:inputMask size="50" label="#{msg.contacto}" id="cell"
+								required="true" mask="(+258)-999-999-999"
+								value="#{utilizadorBean.user.cell}" />
+							<p:watermark value="(+258)-123-456-789" for="cell" />
+						</p:column>
+						<p:column>
+							<p:outputLabel value="#{msg.tipo_usuario}" for="user_Type" />
+						</p:column>
+						<p:column>
+							<p:selectOneMenu value="#{utilizadorBean.user.role}"
+								id="user_Type" required="true">
+								<f:selectItem itemLabel="#{msg.water_selecione}" />
+								<f:selectItems value="#{utilizadorBean.roles}" var="rolex"
+									itemValue="#{rolex}" itemLabel="#{rolex.label}" />
+							</p:selectOneMenu>
+							<p:tooltip value="Seleccione entre Administrador ou Normal."
+								for="user_Type" />
+						</p:column>
+					</p:row>
+
+					<p:row>
+						<p:column>
+							<p:outputLabel for="senha" value="#{msg.senha}" />
+						</p:column>
+						<p:column>
+							<p:password size="40" feedback="true" required="true" id="senha"
+								weakLabel="Fraco" strongLabel="Segura" goodLabel="Aceitavel"
+								promptLabel="Digite a palavra passe" maxlength="15"
+								placeholder="M&aacute;ximo 15 caracteres"
+								value="#{utilizadorBean.user.password}" />
+						</p:column>
+						<p:column colspan="4" />
+					</p:row>
+					<p:row>
+						<p:column>
+							<p:outputLabel for="repeataSenha" value="#{msg.senha_repetida}" />
+						</p:column>
+						<p:column>
+							<p:password label="#{msg.senha_repetida}" size="40"
+								placeholder="#{msg.water_senha_rep}" maxlength="15"
+								id="repeataSenha" required="true"
+								value="#{utilizadorBean.senhaSecundaria}" immediate="@this" />
+							<p:message for="repeataSenha" showDetail="true" />
+							<p:tooltip value="Deve ser igual ao campo senha"
+								for="repeataSenha" />
+						</p:column>
+						<p:column colspan="4" />
+					</p:row>
+				</p:panelGrid>
+			</h:form>
+			<h:form id="frm">
+				<p:growl id="growl" autoUpdate="true" showDetail="true"
+					showSummary="true" />
+
+				<p:panelGrid style="margin-top: 10px;" columns="1" layout="grid">
+					<p:spacer />
+					<p:menubar id="menu_search">
+						<p:menuitem>
+							<p:outputLabel value="#{msg.nome}" />
+						</p:menuitem>
+						<p:menuitem>
+							<p:spacer width="5" />
+						</p:menuitem>
+						<p:menuitem>
+							<p:inputText id="nome_search" size="100"
+								onkeyup="PF('filteredDataTable').filter()"
+								placeholder="#{msg.water_procurar}" />
+						</p:menuitem>
+						<p:menuitem>
+							<p:spacer width="5" />
+						</p:menuitem>
+						<f:facet name="options">
+							<p:menuitem>
+								<p:commandButton icon="ui-icon-search" value="#{msg.procurar}"
+									process="menu_search"
+									action="/pages/user/pesquisaUser?faces-redirect=true" />
+							</p:menuitem>
+						</f:facet>
+					</p:menubar>
+					<p:dataTable widgetVar="filteredDataTable"
+						emptyMessage="Sem usuarios cadastrados" id="dataTable" var="user"
+						rows="5" value="#{utilizadorBean.users}" paginator="true"
+						selectionMode="single" selection="#{utilizadorBean.user}"
+						rowKey="#{user.nome}"
+						filteredValue="#{utilizadorBean.filteredUsers}"
+						rowsPerPageTemplate="5,10,15">
+
+						<p:ajax event="rowSelect" listener="#{utilizadorBean.onRowSelect}"
+							update=":frm:growl" />
+						<p:column headerText="#ID">
+							<p:outputLabel value="#{user.id}" />
+						</p:column>
+						<p:column filterBy="#{user.nome}" filterMatchMode="contains"
+							headerText="#{msg.nome}">
+							<p:outputLabel value="#{user.nome}" style="font-weight: bold;" />
+						</p:column>
+						<p:column filterBy="#{user.apelido}" filterMatchMode="contains"
+							headerText="#{msg.apelido}">
+							<p:outputLabel value="#{user.apelido}" />
+						</p:column>
+						<p:column headerText="#{msg.email}" filterBy="#{user.email}"
+							filterMatchMode="contains">
+							<p:outputLabel value="#{user.email}" />
+						</p:column>
+						<p:column headerText="#{msg.list_data_registo}">
+							<p:outputLabel value="#{user.created.time}">
+								<f:convertDateTime pattern="dd, MMMM yyyy" locale="pt_BR"
+									type="date" />
+							</p:outputLabel>
+						</p:column>
+						<p:column headerText="#{msg.contacto}" filterBy="#{user.cell}"
+							filterMatchMode="contains">
+							<p:outputLabel value="#{user.cell}" />
+						</p:column>
+						<p:column headerText="#{msg.list_role}" filterMatchMode="contains"
+							filterBy="#{user.role}">
+							<p:outputLabel value="#{user.role.label}"
+								styleClass="#{user.role eq 'ADMIN' ? 'cor_admin' : 'cor_normal'}" />
+						</p:column>
+						<p:column headerText="">
+							<p:commandButton icon="ui-icon-trash"
+								onclick="PF('confirmDialog').show()" />
+
+							<p:confirmDialog modal="true" header="#{msg.confirm_dialog}"
+								widgetVar="confirmDialog" message="#{msg.confirm_dialog_yes_no}"
+								showEffect="puff" hideEffect="puff" id="confrimDialog">
+
+								<!-- <h:form id="confirm_frm"> -->
+								<p:commandButton value="#{msg.confirm_dialog_yes}"
+									oncomplete="PF('confirmDialog').hide()"
+									action="#{utilizadorBean.deleteUser}" process=":frm:dataTable"
+									update=":frm:dataTable">
+									<f:setPropertyActionListener value="#{user}"
+										target="#{utilizadorBean.utilizadorSelecionado}" />
+								</p:commandButton>
+								<p:commandButton value="#{msg.confirm_dialog_no}"
+									onclick="PF('confirmDialog').hide()" />
+								<!-- </h:form> -->
+							</p:confirmDialog>
+
+							<p:commandButton update=":frm:frm_update:userDetail"
+								oncomplete="PF('update_dialog').show()" icon="ui-icon-pencil"
+								process="dataTable" />
+							<p:commandButton update=":frm:view_form:viewUser"
+								oncomplete="PF('view_dialog').show()" icon="ui-icon-search"
+								process="dataTable" />
+						</p:column>
+						<p:columnGroup type="footer">
+							<p:row>
+								<p:column colspan="6" style="text-align: right;"
+									footerText="#{msg.list_numero_utilizadores}" />
+								<p:column footerText="#{utilizadorBean.totalUsers}" />
+							</p:row>
+						</p:columnGroup>
+					</p:dataTable>
+				</p:panelGrid>
+
+				<p:dialog resizable="false" closable="true"
+					widgetVar="update_dialog" showEffect="size" closeOnEscape="true"
+					hideEffect="size">
+
+					<h:form id="frm_update">
+						<p:panelGrid id="userDetail" columns="2">
+							<f:facet name="header">
+								<p:outputLabel value="Detalhes de: " />
+								<p:outputLabel value="#{utilizadorBean.user.nome}" />
+							</f:facet>
+
+							<p:outputLabel for="edit_nome" value="Nome:" />
+							<p:inputText id="edit_nome" value="#{utilizadorBean.user.nome}" />
+
+							<p:outputLabel for="edit_apelido" value="Apelido:" />
+							<p:inputText id="edit_apelido"
+								value="#{utilizadorBean.user.apelido}" />
+
+							<p:outputLabel for="edit_email" value="Email:" />
+							<p:inputText size="40" id="edit_email"
+								value="#{utilizadorBean.user.email}"
+								validatorMessage="Formato de email invalido!"
+								placeholder="exemplo@email.com">
+								<f:validateRegex
+									pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+							</p:inputText>
+
+							<p:outputLabel value="Cell:" />
+							<p:inputMask mask="(+258)-999-999-999"
+								value="#{utilizadorBean.user.cell}" />
+
+							<p:outputLabel value="Tipo de usuario:" />
+							<p:selectOneMenu value="#{utilizadorBean.user.role}">
+								<f:selectItem itemLabel="#{msg.water_selecione}" />
+								<f:selectItems value="#{utilizadorBean.roles}" var="rolex"
+									itemValue="#{rolex}" itemLabel="#{rolex.label}" />
+							</p:selectOneMenu>
+
+							<f:facet name="footer">
+								<p:commandButton icon="ui-icon-refresh"
+									action="#{utilizadorBean.update}" update=":frm:dataTable"
+									value="Actualizar" />
+							</f:facet>
+						</p:panelGrid>
+					</h:form>
+				</p:dialog>
+
+				<p:dialog widgetVar="view_dialog" closable="true"
+					closeOnEscape="true" modal="false" resizable="false"
+					showEffect="slide" hideEffect="slide">
+					<h:form id="view_form">
+						<p:panelGrid id="viewUser" columns="2">
+							<f:facet name="header">
+								<p:outputLabel value="Detalhes de: " />
+								<p:outputLabel value="#{utilizadorBean.user.nome}" />
+								<p:outputLabel value=" #{utilizadorBean.user.apelido}" />
+							</f:facet>
+
+							<p:outputLabel style="font-weight: bold" value="Nome:" />
+							<p:outputLabel value="#{utilizadorBean.user.nome}" />
+
+							<p:outputLabel style="font-weight: bold" value="Apelido:" />
+							<p:outputLabel value="#{utilizadorBean.user.apelido}" />
+
+							<p:outputLabel style="font-weight: bold" value="Email:" />
+							<p:outputLabel value="#{utilizadorBean.user.email}" />
+
+							<p:outputLabel style="font-weight: bold" value="Cell:" />
+							<p:outputLabel value="#{utilizadorBean.user.cell}" />
+
+							<p:outputLabel style="font-weight: bold" value="Tipo de usuario:" />
+							<p:outputLabel value="#{utilizadorBean.user.role.label}" />
+							<f:facet name="footer">
+								<p:commandButton value="#{msg.view_dialog_ok}"
+									icon="ui-icon-check" onclick="PF('view_dialog').hide()" />
+								<p:spacer width="10" />
+								<p:commandButton process="view_form"
+									value="#{msg.view_dialog_email}"
+									action="#{utilizadorBean.enviarEmail}" icon="ui-icon-mail-open"
+									oncomplete="PF('view_dialog').hide()" />
+							</f:facet>
+						</p:panelGrid>
+					</h:form>
+				</p:dialog>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

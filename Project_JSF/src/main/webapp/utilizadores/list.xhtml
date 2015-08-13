@@ -1,0 +1,154 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	template="/layout/template.xhtml">
+	<ui:define name="center">
+		<h:form id="frm">
+			<h:outputLabel value="#{msg.list_subtitulo}" style="font-size: 25px;" />
+			<p:menubar>
+				<f:facet name="options">
+					<p:menuitem>
+						<p:commandButton type="button" icon="ui-icon-plus"
+							onclick="PF('saveDialog').show()" value="#{msg.list_novo}" />
+					</p:menuitem>
+					<h:form id="print_form">
+						<p:menuitem>
+							<p:commandButton value="#{msg.list_imprimir}"
+								icon="ui-icon-print" process="@this"
+								action="#{relatoriosBean.gerarRelatorioUtilizadores}"
+								ajax="false" />
+						</p:menuitem>
+					</h:form>
+				</f:facet>
+			</p:menubar>
+			<p:growl id="growl" showDetail="true" showSummary="true"
+				autoUpdate="true" />
+			<p:dataTable style="margin-top:10px;" emptyMessage="Sem usuarios cadastrados" id="dataTable"
+				var="user" rows="10" value="#{utilizadorBean.users}" paginator="true"
+				selectionMode="single" rowsPerPageTemplate="10,15,20"
+				selection="#{utilizadorBean.user}" rowKey="#{user.id}">
+				<p:ajax event="rowSelect" listener="#{utilizadorBean.onRowSelect}"
+					update=":frm:growl" />
+				<p:column headerText="#ID">
+					<p:outputLabel value="#{user.id}" />
+				</p:column>
+				<p:column headerText="#{msg.list_nome}">
+					<p:outputLabel value="#{user.nome}" />
+				</p:column>
+				<p:column headerText="#{msg.list_apelido}">
+					<p:outputLabel value="#{user.apelido}" />
+				</p:column>
+				<p:column headerText="#{msg.list_email}">
+					<p:outputLabel value="#{user.email}" />
+				</p:column>
+				<p:column headerText="#{msg.list_data_registo}">
+					<p:outputLabel value="#{user.created.time}">
+						<f:convertDateTime pattern="dd/MM/yy" type="date" />
+					</p:outputLabel>
+				</p:column>
+				<p:column headerText="#{msg.list_contacto}">
+					<p:outputLabel value="#{user.cell}" />
+				</p:column>
+				<p:column headerText="#{msg.list_role}">
+					<p:outputLabel value="#{user.role.label}"
+						styleClass="#{user.role eq 'ADMIN'? 'cor_admin' : 'cor_normal'}" />
+				</p:column>
+				<p:columnGroup type="footer">
+					<p:row>
+						<p:column colspan="5" style="text-align: right;"
+							footerText="#{msg.list_numero_utilizadores}" />
+						<p:column footerText="#{utilizadorBean.totalUsers}" />
+					</p:row>
+				</p:columnGroup>
+			</p:dataTable>
+
+
+			<h:form id="process_frm">
+				<p:dialog widgetVar="saveDialog" closeOnEscape="true"
+					closable="true" modal="true" header="Cadastro de Usuarios"
+					showEffect="drop" hideEffect="puff">
+					<h:outputLabel style="font-size: 35px;"
+						value="#{msg.list_diag_titulo}" />
+
+					<p:panel header="#{msg.list_diag_dados_pessoais}">
+						<p:panelGrid columns="4">
+							<h:outputLabel value="#{msg.list_nome}" for="nome" />
+							<p:inputText label="#{msg.list_nome}" id="nome" required="true"
+								value="#{utilizadorBean.user.nome}" />
+							<h:outputLabel for="apelido" value="#{msg.list_apelido}" />
+							<p:inputText label="#{msg.list_apelido}" id="apelido"
+								required="true" value="#{utilizadorBean.user.apelido}" />
+							<h:outputLabel value="#{msg.list_diag_data_nascimento}"
+								for="data_nascimento" />
+							<p:calendar id="data_nascimento" />
+							<h:outputLabel value="#{msg.list_detalhes}" for="detalhes" />
+							<p:inputTextarea label="#{msg.list_detalhes}" id="detalhes"
+								cols="30" />
+						</p:panelGrid>
+					</p:panel>
+					<p:spacer />
+					<p:panel header="#{msg.list_diag_info_contacto}">
+						<p:panelGrid columns="4">
+							<h:outputLabel value="#{msg.list_email}" for="email" />
+							<h:panelGroup>
+								<p:inputText label="#{msg.list_email}" id="email"
+									validatorMessage="Formato de email invalido!"
+									value="#{utilizadorBean.user.email}">
+									<f:validateRegex
+										pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+								</p:inputText>
+								<p:watermark for="email" value="exemplo@mail.com" />
+							</h:panelGroup>
+							<h:outputLabel value="#{msg.list_contacto}" for="cell" />
+							<h:panelGroup>
+								<p:inputMask label="#{msg.list_contacto}" required="true"
+									id="cell" mask="(+258)-999-999-999"
+									value="#{utilizadorBean.user.cell}" />
+								<p:watermark value="(+258)-123-456-789" for="cell" />
+							</h:panelGroup>
+							<h:outputLabel value="#{msg.list_diag_contacto_alternativo}"
+								for="cell_alt" />
+							<p:inputMask id="cell_alt" label="" mask="" />
+						</p:panelGrid>
+					</p:panel>
+					<p:spacer />
+					<p:panel header="#{msg.list_diag_info_registo}">
+						<p:panelGrid columns="2">
+							<h:outputLabel value="#{msg.list_diag_nome_usuario}"
+								for="user_name" />
+							<p:inputText id="user_name" />
+							<h:outputLabel value="#{msg.list_diag_senha}" for="senha" />
+							<p:password value="#{utilizadorBean.user.password}" size="50"
+								feedback="true" weakLabel="Fraco" required="true" id="senha"
+								strongLabel="Segura" goodLabel="Aceitavel"
+								promptLabel="Digite a palavra passe" maxlength="15" />
+							<h:outputLabel value="#{msg.list_diag_senha_rep}"
+								for="repeatSenha" />
+							<p:password value="#{utilizadorBean.senhaSecundaria}" size="50"
+								maxlength="15" id="repeatSenha" required="true" />
+							<p:outputLabel value="#{msg.list_role}" />
+							<p:selectOneMenu required="true" id="userType"
+								value="#{utilizadorBean.user.role}">
+								<f:selectItem itemLabel="Selecione..." />
+								<f:selectItems value="#{utilizadorBean.roles}" var="rolex"
+									itemValue="#{rolex}" itemLabel="#{rolex.label}" />
+							</p:selectOneMenu>
+						</p:panelGrid>
+					</p:panel>
+
+					<f:facet name="footer">
+						<p:outputPanel>
+							<p:commandButton icon="ui-icon-circle-plus"
+								value="#{msg.list_diag_salvar}" action="#{utilizadorBean.addUser}"
+								update=":frm:dataTable" process="process_frm" />
+							<p:commandButton value="#{msg.list_diag_novo}"
+								icon="ui-icon-refresh" type="reset" />
+						</p:outputPanel>
+					</f:facet>
+				</p:dialog>
+			</h:form>
+		</h:form>
+	</ui:define>
+</ui:composition>

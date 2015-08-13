@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+	<h:head>
+		<title>#{msg.titulo}</title>
+		<h:outputStylesheet library="css" name="sistema.css" />
+	</h:head>
+	<h:body>
+	
+		<!-- INDICA O STATUS DE UMA ACCAO NA APLICACAO -->
+		<p:ajaxStatus onstart="PF('statusDialog').show()"
+			onsuccess="PF('statusDialog').hide()" />
+	
+		<p:dialog widgetVar="statusDialog" modal="false" draggable="false"
+			closable="false" resizable="false" showHeader="false">
+			<h:panelGrid style="text-align: center;">
+				<p:outputLabel style="font-weight: bold;" value="#{msg.ajax_status}" />
+				<p:graphicImage library="img" name="ajax-loading-bar-blue.gif"
+					alt="Loading..." />
+			</h:panelGrid>
+		</p:dialog>
+	
+		<div id="cabecalho">
+			<ui:insert name="cabecalho">
+				<ui:include src="/layout/cabecalho.xhtml" />
+			</ui:insert>
+		</div>
+		<p:spacer />
+		<div id="conteudo">
+			<ui:insert name="center">
+			</ui:insert>
+		</div>
+	
+		<div id="rodape">
+			<ui:insert name="rodape">
+				<ui:include src="/layout/rodape.xhtml" />
+			</ui:insert>
+		</div>
+	
+	</h:body>
+</html>

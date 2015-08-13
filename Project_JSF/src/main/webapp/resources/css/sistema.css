@@ -1,0 +1,97 @@
+@CHARSET "ISO-8859-1";
+
+*, html {
+	font-size: 11px;
+	margin: 0;
+}
+
+#rodape {
+	border-top: solid thin gray;
+	background-color: #EEE;
+	margin-top: 20px;
+	text-align: center;
+}
+
+#cabecalho .ui-menubar {
+	background: none;
+	border: none;
+	background-color: #111;
+	height: 40px;
+	border-radius: 0 0;
+	padding: 10px;
+}
+
+#cabecalho .ui-menubar .ui-widget-content {
+	background: none;
+	background-color: #FFFFFF;
+	border: none;
+	box-shadow: 0 0;
+	border-radius: 0 0;
+	border: 2px #275160 solid;
+	border-top: none;
+}
+
+#cabecalho .ui-menubar .ui-widget-content .ui-menuitem-text {
+	color: black;
+}
+
+#cabecalho .ui-menubar .ui-menuitem-text {
+	color: white;
+	font-weight: normal;
+	/*font-weight: normal;*/
+	font-size: 14px;
+}
+/****
+#cabecalho .ui-menuitem-link:hover {
+	background: none;
+	background-color: #4787C2;
+	border: none;
+}***/
+#cabecalho .ui-menuitem-link:selected {
+	background: none;
+	background-color: #4787C2;
+}
+
+#logo {
+	font-size: 28px;
+	font-weight: bold;
+	color: yellow;
+	font-family: "URW Gothic L";
+}
+
+#conteudo {
+	padding-left: 10px;
+	padding-right: 10px
+}
+
+.cor_admin {
+	color: blue;
+	font-weight: bold;
+}
+
+.cor_normal {
+	color: #019922;
+}
+
+.shortcut {
+	padding: 5px;
+}
+
+.shortcut:hover {
+	background-color: #EAEAEA;
+}
+
+.login {
+	background-color: #f2eded;
+	paddind: 20px 20px;
+	border-radius: 10px;
+	border: solid thin gray;
+}
+
+.login tr {
+	paddind: 100px;
+}
+
+.login .label {
+	text-align: right;
+}

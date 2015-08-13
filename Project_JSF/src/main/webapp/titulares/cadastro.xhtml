@@ -1,0 +1,277 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/layout/template.xhtml">
+	<ui:define name="center">
+		<h:form id="frm">
+			<p:menubar style="margin-top: 10px;">
+				<p:menuitem>
+					<p:commandButton action="#{titularBean.saveTitular}"
+						value="#{msg.salvar}" icon="ui-icon-circle-check"
+						update=":tab_frm:tabview:dataTable" />
+				</p:menuitem>
+				<p:menuitem>
+					<span class="ui-separator"> <span
+						class="ui-icon ui-icon-grip-dotted-vertical" />
+					</span>
+				</p:menuitem>
+				<p:menuitem>
+					<p:commandButton value="#{msg.novo}" type="reset"
+						icon="fa fa-plus-circle" />
+				</p:menuitem>
+				<f:facet name="options">
+					<p:menuitem>
+
+						<p:autoComplete value="#{titularBean.titular.nome}"
+							completeMethod="#{titularBean.complete}" />
+
+					</p:menuitem>
+					<p:spacer />
+					<p:menuitem>
+						<p:commandButton icon="ui-icon-search" />
+					</p:menuitem>
+				</f:facet>
+			</p:menubar>
+			<p:panelGrid style="width: 100%; margin-top: 10px;">
+				<p:growl id="message" showDetail="true" autoUpdate="true"
+					showSummary="true" />
+				<p:row>
+					<p:column>
+						<p:outputLabel for="nome" value="#{msg.nome}" />
+					</p:column>
+					<p:column>
+						<p:inputText required="true" id="nome" size="40"
+							value="#{titularBean.titular.nome}" />
+						<p:watermark value="Digite o seu nome" for="nome" />
+					</p:column>
+					<p:column>
+						<p:outputLabel for="apelido" value="#{msg.apelido}" />
+					</p:column>
+					<p:column>
+						<p:inputText id="apelido" required="true" size="40"
+							value="#{titularBean.titular.apelido}" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column>
+						<p:outputLabel value="#{msg.num_carta}" />
+					</p:column>
+					<p:column>
+						<p:inputText value="#{titularBean.titular.numeroCarta}" />
+					</p:column>
+					<p:column>
+						<p:outputLabel value="#{msg.num_quarteirao}" />
+					</p:column>
+					<p:column>
+						<p:inputText value="#{titularBean.titular.numQuarteirao}" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column>
+						<p:outputLabel value="#{msg.bairro}" />
+					</p:column>
+					<p:column colspan="3">
+						<p:inputText size="100" value="#{titularBean.titular.bairro}" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column>
+						<p:outputLabel value="#{msg.rua}" />
+					</p:column>
+					<p:column colspan="3">
+						<p:inputText size="60" value="#{titularBean.titular.rua}" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column>
+						<p:outputLabel value="#{msg.num_casa}" />
+					</p:column>
+					<p:column>
+						<p:inputText value="#{titularBean.titular.numCasa}" />
+					</p:column>
+					<p:column>
+						<p:outputLabel value="#{msg.contacto}" />
+					</p:column>
+					<p:column>
+						<p:inputMask id="contacto" value="#{titularBean.titular.contacto}"
+							mask="(+258)-999-999-999" />
+						<p:watermark for="contacto" value="(+258)-123-456-789" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column>
+						<p:outputLabel value="#{msg.caixa_postal}" />
+					</p:column>
+					<p:column>
+						<p:inputText value="#{titularBean.titular.caixaPostal}" />
+					</p:column>
+					<p:column colspan="2" />
+				</p:row>
+			</p:panelGrid>
+		</h:form>
+		<h:form id="tab_frm">
+			<p:tabView style="margin-top: 10px;" id="tabview">
+				<p:tab id="tab" title="#{msg.titular_tab_text_lista_de_titulares}">
+					<p:dataTable scrollable="true" selectionMode="single"
+						selection="#{titularBean.titular}" id="dataTable" rows="5"
+						paginator="true" widgetVar="table_result" var="titular"
+						value="#{titularBean.titulares}" rowKey="#{titular.id}"
+						filteredValue="#{titularBean.filterTitulares}"
+						rowsPerPageTemplate="5,10,15">
+
+						<p:ajax event="rowSelect" listener="#{titularBean.onRowSelect}" />
+
+						<p:column headerText="ID">
+							<p:outputLabel value="#{titular.id}" />
+						</p:column>
+						<p:column headerText="Nome" filterBy="#{titular.nome}"
+							filterMatchMode="contains" sortBy="#{titular.nome}">
+							<p:outputLabel style="font-weight: bold;" value="#{titular.nome}" />
+						</p:column>
+						<p:column headerText="Apelido">
+							<p:outputLabel value="#{titular.apelido}" />
+						</p:column>
+						<p:column headerText="Contacto">
+							<p:outputLabel value="#{titular.contacto}" />
+						</p:column>
+						<p:column headerText="Num Carta" filterMatchMode="exact"
+							filterBy="#{titular.numeroCarta}">
+							<p:outputLabel value="#{titular.numeroCarta}" />
+						</p:column>
+						<p:column headerText="Data Registo">
+							<p:outputLabel value="#{titular.createdDate.time}">
+								<f:convertDateTime pattern="dd, MMMM yyyy" locale="pt_BR" />
+							</p:outputLabel>
+						</p:column>
+						<p:column>
+							<p:commandButton action="#{titularBean.delete(titular)}"
+								update="dataTable" icon="ui-icon-trash" />
+							<p:commandButton icon="ui-icon-search" process="dataTable"
+								update=":dialogs_frm:view_grid"
+								onclick="PF('view_dialog').show()" />
+							<p:commandButton process="dataTable"
+								update=":dialogs_frm:edit_grid"
+								onclick="PF('edit_dialog').show()" icon="ui-icon-pencil" />
+						</p:column>
+						<p:columnGroup type="footer">
+							<p:row>
+								<p:column colspan="3" />
+								<p:column />
+								<p:column />
+								<p:column footerText="Total de registros:"
+									style="text-align: right;" />
+								<p:column footerText="#{titularBean.totalTitulares}" />
+							</p:row>
+						</p:columnGroup>
+					</p:dataTable>
+				</p:tab>
+			</p:tabView>
+		</h:form>
+		<h:form id="dialogs_frm">
+			<p:dialog header="Editar Titular" resizable="false" showEffect="size"
+				hideEffect="size" widgetVar="edit_dialog">
+				<p:panelGrid id="edit_grid" columns="2">
+					<f:facet name="header">
+						<p:outputLabel value="#{titularBean.titular.nome} " />
+						<p:outputLabel value="#{titularBean.titular.apelido}" />
+					</f:facet>
+
+					<p:outputLabel value="Nome:" />
+
+					<p:inputText value="#{titularBean.titular.nome}" />
+
+
+					<p:outputLabel value="Apelido:" />
+
+					<p:inputText value="#{titularBean.titular.apelido}" />
+
+					<p:outputLabel value="Numero de carta:" />
+
+					<p:inputText value="#{titularBean.titular.numeroCarta}" />
+
+					<p:outputLabel value="Contacto:" />
+
+					<p:inputText value="#{titularBean.titular.contacto}" />
+
+					<p:outputLabel value="Numero de Casa:" />
+
+					<p:inputText value="#{titularBean.titular.numCasa}" />
+
+					<p:outputLabel value="Codigo Postal:" />
+
+					<p:inputText value="#{titularBean.titular.caixaPostal}" />
+
+					<p:outputLabel value="Quarteirao:">
+						<p:inputText type="hidden" value="#{titularBean.titular.id}" />
+					</p:outputLabel>
+
+					<p:inputText value="#{titularBean.titular.numQuarteirao}" />
+
+					<p:outputLabel value="Bairro:" />
+
+					<p:inputText value="#{titularBean.titular.bairro}" />
+
+					<p:outputLabel value="Rua:" />
+
+					<p:inputText value="#{titularBean.titular.rua}" />
+
+				</p:panelGrid>
+				<f:facet name="footer">
+					<p:commandButton value="Actualizar" icon="ui-icon-refresh"
+						action="#{titularBean.update}" update=":tab_frm:tabview:dataTable" />
+					<p:commandButton value="Sair" icon="ui-icon-circle-close"
+						onclick="PF('edit_dialog').hide()" />
+				</f:facet>
+			</p:dialog>
+			<p:dialog showEffect="size" resizable="false" hideEffect="size"
+				header="Detalhes de usuario" widgetVar="view_dialog" closable="true">
+				<p:panelGrid columns="4" id="view_grid">
+
+					<f:facet name="header">
+						<p:outputLabel value="#{titularBean.titular.nome} " />
+						<p:outputLabel value="#{titularBean.titular.apelido}" />
+					</f:facet>
+
+					<p:outputLabel style="font-weight: bold" value="Nome:" />
+
+					<p:outputLabel value="#{titularBean.titular.nome}" />
+
+					<p:outputLabel style="font-weight: bold" value="Numero de Casa:" />
+
+					<p:outputLabel value="#{titularBean.titular.numCasa}" />
+
+					<p:outputLabel style="font-weight: bold" value="Apelido:" />
+
+					<p:outputLabel value="#{titularBean.titular.apelido}" />
+
+					<p:outputLabel style="font-weight: bold" value="Codigo Postal:" />
+
+					<p:outputLabel value="#{titularBean.titular.caixaPostal}" />
+
+					<p:outputLabel style="font-weight: bold" value="Quarteirao:" />
+
+					<p:outputLabel value="#{titularBean.titular.numQuarteirao}" />
+
+					<p:outputLabel style="font-weight: bold" value="Bairro:" />
+
+					<p:outputLabel value="#{titularBean.titular.bairro}" />
+
+					<p:outputLabel style="font-weight: bold" value="Rua:" />
+
+					<p:outputLabel value="#{titularBean.titular.rua}" />
+
+				</p:panelGrid>
+
+				<f:facet name="footer">
+					<p:commandButton value="Sair" onclick="PF('view_dialog').hide()" />
+				</f:facet>
+			</p:dialog>
+		</h:form>
+	</ui:define>
+</ui:composition>
+
+</html>

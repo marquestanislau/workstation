@@ -1,0 +1,50 @@
+<ui:composition template="layout/template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="center">
+		<div class="ui-grid" style="margin-top: 10px;">
+			<div class="ui-grid-row">
+				<div style="margin-right: 10px;" class="ui-grid-col-8">
+					<p:panel>
+						<p:chart type="pie" model="#{graficoBean.modelo}" />
+					</p:panel>
+				</div>
+				<div class="ui-grid-col-4">
+					<h:form>
+						<p:panel header="#{msg.atalhos}">
+							<p:panelGrid>
+								<p:commandLink id="link_user"
+									action="/utilizadores/list?faces-redirect=true">
+									<p:graphicImage styleClass="shortcut" alt="Users" library="img"
+										name="checked_user.png" />
+									<p:tooltip for="link_user"
+										value="#{msg.atalhos_utilizadores_tooltip}" />
+								</p:commandLink>
+								<p:commandLink id="link_fine"
+									action="/multas/cadastro?faces-redirect=true">
+									<p:graphicImage styleClass="shortcut" alt="Users" library="img"
+										name="pt.png" />
+									<p:tooltip for="link_fine"
+										value="#{msg.atalhos_multas_tooltip}" />
+								</p:commandLink>
+								<p:commandLink id="link_report"
+									action="/multas/relatorioMulta?faces-redirect=true">
+									<p:graphicImage styleClass="shortcut" alt="Users" library="img"
+										name="report-icon.png" />
+									<p:tooltip for="link_report"
+										value="#{msg.atalhos_relatorio_tooltip}" />
+								</p:commandLink>
+							</p:panelGrid>
+						</p:panel>
+					</h:form>
+				</div>
+			</div>
+		</div>
+		<p:spacer />
+	</ui:define>
+
+</ui:composition>
