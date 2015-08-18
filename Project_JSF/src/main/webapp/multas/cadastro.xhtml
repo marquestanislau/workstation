@@ -35,13 +35,10 @@
 
 				</f:facet>
 			</p:menubar>
-
-			<p:spacer />
-
-			<p:panelGrid style="width: 100%;">
+			<p:panelGrid style="width: 100%; margin-top: 10px;">
 				<p:row>
 					<p:column>
-						<p:outputLabel for="nome" value="Designa&ccedil;&atilde;o:" />
+						<p:outputLabel for="nome" value="Designacao:" />
 					</p:column>
 					<p:column>
 						<p:inputText value="#{multaBean.multa.nome}" id="nome" size="45" />
@@ -112,9 +109,6 @@
 					</p:column>
 				</p:row>
 			</p:panelGrid>
-
-			<p:spacer />
-
 			<p:dialog width="700" widgetVar="dialog_view" closable="true"
 				closeOnEscape="true" resizable="false" showEffect="puff"
 				hideEffect="puff">
@@ -125,7 +119,7 @@
 				<p:dataTable id="dataTableMulta" var="multa"
 					value="#{multaBean.multas}" rowKey="#{multa.multa_id}"
 					paginator="true" rows="8"
-					emptyMessage="N&atilde;o possui registros.">
+					emptyMessage="Nao possui registros.">
 					<p:column headerText="#ID">
 						<h:outputText value="#{multa.multa_id}" />
 					</p:column>
@@ -146,7 +140,6 @@
 					<p:column headerText="Valor da Multa">
 						<p:outputLabel value="#{multa.valorDaMulta}" />
 					</p:column>
-
 				</p:dataTable>
 			</p:dialog>
 		</h:form>

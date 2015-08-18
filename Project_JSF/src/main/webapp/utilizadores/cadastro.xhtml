@@ -13,8 +13,7 @@
 					<f:facet name="options">
 						<p:menuitem>
 							<p:commandButton process="@this" value="#{msg.lista_utilizador}"
-								icon="ui-icon-person"
-								action="list?faces-redirect=true" />
+								icon="ui-icon-person" action="list?faces-redirect=true" />
 						</p:menuitem>
 					</f:facet>
 					<p:menuitem>
@@ -40,14 +39,14 @@
 						</p:column>
 						<p:column>
 							<p:inputText size="50" label="nome" id="nome" required="true"
-								value="#{utilizadorBean.user.nome}" />
+								value="#{utilizadorBean.utilizador.nome}" />
 						</p:column>
 						<p:column>
 							<h:outputLabel for="apelido" value="#{msg.apelido}" />
 						</p:column>
 						<p:column>
 							<p:inputText label="#{msg.apelido}" id="apelido" required="true"
-								value="#{utilizadorBean.user.apelido}" />
+								value="#{utilizadorBean.utilizador.apelido}" />
 						</p:column>
 						<p:column colspan="2" />
 					</p:row>
@@ -58,7 +57,7 @@
 						<p:column>
 							<p:inputText size="50" label="email" id="email"
 								validatorMessage="Formato de email invalido!"
-								value="#{utilizadorBean.user.email}">
+								value="#{utilizadorBean.utilizador.email}">
 								<f:validateRegex
 									pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
 							</p:inputText>
@@ -70,14 +69,14 @@
 						<p:column>
 							<p:inputMask size="50" label="#{msg.contacto}" id="cell"
 								required="true" mask="(+258)-999-999-999"
-								value="#{utilizadorBean.user.cell}" />
+								value="#{utilizadorBean.utilizador.cell}" />
 							<p:watermark value="(+258)-123-456-789" for="cell" />
 						</p:column>
 						<p:column>
 							<p:outputLabel value="#{msg.tipo_usuario}" for="user_Type" />
 						</p:column>
 						<p:column>
-							<p:selectOneMenu value="#{utilizadorBean.user.role}"
+							<p:selectOneMenu value="#{utilizadorBean.utilizador.role}"
 								id="user_Type" required="true">
 								<f:selectItem itemLabel="#{msg.water_selecione}" />
 								<f:selectItems value="#{utilizadorBean.roles}" var="rolex"
@@ -87,7 +86,6 @@
 								for="user_Type" />
 						</p:column>
 					</p:row>
-
 					<p:row>
 						<p:column>
 							<p:outputLabel for="senha" value="#{msg.senha}" />
@@ -97,7 +95,7 @@
 								weakLabel="Fraco" strongLabel="Segura" goodLabel="Aceitavel"
 								promptLabel="Digite a palavra passe" maxlength="15"
 								placeholder="M&aacute;ximo 15 caracteres"
-								value="#{utilizadorBean.user.password}" />
+								value="#{utilizadorBean.utilizador.password}" />
 						</p:column>
 						<p:column colspan="4" />
 					</p:row>
@@ -143,23 +141,19 @@
 							<p:menuitem>
 								<p:commandButton icon="ui-icon-search" value="#{msg.procurar}"
 									process="menu_search"
-									action="/pages/user/pesquisaUser?faces-redirect=true" />
+									action="/utilizadores/pesquisaUser?faces-redirect=true" />
 							</p:menuitem>
 						</f:facet>
 					</p:menubar>
 					<p:dataTable widgetVar="filteredDataTable"
 						emptyMessage="Sem usuarios cadastrados" id="dataTable" var="user"
 						rows="5" value="#{utilizadorBean.users}" paginator="true"
-						selectionMode="single" selection="#{utilizadorBean.user}"
-						rowKey="#{user.nome}"
-						filteredValue="#{utilizadorBean.filteredUsers}"
-						rowsPerPageTemplate="5,10,15">
+						rowKey="#{user.id}" selection="#{utilizadorBean.utilizador}"
+						selectionMode="single" rowsPerPageTemplate="5,10,15">
 
 						<p:ajax event="rowSelect" listener="#{utilizadorBean.onRowSelect}"
 							update=":frm:growl" />
-						<p:column headerText="#ID">
-							<p:outputLabel value="#{user.id}" />
-						</p:column>
+
 						<p:column filterBy="#{user.nome}" filterMatchMode="contains"
 							headerText="#{msg.nome}">
 							<p:outputLabel value="#{user.nome}" style="font-weight: bold;" />
@@ -233,19 +227,20 @@
 						<p:panelGrid id="userDetail" columns="2">
 							<f:facet name="header">
 								<p:outputLabel value="Detalhes de: " />
-								<p:outputLabel value="#{utilizadorBean.user.nome}" />
+								<p:outputLabel value="#{utilizadorBean.utilizador.nome}" />
 							</f:facet>
 
 							<p:outputLabel for="edit_nome" value="Nome:" />
-							<p:inputText id="edit_nome" value="#{utilizadorBean.user.nome}" />
+							<p:inputText id="edit_nome"
+								value="#{utilizadorBean.utilizador.nome}" />
 
 							<p:outputLabel for="edit_apelido" value="Apelido:" />
 							<p:inputText id="edit_apelido"
-								value="#{utilizadorBean.user.apelido}" />
+								value="#{utilizadorBean.utilizador.apelido}" />
 
 							<p:outputLabel for="edit_email" value="Email:" />
 							<p:inputText size="40" id="edit_email"
-								value="#{utilizadorBean.user.email}"
+								value="#{utilizadorBean.utilizador.email}"
 								validatorMessage="Formato de email invalido!"
 								placeholder="exemplo@email.com">
 								<f:validateRegex
@@ -254,10 +249,10 @@
 
 							<p:outputLabel value="Cell:" />
 							<p:inputMask mask="(+258)-999-999-999"
-								value="#{utilizadorBean.user.cell}" />
+								value="#{utilizadorBean.utilizador.cell}" />
 
 							<p:outputLabel value="Tipo de usuario:" />
-							<p:selectOneMenu value="#{utilizadorBean.user.role}">
+							<p:selectOneMenu value="#{utilizadorBean.utilizador.role}">
 								<f:selectItem itemLabel="#{msg.water_selecione}" />
 								<f:selectItems value="#{utilizadorBean.roles}" var="rolex"
 									itemValue="#{rolex}" itemLabel="#{rolex.label}" />
@@ -279,24 +274,24 @@
 						<p:panelGrid id="viewUser" columns="2">
 							<f:facet name="header">
 								<p:outputLabel value="Detalhes de: " />
-								<p:outputLabel value="#{utilizadorBean.user.nome}" />
-								<p:outputLabel value=" #{utilizadorBean.user.apelido}" />
+								<p:outputLabel value="#{utilizadorBean.utilizador.nome}" />
+								<p:outputLabel value=" #{utilizadorBean.utilizador.apelido}" />
 							</f:facet>
 
 							<p:outputLabel style="font-weight: bold" value="Nome:" />
-							<p:outputLabel value="#{utilizadorBean.user.nome}" />
+							<p:outputLabel value="#{utilizadorBean.utilizador.nome}" />
 
 							<p:outputLabel style="font-weight: bold" value="Apelido:" />
-							<p:outputLabel value="#{utilizadorBean.user.apelido}" />
+							<p:outputLabel value="#{utilizadorBean.utilizador.apelido}" />
 
 							<p:outputLabel style="font-weight: bold" value="Email:" />
-							<p:outputLabel value="#{utilizadorBean.user.email}" />
+							<p:outputLabel value="#{utilizadorBean.utilizador.email}" />
 
 							<p:outputLabel style="font-weight: bold" value="Cell:" />
-							<p:outputLabel value="#{utilizadorBean.user.cell}" />
+							<p:outputLabel value="#{utilizadorBean.utilizador.cell}" />
 
 							<p:outputLabel style="font-weight: bold" value="Tipo de usuario:" />
-							<p:outputLabel value="#{utilizadorBean.user.role.label}" />
+							<p:outputLabel value="#{utilizadorBean.utilizador.role.label}" />
 							<f:facet name="footer">
 								<p:commandButton value="#{msg.view_dialog_ok}"
 									icon="ui-icon-check" onclick="PF('view_dialog').hide()" />

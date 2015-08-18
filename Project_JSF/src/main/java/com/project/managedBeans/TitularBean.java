@@ -68,13 +68,14 @@ public class TitularBean implements Serializable {
 	public String saveTitular() {
 		
 		titular.setCreatedDate(Calendar.getInstance());
+		titular.setId(new Integer(-1));
 		ITitular titulares = repositorio.getTitulares();
 		titulares.guardar(titular);		
 		this.titulares.add(titular);
 		this.titular = new Titular();
 		FacesUtil.adicionaMensagem(FacesMessage.SEVERITY_INFO, FacesUtil.getMensagemI18n("sucesso"));
 		
-		return "/pages/titular/cadastro?faces-redirect=false";
+		return "cadastro";
 	}
 
 	public void delete(Titular t) {

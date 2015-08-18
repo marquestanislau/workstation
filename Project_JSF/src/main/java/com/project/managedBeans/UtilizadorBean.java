@@ -1,6 +1,7 @@
 package com.project.managedBeans;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -45,10 +46,6 @@ public class UtilizadorBean implements Serializable {
 		return filteredUsers;
 	}
 
-	public Utilizador getUser() {
-		return utilizador;
-	}
-	
 	public Utilizador getUtilizadorSelecionado() {
 		return utilizadorSelecionado;
 	}
@@ -57,8 +54,12 @@ public class UtilizadorBean implements Serializable {
 		this.utilizadorSelecionado = utilizadorSelecionado;
 	}
 
-	public void setUser(Utilizador user) {
-		this.utilizador = user;
+	public Utilizador getUtilizador() {
+		return utilizador;
+	}
+
+	public void setUtilizador(Utilizador utilizador) {
+		this.utilizador = utilizador;
 	}
 
 	public Role[] getRoles() {
@@ -70,7 +71,7 @@ public class UtilizadorBean implements Serializable {
 
 			IUtilizador usuarios = repositorio.getUsuarios();
 			utilizador.setCreated(Calendar.getInstance());
-
+			utilizador.setId(new Integer(-1)); // Inicializa o valor de id para -1
 			try {
 				usuarios.guardar(utilizador);
 				users.add(utilizador);
@@ -89,6 +90,9 @@ public class UtilizadorBean implements Serializable {
 	}
 
 	public List<Utilizador> getUsers() {
+		if(this.users == null) {
+			this.users = new ArrayList<Utilizador>();
+		}
 		return users;
 	}
 
@@ -96,7 +100,15 @@ public class UtilizadorBean implements Serializable {
 	public void init() {
 		repositorio = new Repositorio();
 		IUtilizador usuario = repositorio.getUsuarios();
-		users = usuario.todos();
+		initList(usuario);
+	}
+	
+	private void initList(IUtilizador iUtilizador) {
+		if(iUtilizador.todos().isEmpty()) {
+			getUsers();
+			return;
+		}
+		this.users = iUtilizador.todos();
 	}
 
 	public Utilizador read() {
@@ -155,4 +167,9 @@ public class UtilizadorBean implements Serializable {
 	private boolean saoIguais() {
 		return this.utilizador.getPassword().contentEquals(senhaSecundaria);
 	}
+
+	public void setUsers(List<Utilizador> users) {
+		this.users = users;
+	}
+	
 }

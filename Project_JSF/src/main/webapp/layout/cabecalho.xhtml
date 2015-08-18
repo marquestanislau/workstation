@@ -3,7 +3,6 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
-
 	<h:form>
 		<p:menubar id="mbar">
 			<p:menuitem value="#{msg.home}" icon="ui-icon-home"
@@ -19,7 +18,7 @@
 				<p:separator />
 				<p:menuitem value="Viaturas" icon="ui-icon ui-icon-grip-diagonal-se" />
 			</p:submenu>
-			<p:menuitem value="#{msg.multa}" icon="ui-icon-clipboard" url="#" />
+			<p:menuitem value="#{msg.multa}" icon="ui-icon-clipboard" outcome="/multas/todas" />
 			<p:menuitem value="#{msg.relatorio}" icon="ui-icon-bookmark"
 				outcome="/multas/relatorioMulta" />
 			<f:facet name="options">

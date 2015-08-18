@@ -25,6 +25,7 @@ public class TitularesHibernate implements ITitular {
 		return (Titular) session.get(Multa.class, codigo);
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<Titular> todos() {
 		return session.createCriteria(Titular.class)
 				.addOrder(Order.asc("nome")).list();

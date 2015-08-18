@@ -27,7 +27,7 @@ public class Multa implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer multa_id;
 	
 	@Lob
@@ -40,8 +40,16 @@ public class Multa implements Serializable {
 	private String capitulo;
 	private Integer numArtigo;
 	private double valorDaMulta;
+	private boolean pago;	
 	
-	
+	public boolean isPago() {
+		return pago;
+	}
+
+	public void setPago(boolean pago) {
+		this.pago = pago;
+	}
+
 	public String getCapitulo() {
 		return capitulo;
 	}

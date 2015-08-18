@@ -95,3 +95,13 @@
 .login .label {
 	text-align: right;
 }
+
+.label-nao_pago {
+	color: red;
+	padding: 5px;
+	margin-bottom: 100px;
+	text-align: center;
+}
+.label-pago {
+	color: blue;
+}

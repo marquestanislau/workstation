@@ -16,6 +16,7 @@ public class MultasHibernate implements IMulta {
 		this.session = session;
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<Multa> todos() {
 		return session.createCriteria(Multa.class).addOrder(Order.asc("nome"))
 				.list();

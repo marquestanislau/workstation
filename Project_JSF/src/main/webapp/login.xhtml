@@ -12,7 +12,7 @@
 	<h:body>
 		<center>
 			<div id="conteudo_login" style="width: 350px; margin-top: 200px;">
-				<h:outputLabel style="font: 40px bold;" value="#{msg.login_header}" />
+				<h:outputLabel style="font: 40px bold red;" value="#{msg.login_header}" />
 				<h:form>
 					<h:panelGrid styleClass="login" columns="2" style="width: 100%;">
 						<p:outputLabel styleClass="label" for="nome" value="#{msg.nome}" />
@@ -22,7 +22,7 @@
 						<p:spacer />
 						<h:panelGroup>
 							<p:commandButton icon="ui-icon-circle-check"
-								value="#{msg.autenticar}" />
+								value="#{msg.autenticar}" action="#{loginBean.verificarCredenciais}" />
 							<p:spacer width="10" />
 							<p:link value="#{msg.esqueci_a_senha}" />
 						</h:panelGroup>

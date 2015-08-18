@@ -3,6 +3,7 @@ package com.project.model;
 import java.io.Serializable;
 import java.util.Calendar;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -19,13 +20,16 @@ public class Utilizador implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
+	@Column(length=50)
 	private String nome;
+	@Column(length=30)
 	private String apelido;
 	private String email;
 	private String cell;
 	private String pic;
 	@Enumerated(EnumType.STRING)
 	private Role role;
+	@Column(length=32)
 	private String password;
 	@Temporal(TemporalType.DATE)
 	private Calendar created;

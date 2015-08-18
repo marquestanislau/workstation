@@ -125,9 +125,6 @@
 
 						<p:ajax event="rowSelect" listener="#{titularBean.onRowSelect}" />
 
-						<p:column headerText="ID">
-							<p:outputLabel value="#{titular.id}" />
-						</p:column>
 						<p:column headerText="Nome" filterBy="#{titular.nome}"
 							filterMatchMode="contains" sortBy="#{titular.nome}">
 							<p:outputLabel style="font-weight: bold;" value="#{titular.nome}" />
@@ -168,6 +165,11 @@
 							</p:row>
 						</p:columnGroup>
 					</p:dataTable>
+				</p:tab>
+				<p:tab title="#{msg.titular_tab_header_pesquisa}">
+					<p:panelGrid style="width: 100%;">
+						
+					</p:panelGrid>
 				</p:tab>
 			</p:tabView>
 		</h:form>

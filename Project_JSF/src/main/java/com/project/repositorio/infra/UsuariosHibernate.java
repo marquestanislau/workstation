@@ -16,6 +16,7 @@ public class UsuariosHibernate implements IUtilizador {
 		this.session = session;
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<Utilizador> todos() {
 		return session.createCriteria(Utilizador.class).addOrder(Order.asc("nome"))
 				.list();

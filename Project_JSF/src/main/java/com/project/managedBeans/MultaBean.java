@@ -59,6 +59,7 @@ public class MultaBean implements Serializable {
 	
 	public void add() {
 		IMulta multas = repositorio.getMultas();
+		multa.setPago(false);
 		multas.guardar(multa); // Interface IMulta
 		this.multas.add(multa);
 		FacesUtil.adicionaMensagem(FacesMessage.SEVERITY_INFO, FacesUtil.getMensagemI18n("sucesso"));

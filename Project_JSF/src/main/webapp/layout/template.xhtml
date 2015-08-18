@@ -16,12 +16,12 @@
 		<p:ajaxStatus onstart="PF('statusDialog').show()"
 			onsuccess="PF('statusDialog').hide()" />
 	
-		<p:dialog widgetVar="statusDialog" modal="false" draggable="false"
+		<p:dialog widgetVar="statusDialog" modal="true" draggable="false"
 			closable="false" resizable="false" showHeader="false">
 			<h:panelGrid style="text-align: center;">
-				<p:outputLabel style="font-weight: bold;" value="#{msg.ajax_status}" />
-				<p:graphicImage library="img" name="ajax-loading-bar-blue.gif"
+				<p:graphicImage library="img" name="ajax-loader.gif"
 					alt="Loading..." />
+				<p:outputLabel style="font-weight: bold;" value="#{msg.ajax_status}" />
 			</h:panelGrid>
 		</p:dialog>
 	
