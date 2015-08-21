@@ -31,9 +31,6 @@
 				selection="#{utilizadorBean.utilizador}" rowKey="#{user.id}">
 				<p:ajax event="rowSelect" listener="#{utilizadorBean.onRowSelect}"
 					update=":frm:growl" />
-				<p:column headerText="#ID">
-					<p:outputLabel value="#{user.id}" />
-				</p:column>
 				<p:column headerText="#{msg.list_nome}">
 					<p:outputLabel value="#{user.nome}" />
 				</p:column>
@@ -57,7 +54,7 @@
 				</p:column>
 				<p:columnGroup type="footer">
 					<p:row>
-						<p:column colspan="6" style="text-align: right;"
+						<p:column colspan="5" style="text-align: right;"
 							footerText="#{msg.list_numero_utilizadores}" />
 						<p:column footerText="#{utilizadorBean.totalUsers}" />
 					</p:row>
@@ -116,15 +113,15 @@
 						<p:panelGrid columns="2">
 							<h:outputLabel value="#{msg.list_diag_nome_usuario}"
 								for="user_name" />
-							<p:inputText id="user_name" />
+							<p:inputText id="user_name" disabled="true" />
 							<h:outputLabel value="#{msg.list_diag_senha}" for="senha" />
 							<p:password value="#{utilizadorBean.utilizador.password}" size="50"
-								feedback="true" weakLabel="Fraco" required="true" id="senha"
+								feedback="true" weakLabel="Fraco" required="true" label="#{msg.list_diag_senha}" id="senha"
 								strongLabel="Segura" goodLabel="Aceitavel"
 								promptLabel="Digite a palavra passe" maxlength="15" />
 							<h:outputLabel value="#{msg.list_diag_senha_rep}"
 								for="repeatSenha" />
-							<p:password value="#{utilizadorBean.senhaSecundaria}" size="50"
+							<p:password value="#{utilizadorBean.senhaSecundaria}" label="#{msg.list_diag_senha_rep}" size="50"
 								maxlength="15" id="repeatSenha" required="true" />
 							<p:outputLabel value="#{msg.list_role}" />
 							<p:selectOneMenu required="true" id="userType"

@@ -29,8 +29,7 @@
 
 					<p:menuitem>
 						<p:commandButton onclick="PF('dialog_view').show()" value="Multas" />
-						<p:commandButton icon="ui-icon-search" value="Lista"
-							action="/pages/multa/lista?faces-redirect=true" />
+						<p:commandButton icon="ui-icon-search" value="Lista" action="todas" />
 					</p:menuitem>
 
 				</f:facet>
@@ -65,7 +64,7 @@
 						</p:selectOneMenu>
 					</p:column>
 					<p:column>
-						<p:outputLabel for="valor" value="Valor da multa:" />
+						<p:outputLabel for="valor" value="#{msg.multas_valor_da_multa}" />
 					</p:column>
 					<p:column>
 						<p:inputText value="#{multaBean.multa.valorDaMulta}" id="valor">

@@ -7,18 +7,19 @@
 
 	<ui:define name="center">
 		<p:toolbar style="margin-top: 10px;">
-				<f:facet name="left">
-					<p:commandButton value="sdlfns" />
-				</f:facet>
-			</p:toolbar>
+			<f:facet name="left">
+				<p:commandButton icon="ui-icon-print" value="#{msg.relatorio_imprimir}" />
+			</f:facet>
+		</p:toolbar>
 		<h:form id="formulario_multas">
 			<p:dataTable var="multa" value="#{multaBean.multas}" paginator="true"
 				rowsPerPageTemplate="15, 20, 35" style="margin-top: 10px;">
 				<p:column sortBy="#{multa.pago}" headerText="#{msg.multas_status}">
-					<p:graphicImage title="dsufsdufg" library="img" name="#{multa.pago eq false ? 'nao_pago.png' : 'pago.png'}" />
+					<p:graphicImage title="dsufsdufg" library="img"
+						name="#{multa.pago eq false ? 'nao_pago.png' : 'pago.png'}" />
 					<h:outputLabel
 						styleClass="#{multa.pago eq false ? 'label-nao_pago' : 'label-pago'}"
-						value="#{multa.pago eq false ? msg.multas_nao_pago : msg.multas_pago}">	
+						value="#{multa.pago eq false ? msg.multas_nao_pago : msg.multas_pago}">
 					</h:outputLabel>
 				</p:column>
 				<p:column headerText="#{msg.nome}">
@@ -26,7 +27,11 @@
 				</p:column>
 				<p:column></p:column>
 				<p:column></p:column>
-				<p:column></p:column>
+				<p:column headerText="#{msg.multas_valor_da_multa}">
+					<p:outputLabel value="#{multa.valorDaMulta}">
+						<f:convertNumber currencyCode="MZM" currencySymbol="MZM" minFractionDigits="2" />
+					</p:outputLabel>
+				</p:column>
 			</p:dataTable>
 		</h:form>
 	</ui:define>
