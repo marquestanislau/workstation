@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <string name="app_name">Pegasus</string>
+	<string name="conteudo_label">Conteudo:</string>
+	<string name="id">[id]</string>
+	<string name="conteudo">[Conteudo]</string>
+	<string name="refresh">Refresh</string>
+	<string name="id_label">O id e:</string>
+	
+	<!-- strings para activity dialog utilizadoresactivity  -->
+	
+	<string name="utilizador_label_nome" >Nome</string>
+	<string name="utilizador_label_apelido">Apelido</string>
+	
+	<!--Fields for login screen  -->
+	
+	<string name="Login">Login</string>
+	<string name="userName">Nome do Utilizador</string>
+	<string name="password">Senha</string>
+	<string name="hint_nome">Ex: John Doe</string>
+</resources>
