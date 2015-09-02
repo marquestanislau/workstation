@@ -62,11 +62,6 @@
 			<artifactId>jasperreports</artifactId>
 			<version>5.6.1</version>
 		</dependency>
-		<dependency>
-			<groupId>org.jboss.weld.servlet</groupId>
-			<artifactId>weld-servlet</artifactId>
-			<version>1.1.30.Final</version>
-		</dependency>
 	</dependencies>
 	<repositories>
 		<repository>
