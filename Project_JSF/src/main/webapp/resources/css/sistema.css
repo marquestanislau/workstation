@@ -19,10 +19,11 @@ body {
 #cabecalho .ui-menubar {
 	background: none;
 	border: none;
-	background-color: #111;
+	background-color: #00463F;
 	height: 40px;
 	border-radius: 5px 5px;
 	padding: 10px;
+	height: 40px;
 }
 
 #cabecalho {
@@ -30,6 +31,11 @@ body {
 	width: 80%;
 	margin-right: auto;
 	margin-left: auto;
+}
+
+#cabecalho .ui-icon-home, #cabecalho .ui-icon-circle-plus, #cabecalho .ui-icon-bookmark,
+	#cabecalho .ui-icon-clipboard {
+	background-color: #FFF;
 }
 
 #cabecalho .ui-menubar .ui-widget-content {
@@ -132,21 +138,6 @@ body {
 		startColorstr=#c3e3fa, endColorstr=#a5defb);
 }
 
-.login {
-	background-color: #f2eded;
-	paddind: 20px 20px;
-	border-radius: 10px;
-	border: solid thin gray;
-}
-
-.login tr {
-	paddind: 100px;
-}
-
-.login .label {
-	text-align: right;
-}
-
 .label-nao_pago {
 	color: red;
 	padding: 5px;
@@ -182,7 +173,6 @@ body {
 		startColorstr=#a9db80, endColorstr=#96c56f);
 }
 
-}
 #conteudo .btn_salvar:hover {
 	border: 1px solid #ff9913;
 	background-color: #ffaf46;
@@ -195,5 +185,4 @@ body {
 	background-image: linear-gradient(to bottom, #ffaf46, #e78404);
 	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,
 		startColorstr=#ffaf46, endColorstr=#e78404);
-}
 }

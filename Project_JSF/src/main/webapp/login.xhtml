@@ -4,33 +4,48 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
-	<h:head>
-		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-		<title>#{msg.autenticacao_titulo}</title>
-		<h:outputStylesheet library="css" name="sistema.css" />
-	</h:head>
-	<h:body>
-		<center>
-			<div id="conteudo_login" style="width: 350px; margin-top: 200px;">
-				<h:outputLabel style="font: 40px bold red;" value="#{msg.login_header}" />
-				<h:form>
-					<h:panelGrid styleClass="login" columns="2" style="width: 100%;">
-						<p:outputLabel styleClass="label" for="nome" value="#{msg.nome}" />
-						<p:inputText maxlength="30" id="nome" required="true" size="30" />
-						<p:outputLabel styleClass="label" for="senha" value="#{msg.senha}" />
-						<p:password maxlength="15" size="30" id="senha" required="true" />
-						<p:spacer />
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>#{msg.autenticacao_titulo}</title>
+	<h:outputStylesheet library="css" name="sistema.css" />
+	<h:outputStylesheet library="css" name="login.css" />
+</h:head>
+<h:body>
+	<div>
+		<h:form>
+			<p:growl id="msg" autoUpdate="true" showDetail="false"
+				showSummary="true" />
+			<p:panelGrid styleClass="login" >
+				<p:row styleClass="header_login">
+					<p:column>
+						<h:outputLabel styleClass="header_login_label" value="#{msg.login_header}" />
+					</p:column>
+				</p:row>
+				<!-- <p:outputLabel styleClass="label" for="nome" value="#{msg.nome}" />
+				<p:outputLabel styleClass="label" for="senha" value="#{msg.senha}" /> -->
+				<p:row>
+					<p:column>
+						<p:inputText placeholder="#{msg.nome}" maxlength="30" label="#{msg.nome}" id="nome" required="true" size="30" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column>
+						<p:password label="#{msg.senha}" placeholder="#{msg.senha}" maxlength="15" size="30" id="senha" required="true" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column>
 						<h:panelGroup>
-							<p:commandButton icon="ui-icon-circle-check"
-								value="#{msg.autenticar}" action="#{loginBean.verificarCredenciais}" />
-							<p:spacer width="10" />
 							<p:link value="#{msg.esqueci_a_senha}" />
+							<p:spacer width="10" />
+							<p:commandButton styleClass="login-button"
+								icon="ui-icon-circle-check" value="#{msg.autenticar}"
+								action="#{loginBean.verificarCredenciais}" />
 						</h:panelGroup>
-					</h:panelGrid>
-					<p:messages id="msg" autoUpdate="true" showDetail="false"
-						showSummary="true" />
-				</h:form>
-			</div>
-		</center>
-	</h:body>
+					</p:column>
+				</p:row>
+			</p:panelGrid>
+		</h:form>
+	</div>
+</h:body>
 </html>

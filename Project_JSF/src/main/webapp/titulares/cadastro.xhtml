@@ -156,10 +156,7 @@
 						</p:column>
 						<p:columnGroup type="footer">
 							<p:row>
-								<p:column colspan="3" />
-								<p:column />
-								<p:column />
-								<p:column footerText="Total de registros:"
+								<p:column colspan="5" footerText="Total de registros:"
 									style="text-align: right;" />
 								<p:column footerText="#{titularBean.totalTitulares}" />
 							</p:row>
@@ -169,8 +166,10 @@
 				<p:tab title="#{msg.titular_tab_header_pesquisa}">
 					<p:panelGrid style="width: 100%;">
 						<p:row>
-							<p:inputText size="100" />
-							<p:commandButton value="#{msg.procurar}" />
+							<p:column>
+								<p:inputText placeholder="#{msg.titulares_campo_procurar}" size="100" style="margin-right: 10px;" />
+								<p:commandButton value="#{msg.procurar}" />
+							</p:column>
 						</p:row>
 					</p:panelGrid>
 				</p:tab>

@@ -7,17 +7,17 @@
 <h:body>
 	<ui:composition template="/layout/template.xhtml">
 		<ui:define name="center">
-			<p:growl autoUpdate="true" showDetail="true" showSummary="true" />
 			<h:form id="user_frm">
 				<p:menubar style="margin-top: 10px;">
 					<f:facet name="options">
 						<p:menuitem>
 							<p:commandButton process="@this" value="#{msg.lista_utilizador}"
-								icon="ui-icon-person" action="list?faces-redirect=true" />
+								icon="ui-icon-person" action="list" />
 						</p:menuitem>
 					</f:facet>
 					<p:menuitem>
-						<p:commandButton styleClass="btn_salvar" title="Clica para submeter os dados"
+						<p:commandButton styleClass="btn_salvar"
+							title="Clica para submeter os dados"
 							action="#{utilizadorBean.addUser}" value="#{msg.salvar}"
 							icon="ui-icon-circle-check" update=":frm:dataTable" />
 					</p:menuitem>
@@ -117,9 +117,7 @@
 				</p:panelGrid>
 			</h:form>
 			<h:form id="frm">
-				<p:growl id="growl" autoUpdate="true" showDetail="true"
-					showSummary="true" />
-
+				<p:growl id="growl" autoUpdate="true" showSummary="true" />
 				<p:panelGrid style="margin-top: 10px;" columns="1" layout="grid">
 					<p:spacer />
 					<p:menubar id="menu_search">

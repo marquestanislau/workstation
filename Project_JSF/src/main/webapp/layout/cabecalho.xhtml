@@ -3,7 +3,7 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
-	<h:form>
+	<h:form prependId="false">
 		<p:menubar id="mbar">
 			<p:menuitem value="#{msg.home}" icon="ui-icon-home"
 				outcome="/home.xhtml" />
@@ -21,6 +21,7 @@
 			<p:menuitem value="#{msg.multa}" icon="ui-icon-clipboard" outcome="/multas/todas" />
 			<p:menuitem value="#{msg.relatorio}" icon="ui-icon-bookmark"
 				outcome="/multas/relatorioMulta" />
+			<p:menuitem value="#{msg.configuracoes}" outcome="/settings/settings" />
 			<f:facet name="options">
 				<h1 id="logo" style="margin-right: 50px;">Pegasus</h1>
 			</f:facet>

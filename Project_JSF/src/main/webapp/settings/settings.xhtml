@@ -1,0 +1,40 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui" template="/layout/template.xhtml">
+
+	<ui:define name="center">
+		<h:form id="settings_form">
+			<p:tabView orientation="left">
+				<p:tab title="#{msg.configuracoes_aparencia}">
+					<p:panelGrid style="width: 100%;">
+						<p:row>
+							<p:column>
+								<p:outputLabel value="#{msg.configuracoes_tema}" />
+							</p:column>
+							<p:column>
+								<p:themeSwitcher var="t">
+									<f:selectItem itemLabel="#{msg.configuracoes_label_item}" />
+									<f:selectItems value="#{theme.themes}" var="tema"
+										itemLabel="#{tema.displayName}" itemValue="#{tema}" />
+									<p:column>
+										<h:outputText styleClass="ui-theme ui-theme-"
+											style="display-block" />
+									</p:column>
+										<p:graphicImage value="/images/themes/#{t.image}" />
+									<p:column>
+										#{t.name}
+									</p:column>
+								</p:themeSwitcher>
+							</p:column>
+						</p:row>
+					</p:panelGrid>
+				</p:tab>
+				<p:tab title="setting"></p:tab>
+				<p:tab title="setting"></p:tab>
+				<p:tab title="setting"></p:tab>
+			</p:tabView>
+		</h:form>
+	</ui:define>
+</ui:composition>

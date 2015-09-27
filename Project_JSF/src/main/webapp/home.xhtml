@@ -17,21 +17,21 @@
 					<h:form>
 						<p:panel header="#{msg.atalhos}">
 							<p:panelGrid>
-								<p:commandLink id="link_user"
+								<p:commandLink ajax="false" id="link_user"
 									action="/utilizadores/list?faces-redirect=true">
 									<p:graphicImage styleClass="shortcut" alt="Users" library="img"
 										name="checked_user.png" />
 									<p:tooltip for="link_user"
 										value="#{msg.atalhos_utilizadores_tooltip}" />
 								</p:commandLink>
-								<p:commandLink id="link_fine"
+								<p:commandLink ajax="false" id="link_fine"
 									action="/multas/cadastro?faces-redirect=true">
 									<p:graphicImage styleClass="shortcut" alt="Users" library="img"
 										name="pt.png" />
 									<p:tooltip for="link_fine"
 										value="#{msg.atalhos_multas_tooltip}" />
 								</p:commandLink>
-								<p:commandLink id="link_report"
+								<p:commandLink ajax="false" id="link_report"
 									action="/multas/relatorioMulta?faces-redirect=true">
 									<p:graphicImage styleClass="shortcut" alt="Users" library="img"
 										name="report-icon.png" />

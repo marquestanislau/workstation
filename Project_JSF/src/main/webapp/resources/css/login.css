@@ -1,0 +1,61 @@
+
+.login .login-button {
+	border: 1px solid #ffad41;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	font-size: 14px;
+	padding: 5px 5px 5px 5px;
+	text-decoration: none;
+	display: inline-block;
+	color: #FFFFFF;
+	background-color: #ffc579;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#ffc579),
+		to(#fb9d23));
+	background-image: -webkit-linear-gradient(top, #ffc579, #fb9d23);
+	background-image: -moz-linear-gradient(top, #ffc579, #fb9d23);
+	background-image: -ms-linear-gradient(top, #ffc579, #fb9d23);
+	background-image: -o-linear-gradient(top, #ffc579, #fb9d23);
+	background-image: linear-gradient(to bottom, #ffc579, #fb9d23);
+	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,
+		startColorstr=#ffc579, endColorstr=#fb9d23);
+}
+
+.login .login-button:hover {
+	border: 1px solid #ff9913;
+	background-color: #ffaf46;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#ffaf46),
+		to(#e78404));
+	background-image: -webkit-linear-gradient(top, #ffaf46, #e78404);
+	background-image: -moz-linear-gradient(top, #ffaf46, #e78404);
+	background-image: -ms-linear-gradient(top, #ffaf46, #e78404);
+	background-image: -o-linear-gradient(top, #ffaf46, #e78404);
+	background-image: linear-gradient(to bottom, #ffaf46, #e78404);
+	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,
+		startColorstr=#ffaf46, endColorstr=#e78404);
+}
+
+.login {
+	background-color: #FFF;
+	border-radius: 5px 5px;
+	padding: 10px 10px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 20%;
+}
+
+.header_login {
+	background: #282830;
+	font-weight: bold;
+	font-size: 40px;
+	color: #FFF;
+}
+
+.header_login .header_login_label {
+	padding: 60px;	
+}
+
+.ui-link .ui-widget {
+	color: blue;
+	font-size: 15px;
+}
