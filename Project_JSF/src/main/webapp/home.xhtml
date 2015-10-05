@@ -6,16 +6,19 @@
 	xmlns:p="http://primefaces.org/ui">
 
 	<ui:define name="center">
-		<div class="ui-grid" style="margin-top: 10px;">
+		<div style="margin-top: 10px;">
 			<div class="ui-grid-row">
-				<div style="margin-right: 10px;" class="ui-grid-col-8">
-					<p:panel>
-						<p:chart type="pie" model="#{graficoBean.modelo}" />
+				<div style="margin-right: 10px;" class="ui-grid-col-12">
+					<p:panel style="width: 100%;">
+						<p:chart type="pie" model="#{graficoBean.modelo}"
+							style="width:100%;height:300px" />
 					</p:panel>
 				</div>
-				<div class="ui-grid-col-4">
+			</div>
+			<div style="margin-top: 10px;" class="ui-grid-row">
+				<div class="ui-grid-col-12">
 					<h:form>
-						<p:panel header="#{msg.atalhos}">
+						<p:panel header="#{msg.atalhos}" style="width: 100%;">
 							<p:panelGrid>
 								<p:commandLink ajax="false" id="link_user"
 									action="/utilizadores/list?faces-redirect=true">
@@ -44,7 +47,6 @@
 				</div>
 			</div>
 		</div>
-		<p:spacer />
 	</ui:define>
 
 </ui:composition>
