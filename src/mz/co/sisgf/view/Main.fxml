@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="259.0" prefWidth="662.0" stylesheets="@application.css"
+	xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+	fx:controller="mz.co.sisgf.view.MainController">
+	<children>
+		<BorderPane prefHeight="259.0" prefWidth="594.0"
+			AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+			AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+			<center>
+
+			</center>
+			<left>
+				<VBox id="left_panel" prefHeight="209.0" prefWidth="177.0"
+					spacing="10.0" BorderPane.alignment="CENTER">
+					<children>
+						<Label fx:id="labelHome" maxWidth="1.7976931348623157E308"
+							onMouseClicked="#callContent" styleClass="menu_item" text="Home" />
+						<Label id="labelRegisto" fx:id="labelRegisto" maxWidth="1.7976931348623157E308"
+							onMouseClicked="#callContent" styleClass="menu_item" text="Registo de Transação" />
+						<Label id="labelTransacao" fx:id="labelTransacao" maxWidth="1.7976931348623157E308"
+							onMouseClicked="#callContent" styleClass="menu_item" text="Transações" />
+						<Label fx:id="labelBanco" maxWidth="1.7976931348623157E308"
+							onMouseClicked="#callContent" styleClass="menu_item" text="Registo de Banco" />
+						<Label fx:id="labelLogout" maxWidth="1.7976931348623157E308"
+							onMouseClicked="#logout" text="Log out">
+							<styleClass>
+								<String fx:value="menu_item" />
+								<String fx:value="logout" />
+							</styleClass>
+						</Label>
+					</children>
+					<padding>
+						<Insets bottom="5.0" top="5.0" />
+					</padding>
+				</VBox>
+			</left>
+			<top>
+				<ToolBar prefHeight="40.0" prefWidth="200.0" styleClass="toolBar"
+					BorderPane.alignment="CENTER">
+					<items>
+						<ImageView fx:id="userIcon" fitHeight="32.0" fitWidth="32.0"
+							pickOnBounds="true" preserveRatio="true" />
+						<Label text="Bem vindo," textFill="#fffefe">
+							<padding>
+								<Insets left="5.0" />
+							</padding>
+						</Label>
+						<Label fx:id="userName" text="Bem vindo, UserName" textFill="#f5f0f0"
+							underline="true">
+							<padding>
+								<Insets left="5.0" />
+							</padding>
+						</Label>
+					</items>
+				</ToolBar>
+			</top>
+			<center>
+				<Pane id="content" fx:id="content" prefHeight="158.0"
+					prefWidth="421.0" BorderPane.alignment="CENTER">
+					<children>
+						<fx:include source="Home.fxml" />
+					</children>
+				</Pane>
+			</center>
+		</BorderPane>
+	</children>
+</AnchorPane>

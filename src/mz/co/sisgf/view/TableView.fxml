@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane maxWidth="1.7976931348623157E308" prefHeight="509.0"
+	prefWidth="780.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+	fx:controller="mz.co.sisgf.controller.TableViewController">
+	<center>
+		<TableView fx:id="tableView" maxHeight="1.7976931348623157E308"
+			maxWidth="1.7976931348623157E308" prefHeight="295.0" prefWidth="713.0"
+			BorderPane.alignment="CENTER">
+			<columns>
+				<TableColumn fx:id="data" prefWidth="75.0" text="DATA MOV" />
+				<TableColumn fx:id="descricao" prefWidth="75.0" text="DESCRIÇÃO" />
+				<TableColumn fx:id="debito" prefWidth="129.0" text="DÉBITO/CRÉDITO" />
+				<TableColumn fx:id="saldo" prefWidth="194.0" text="VALOR" />
+			</columns>
+			<columnResizePolicy>
+				<TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+			</columnResizePolicy>
+		</TableView>
+	</center>
+	<top>
+		<HBox prefHeight="34.0" prefWidth="497.0" spacing="10.0"
+			styleClass="tableViewMenuBar" BorderPane.alignment="CENTER">
+			<children>
+				<Button fx:id="btnImprimir" mnemonicParsing="false" onAction="#printReport"
+					styleClass="dark-blue" text="Imprimir">
+					<HBox.margin>
+						<Insets />
+					</HBox.margin>
+				</Button>
+				<Button fx:id="btnRemover" mnemonicParsing="false" onAction="#apagar"
+					text="Remover">
+					<styleClass>
+						<String fx:value="dark-blue" />
+						<String fx:value="green" />
+					</styleClass>
+				</Button>
+				<ComboBox fx:id="comboBancos" onAction="#selecionarBanco"
+					prefHeight="25.0" prefWidth="167.0" promptText="Selecione um banco...">
+					<HBox.margin>
+						<Insets />
+					</HBox.margin>
+				</ComboBox>
+				<DatePicker fx:id="dataInicioPicker" prefHeight="25.0"
+					prefWidth="131.0" promptText="Data inicio" styleClass="data-selector" />
+				<Label text="a" />
+				<DatePicker fx:id="dataFimPicker" prefHeight="25.0"
+					prefWidth="123.0" promptText="Data final" styleClass="data-selector" />
+			</children>
+			<padding>
+				<Insets bottom="10.0" left="10.0" top="10.0" />
+			</padding>
+			<BorderPane.margin>
+				<Insets bottom="10.0" />
+			</BorderPane.margin>
+		</HBox>
+	</top>
+	<padding>
+		<Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+	</padding>
+	<bottom>
+		<VBox prefHeight="103.0" prefWidth="713.0" spacing="5.0"
+			BorderPane.alignment="CENTER">
+			<children>
+				<GridPane fx:id="gridPane" hgap="5.0" prefHeight="62.0"
+					prefWidth="713.0" styleClass="formBottom">
+					<columnConstraints>
+						<ColumnConstraints hgrow="SOMETIMES" maxWidth="351.0"
+							minWidth="10.0" prefWidth="123.0" />
+						<ColumnConstraints hgrow="SOMETIMES" maxWidth="632.0"
+							minWidth="10.0" prefWidth="585.0" />
+					</columnConstraints>
+					<rowConstraints>
+						<RowConstraints maxHeight="63.0" minHeight="10.0"
+							prefHeight="34.0" vgrow="SOMETIMES" />
+						<RowConstraints maxHeight="101.0" minHeight="0.0"
+							prefHeight="28.0" vgrow="SOMETIMES" />
+						<RowConstraints maxHeight="254.0" minHeight="10.0"
+							prefHeight="16.0" vgrow="SOMETIMES" />
+					</rowConstraints>
+					<children>
+						<Label text="Valor Inicial:" GridPane.halignment="LEFT" />
+						<Label fx:id="labelSaldoInicial" prefHeight="17.0"
+							prefWidth="260.0" GridPane.columnIndex="1" />
+						<Label fx:id="labelMensagemForm" maxWidth="1.7976931348623157E308"
+							text="Saldo contabilístico:" GridPane.halignment="LEFT"
+							GridPane.rowIndex="1">
+							<padding>
+								<Insets top="10.0" />
+							</padding>
+						</Label>
+						<Label fx:id="labelSaldoContabilistico" prefHeight="17.0"
+							prefWidth="245.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+					</children>
+				</GridPane>
+				<Label fx:id="labelMensagem" maxWidth="1.7976931348623157E308"
+					prefHeight="26.0" prefWidth="713.0" styleClass="sucesso" />
+			</children>
+			<BorderPane.margin>
+				<Insets top="10.0" />
+			</BorderPane.margin>
+		</VBox>
+	</bottom>
+</BorderPane>

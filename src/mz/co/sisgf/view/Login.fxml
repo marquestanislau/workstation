@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="361.0" prefWidth="286.0" styleClass="login_border" stylesheets="@application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mz.co.sisgf.view.LoginController">
+	<children>
+		<BorderPane prefHeight="361.0" prefWidth="286.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+			<center>
+				<VBox id="white_pane" prefHeight="200.0" prefWidth="218.0" BorderPane.alignment="CENTER">
+					<children>
+                  <Label style="-fx-font-weight: bold; -fx-font-size: 120%;" text="Efectue o Login">
+                     <padding>
+                        <Insets bottom="10.0" />
+                     </padding>
+                  </Label>
+						<TextField fx:id="fieldNome" promptText="Nome do utilizador">
+							<styleClass>
+								<String fx:value="login_text_field" />
+								<String fx:value="login_text_field_username" />
+							</styleClass>
+						</TextField>
+						<PasswordField fx:id="fieldSenha" promptText="Senha">
+							<styleClass>
+								<String fx:value="login_text_field" />
+								<String fx:value="login_text_field_passwd" />
+							</styleClass>
+						</PasswordField>
+						<Button fx:id="btnLogin" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#login" text="Login">
+							<VBox.margin>
+								<Insets top="10.0" />
+							</VBox.margin>
+							<styleClass>
+								<String fx:value="dark-blue" />
+								<String fx:value="login-button" />
+							</styleClass>
+						</Button>
+					</children>
+					<padding>
+						<Insets bottom="20.0" left="20.0" right="20.0" top="50.0" />
+					</padding>
+				</VBox>
+			</center>
+			<top>
+				<ToolBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+					<items>
+						<Button fx:id="close" mnemonicParsing="false" onAction="#close" />
+					</items>
+				</ToolBar>
+			</top>
+			<bottom>
+				<Label fx:id="labelMessage" maxWidth="1.7976931348623157E308" styleClass="login_label" BorderPane.alignment="CENTER" />
+			</bottom>
+		</BorderPane>
+	</children>
+</AnchorPane>

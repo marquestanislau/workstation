@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="397.0" prefWidth="621.0" stylesheets="@application.css"
+	xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+	fx:controller="mz.co.sisgf.controller.UtilizadorController">
+	<children>
+		<BorderPane prefHeight="305.0" prefWidth="353.0"
+			AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+			AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+			<left>
+				<VBox prefHeight="360.0" prefWidth="149.0" styleClass="admin-left-panel"
+					BorderPane.alignment="CENTER">
+					<children>
+						<HBox prefHeight="100.0" prefWidth="200.0" spacing="5.0">
+							<children>
+								<Button mnemonicParsing="false" text="1" />
+								<Label text="Criar conta" />
+							</children>
+						</HBox>
+						<HBox prefHeight="100.0" prefWidth="200.0" spacing="5.0">
+							<children>
+								<Button mnemonicParsing="false" text="2" />
+								<Label text="Autenticar" />
+							</children>
+						</HBox>
+						<HBox prefHeight="100.0" prefWidth="200.0" spacing="5.0">
+							<children>
+								<Button mnemonicParsing="false" text="3" />
+								<Label text="Gerir contas" />
+							</children>
+						</HBox>
+					</children>
+					<padding>
+						<Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+					</padding>
+				</VBox>
+			</left>
+			<center>
+				<VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0"
+					styleClass="admin-center-panel" BorderPane.alignment="CENTER">
+					<children>
+						<Label fx:id="icon" maxWidth="1.7976931348623157E308"
+							styleClass="admin-label-header" text="Formulário de registo de utilizador" />
+						<Label text="Nome do utilizador:" />
+						<TextField fx:id="fieldNome" promptText="John Doe" />
+						<Label text="Senha:" />
+						<PasswordField fx:id="fieldSenha" promptText="Escreva a senha" />
+						<Label text="Senha:" />
+						<PasswordField fx:id="fieldSenha_" promptText="Repita a senha" />
+						<Label text="E-mail:" />
+						<TextField fx:id="fieldEmail" promptText="exemplo@mail.com" />
+						<Button fx:id="btnSalvar" maxWidth="1.7976931348623157E308"
+							mnemonicParsing="false" onAction="#salvarUtilizador" prefHeight="41.0"
+							prefWidth="101.0" text="Cadastrar">
+							<styleClass>
+								<String fx:value="dark-blue" />
+								<String fx:value="green" />
+							</styleClass>
+						</Button>
+						<Label fx:id="labelMensagem" maxWidth="1.7976931348623157E308"
+							styleClass="sucesso" />
+					</children>
+					<padding>
+						<Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+					</padding>
+				</VBox>
+			</center>
+			<top>
+				<ToolBar prefHeight="40.0" prefWidth="200.0"
+					BorderPane.alignment="CENTER">
+					<items>
+						<Label text="Sistema de Gestão Financeira Pessoal" textFill="#f8f6f6" />
+					</items>
+				</ToolBar>
+			</top>
+		</BorderPane>
+	</children>
+</AnchorPane>

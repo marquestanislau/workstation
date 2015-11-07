@@ -1,0 +1,219 @@
+/* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+
+#left_panel {
+	/*-fx-background-color: #1c241fff;*/
+	-fx-background-color: 
+        linear-gradient(#f2f2f2, #d6d6d6),
+        linear-gradient(#fcfcfc 0.0%, #d9d9d9 20.0%, #d6d6d6 100.0%),
+        linear-gradient(#dddddd 0.0%, #f6f6f6 50.0%);
+}
+#search {
+	-fx-border-radius: 50.0;
+	-fx-background-radius: 50.0;
+	-fx-border-color: #000;
+}
+#btn_search {
+	-fx-background-color: 
+        linear-gradient(#ffd65b, #e68400),
+        linear-gradient(#ffef84, #f2ba44),
+        linear-gradient(#ffea6a, #efaa22),
+        linear-gradient(#ffe657 0.0%, #f8c202 50.0%, #eea10b 100.0%),
+        linear-gradient(from 0.0% 0.0% to 15.0% 50.0%, rgba(255.0,255.0,255.0,0.9), rgba(255.0,255.0,255.0,0.0));
+    -fx-background-radius: 30.0;
+    -fx-background-insets: 0.0,1.0,2.0,3.0,0.0;
+    -fx-text-fill: #654b00;
+    -fx-font-weight: bold;
+    -fx-font-size: 14.0px;
+    -fx-padding: 5.0 20.0 5.0 20.0;	
+}
+#btn_search:hover {
+	-fx-text-fill: white;
+	-fx-background-color: #ffe657; 
+}
+#content {
+	-fx-background-color: #FFF;
+}
+.combo-box {
+	-fx-background-color: #FFF;
+	-fx-border-color: #00CCFF; 
+}
+.data-selector .arrow-button{
+	-fx-background-color: #FFF;
+	-fx-border-color: #00CCFF; 
+	-fx-border-radius: 0 0;
+	-fx-background-radius: 0 0;
+	-fx-border-width: 1 1 1 0;
+}
+.table-view .column-header-background .column-header{
+	-fx-background-color: #00CCFF;
+}
+.dark-blue {
+	-fx-background-color: #FFF;
+ 	-fx-border-color: #00CCFF;
+    -fx-text-fill: #00CCFF;
+ 	-fx-border-width: 2.0 2.0;
+    -fx-padding: 8.0 20.0 8.0 20.0;
+    -fx-font-size: 12.0px;
+}
+.dark-blue:hover {
+	-fx-background-color: #00CCFF;
+    -fx-text-fill: #FFF;
+    -fx-background-radius: 0 0;
+	-fx-border-radius: 0 0;
+}
+.login_border {
+	-fx-border-color: #003333;
+	-fx-border-width: 2;
+}
+.login-button {
+	-fx-background-color: #00CCFF;
+    -fx-text-fill: #FFF;
+    -fx-background-radius: 0 0;
+	-fx-border-radius: 0 0;
+}
+.login-button:hover {
+	-fx-background-color: #FFF;
+ 	-fx-border-color: #00CCFF;
+ 	-fx-text-fill: #00CCFF;
+ 	-fx-background-radius: 0 0;
+	-fx-border-radius: 0 0;
+}
+.green {
+	-fx-border-color: #00CC66;
+	-fx-text-fill: #00CC66;
+}
+.green:hover {
+	-fx-text-fill: #FFF;
+	-fx-background-color: #00CC66;
+}
+.red-button {
+	-fx-border-color: #993300;
+	-fx-text-fill: #993300;
+}
+.red-button:hover {
+	-fx-text-fill: #FFF;
+	-fx-background-color: #993300;
+}
+.banco-left-panel {
+	-fx-border-width: 0 0 0 1;
+	-fx-border-color: #00CCFF;
+}
+.banco-left-panel .label {
+	-fx-font-weight: bold;
+	-fx-font-size: 105%;
+} 
+.banco-left-panel .list-view{
+	-fx-border-color: #993300;
+	-fx-border-style: solid;
+}
+.toolBar {
+	-fx-background-color: linear-gradient(#98a8bd 0.0%, #8195af 25.0%, #6d86a4 100.0%);
+}
+.menu_item {
+	-fx-text-fill: #666666ff;
+	-fx-font-size: 110.0%;
+}
+.menu_item:hover {
+	/*-fx-background-color: 
+        #c3c4c4,
+        linear-gradient(#d6d6d6 50.0%, white 100.0%),
+        radial-gradient(center 50.0% -40.0%, radius 200.0%, #e6e6e6 45.0%, rgba(230.0,230.0,230.0,0.0) 50.0%);
+    -fx-background-radius: 30.0;
+    -fx-background-insets: 0.0,1.0,1.0;
+    -fx-text-fill: #98a8bd;
+    -fx-effect: dropshadow( three-pass-box , rgba(0.0,0.0,0.0,0.6) , 3.0, 0.0 , 0.0 , 1.0 );*/
+  
+    -fx-background-color: #FFF; 	
+    -fx-text-fill: #6d86a4;
+    -fx-background-radius: 10 0 0 10;
+}
+.text-field, .text-area {
+	-fx-border-radius: 0.0;
+	-fx-background-radius: 0.0;
+	-fx-border-color: #00CCFF; 
+	-fx-background-color: #FFF;
+}
+.login_text_field {
+	-fx-font-weight: bold;
+	-fx-text-fill: #162d50ff;
+	-fx-background-repeat: no-repeat;
+	-fx-background-position: left center;
+	-fx-padding: 10 0 10 24;
+}
+.login_text_field_username {
+	-fx-border-radius: 10.0 10.0 0.0 0.0;
+	-fx-background-radius: 10.0 10.0 0.0 0.0; 
+	-fx-background-image: url('img/account-key.png');
+}
+.login_text_field_passwd {
+	-fx-border-radius: 0.0 0.0 10.0 10.0;
+	-fx-background-radius: 0.0 0.0 10.0 10.0; 
+	-fx-border-width: 0 1 1 1;
+	-fx-background-image: url('img/key.png');
+}
+.messagePane {
+	-fx-background-color: #FFF;
+}
+.sucesso {
+	-fx-text-fill: #4F8A10;
+    -fx-background-color: #DFF2BF;
+    -fx-padding: 10.0px 20.0px;
+}
+.tableViewMenuBar {
+	-fx-background-color: #FFF;
+	-fx-border-color: #ddd;
+}
+.formBottom {
+	-fx-border-color: #00CCFF;
+	-fx-border-width: 2.0 0.0 0.0 0.0;
+}
+.tool-bar {
+	-fx-background-color: #003333;
+}
+.tool-bar .button {
+	-fx-background-color: #00CCFF;
+	-fx-background-radius: 0 0;
+}
+.tool-bar .button:hover {
+	-fx-background-color: #00CC66;
+}
+.login_label {
+	-fx-text-fill: #4F8A10;
+    -fx-background-color: #DFF2BF;
+    -fx-padding: 10.0px 20.0px;
+}
+.admin-left-panel {
+	-fx-background-color: #00CCFF;
+}
+.admin-left-panel .button {
+	-fx-background-color: #FFF;
+	-fx-background-radius: 10em;
+}
+.admin-left-panel .label {
+	-fx-text-fill: #FFF;
+}
+.admin-center-panel {
+	-fx-background-color: #FFF;
+}
+.sysLabel {
+	-fx-font-size: 150%;
+	-fx-font-weight: bold;
+}
+.admin-center-panel .admin-label-header {
+	-fx-font-size: 120%;
+	-fx-font-weight: bold;
+	-fx-border-width: 0 0 2 0;
+	-fx-border-color: #003333;
+}
+.logout {
+	-fx-border-color: #3d3d3d;
+	-fx-border-width: 1 0 0 0;
+}
+.logout:hover {
+	-fx-text-fill: #e5d529;
+}
+#white_pane {
+	-fx-background-color: white;
+	-fx-background-radius: 0.0;
+	-fx-border-radius: 0.0;
+}

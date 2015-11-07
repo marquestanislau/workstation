@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane prefHeight="250.0" prefWidth="656.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mz.co.sisgf.controller.Home">
+	<center>
+		<ImageView fx:id="logo" fitHeight="150.0" fitWidth="399.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+			<BorderPane.margin>
+				<Insets left="20.0" top="70.0" />
+			</BorderPane.margin>
+		</ImageView>
+	</center>
+	<bottom>
+		<Pane prefHeight="133.0" prefWidth="656.0" BorderPane.alignment="CENTER">
+			<children>
+				<Label alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" prefHeight="31.0" prefWidth="656.0" styleClass="sysLabel" text="Sistema de Gestão Financeira Pessoal">
+					<padding>
+						<Insets top="50.0" />
+					</padding>
+				</Label>
+			</children>
+		</Pane>
+	</bottom>
+</BorderPane>
