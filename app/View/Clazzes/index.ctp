@@ -1,6 +1,6 @@
-<div class="col-md-6">
-	<h2><?php echo __('Categorias'); ?></h2>
-	<table class="table table-striped" cellpadding="0" cellspacing="0">
+<div class="clazzes index">
+	<h2><?php echo __('Clazzes'); ?></h2>
+        <table class="table table-hover" cellpadding="0" cellspacing="0">
 	<thead>
 	<tr>
 			<th><?php echo $this->Paginator->sort('id'); ?></th>
@@ -10,17 +10,17 @@
 	</tr>
 	</thead>
 	<tbody>
-	<?php foreach ($categorias as $categoria): ?>
+	<?php foreach ($clazzes as $clazze): ?>
 	<tr>
-		<td><?php echo h($categoria['Categoria']['id']); ?>&nbsp;</td>
-		<td><?php echo h($categoria['Categoria']['nome']); ?>&nbsp;</td>
+		<td><?php echo h($clazze['Clazze']['id']); ?>&nbsp;</td>
+		<td><?php echo h($clazze['Clazze']['nome']); ?>&nbsp;</td>
 		<td>
-			<?php echo $this->Html->link($categoria['Carreira']['nome'], array('controller' => 'carreiras', 'action' => 'view', $categoria['Carreira']['id'])); ?>
+			<?php echo $this->Html->link($clazze['Carreira']['nome'], array('controller' => 'carreiras', 'action' => 'view', $clazze['Carreira']['id'])); ?>
 		</td>
 		<td class="actions">
-			<?php echo $this->Html->link(__('View'), array('action' => 'view', $categoria['Categoria']['id'])); ?>
-			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $categoria['Categoria']['id'])); ?>
-			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $categoria['Categoria']['id']), array('confirm' => __('Are you sure you want to delete # %s?', $categoria['Categoria']['id']))); ?>
+			<?php echo $this->Html->link(__('View'), array('action' => 'view', $clazze['Clazze']['id'])); ?>
+			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $clazze['Clazze']['id'])); ?>
+			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $clazze['Clazze']['id']), array('confirm' => __('Are you sure you want to delete # %s?', $clazze['Clazze']['id']))); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>
@@ -40,11 +40,13 @@
 	?>
 	</div>
 </div>
-<div class="col-md-4">
+<div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
-		<li><?php echo $this->Html->link(__('New Categoria'), array('action' => 'add')); ?></li>
+		<li><?php echo $this->Html->link(__('New Clazze'), array('action' => 'add')); ?></li>
 		<li><?php echo $this->Html->link(__('List Carreiras'), array('controller' => 'carreiras', 'action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Carreira'), array('controller' => 'carreiras', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('List Escalaos'), array('controller' => 'escalaos', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Escalao'), array('controller' => 'escalaos', 'action' => 'add')); ?> </li>
 	</ul>
 </div>

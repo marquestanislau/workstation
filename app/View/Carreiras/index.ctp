@@ -1,5 +1,12 @@
-<div class="carreiras index">
-	<h2><?php echo __('Carreiras'); ?></h2>
+<div class="col-md-8">
+	<h4 class="settings-font-color"><span style="font-size: 24px;" class="glyphicon glyphicon-briefcase"></span> <?php echo __('Carreiras disponiveis no sistema'); ?></h4>
+	<a href="">
+		<span class="glyphicon glyphicon-print"></span>
+		Imprimir
+	</a>
+	<div class="well">
+		Alguma informacao relacionada com a configuracao inserccao de novas carreiras
+	</div>
 	<table class="table table-striped" cellpadding="0" cellspacing="0">
 	<thead>
 	<tr>
@@ -14,9 +21,9 @@
 		<td><?php echo h($carreira['Carreira']['id']); ?>&nbsp;</td>
 		<td><?php echo h($carreira['Carreira']['nome']); ?>&nbsp;</td>
 		<td class="actions">
-			<?php echo $this->Html->link(__('View'), array('action' => 'view', $carreira['Carreira']['id'])); ?>
-			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $carreira['Carreira']['id'])); ?>
-			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $carreira['Carreira']['id']), array('confirm' => __('Are you sure you want to delete # %s?', $carreira['Carreira']['id']))); ?>
+			<?php echo $this->Html->link("<span class='glyphicon glyphicon-eye-open'></span> Visualizar", array('action' => 'view', $carreira['Carreira']['id']), array('escape' => false)); ?>
+			<?php echo $this->Html->link("<span class='glyphicon glyphicon-edit'></span> Editar", array('action' => 'edit', $carreira['Carreira']['id']), array('escape' => false)); ?>
+			<?php echo $this->Form->postLink("<span class='glyphicon glyphicon-trash'></span> Remover", array('action' => 'delete', $carreira['Carreira']['id']), array( 'escape' => false, 'confirm' => __('Are you sure you want to delete # %s?', $carreira['Carreira']['id']))); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>
@@ -36,9 +43,15 @@
 	?>
 	</div>
 </div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
-		<li><?php echo $this->Html->link(__('New Carreira'), array('action' => 'add')); ?></li>
-	</ul>
+<div class="col-md-4">
+	<div class="list-group">
+	  <a href="#" class="list-group-item active">
+	    <h4><span class="glyphicon glyphicon-menu-left"></span> <?php echo __('Menu'); ?></h4>
+	  </a>
+	  <a href="#" class="list-group-item"> <span class="glyphicon glyphicon-cog"></span> Configuracoes</a>
+	  <a href="#" class="list-group-item">Morbi leo risus</a>
+	  <a href="#" class="list-group-item">Porta ac consectetur ac</a>
+	  <a href="#" class="list-group-item">Vestibulum at eros</a>
+		<?php echo $this->Html->link(__('New Carreira'), array('action' => 'add'), array('class' => 'list-group-item')); ?>
+	</div>
 </div>

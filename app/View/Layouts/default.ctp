@@ -5,7 +5,7 @@
 * @since         CakePHP(tm) v 0.10.0.1076
 */
 
-$cakeDescription = __d('cake_dev', 'SIGERHU-UP');
+$cakeDescription = __d('cake_dev', 'SIGERH-UP');
 ?>
 <!DOCTYPE html>
 <html>
@@ -17,24 +17,25 @@ $cakeDescription = __d('cake_dev', 'SIGERHU-UP');
 	<?php echo $this->fetch('title'); ?>
 </title>
 <?php
-echo $this->Html->meta('icon');
-#Inclusao de bootstrap
-echo $this->Html->css('bootstrap/bootstrap.min');
-#	echo $this->Html->css('cake.generic');
-echo $this->Html->css('material/material.indigo-orange.min');
-	# Funciona quando possuimos uma conexao com a internet
-echo $this->Html->css('https://fonts.googleapis.com/icon?family=Material+Icons');
-#Modificacao de alguns aspectos (Modificacao do aspecto default)
-echo $this->Html->css('custom');
-	#Carrega o javascript do framwork da google mdl
-echo $this->Html->script('material/material.min');
-#Carrega o script de bootstrap
-echo $this->Html->script('jquery-ui-1.10.3.custom.min');
-echo $this->Html->script('bootstrap/bootstrap.min');
+  echo $this->Html->meta('icon');
+  #Inclusao de bootstrap
+  echo $this->Html->css('bootstrap/bootstrap.min');
+  #	echo $this->Html->css('cake.generic');
+  echo $this->Html->css('material/material.indigo-orange.min');
+  	# Funciona quando possuimos uma conexao com a internet
+  echo $this->Html->css('https://fonts.googleapis.com/icon?family=Material+Icons');
+  #Modificacao de alguns aspectos (Modificacao do aspecto default)
+  echo $this->Html->css('custom');
+  #Carrega o javascript do framwork da google mdl
+  echo $this->Html->script('material/material.min');
+  #Carrega o script de bootstrap
+  echo $this->Html->script('jquery-ui-1.10.3.custom.min');
+  echo $this->Html->script('bootstrap/bootstrap.min');
+  echo $this->Html->script('script');
 
-echo $this->fetch('meta');
-echo $this->fetch('css');
-echo $this->fetch('script');
+  echo $this->fetch('meta');
+  echo $this->fetch('css');
+  echo $this->fetch('script');
 ?>
 </head>
 <body>
@@ -42,10 +43,12 @@ echo $this->fetch('script');
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
   <header class="mdl-layout__header">
     <div class="mdl-layout__header-row">
+      <?php echo $this->Html->image('image4155.png', array('alt' => 'sigerh Logo', 'class' => 'img-responsive')) ?>
       <!-- Title -->
-      <span class="mdl-layout-title">
+     <!--  <span>Sistema de Gest&atilde;o de Recursos Humanos da UP</span> -->
+      <!-- <span class="mdl-layout-title">
         Sistema de gest&atilde;o de recursos humanos da UP
-      </span>
+      </span> -->
      <!-- Add spacer, to align navigation to the right -->
      <div class="mdl-layout-spacer"></div>
      <!-- Navigation. We hide it in small screens. -->
@@ -76,10 +79,12 @@ echo $this->fetch('script');
     </span>
     <hr/>
     <nav class="mdl-navigation">
+      <a class="mdl-navigation__link" href="">Ingresso</a>
       <a class="mdl-navigation__link" href="">Link</a>
       <a class="mdl-navigation__link" href="">Link</a>
       <a class="mdl-navigation__link" href="">Link</a>
-      <a class="mdl-navigation__link" href="">Link</a>
+      <?php echo $this->Html->link("<span class='glyphicon glyphicon-user'></span> Gerir utilizadores", array('controller'=>'usuarios', 'action'=>'index'), array('escape' => false, 'class' => 'mdl-navigation__link')); ?>
+      <?php echo $this->Html->link("<span class='glyphicon glyphicon-cog'></span> Defini&ccedil;&otilde;es", array('controller'=>'pages', 'action'=>'configuracao'), array('escape' => false, 'class' => 'mdl-navigation__link')); ?>
     </nav>
     <hr>
     <nav class="mdl-navigation">
@@ -92,7 +97,7 @@ echo $this->fetch('script');
 <main class="mdl-layout__content">
   <div class="page-content">
     <?php echo $this->Session->flash(); ?>
-    <div class="mdl-grid">      
+    <div class="row mdl-grid">      
       <!--<div class="mdl-cell mdl-cell--12-col">-->
         <?php echo $this->fetch('content'); ?>  	
       <!--</div>-->
@@ -100,13 +105,13 @@ echo $this->fetch('script');
   </div>
 </main>
 <footer class="mdl-mini-footer">
-<div class="mdl-mini-footer__left-section">
-  <div class="mdl-logo">Title</div>
+<!-- <div class="mdl-mini-footer__right-section">
+  <div class="mdl-logo">Sistema de Gest&atilde;o de Recursos Humanos da UP</div>
   <ul class="mdl-mini-footer__link-list">
-    <li><a href="#">Help</a></li>
+    <li><a href="#">Ajuda</a></li>
     <li><a href="#">Privacy & Terms</a></li>
   </ul>
-</div>
+</div> -->
 </footer>
 </div>
 </body>

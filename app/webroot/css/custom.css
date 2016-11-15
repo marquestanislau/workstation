@@ -1,4 +1,21 @@
+*, html {
+    font-size: small;
+}
+.list-group-item a, a {
+    color: gray;
+}
 th a {
 	color: grey;
 	font-weight: bold;
+}
+.form-control {
+	border-radius: 0 !important;
+	-webkit-appearance: none;
+}
+.settings-font-color {
+	color: #004455;
+}
+
+.limit-down {
+	border-bottom: solid orange 3px;
 }

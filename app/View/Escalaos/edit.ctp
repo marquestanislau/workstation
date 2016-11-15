@@ -6,7 +6,7 @@
 		echo $this->Form->input('id');
 		echo $this->Form->input('nome');
 		echo $this->Form->input('categoria_id');
-		echo $this->Form->input('rclasse_id');
+		echo $this->Form->input('clazze_id');
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>
@@ -19,7 +19,7 @@
 		<li><?php echo $this->Html->link(__('List Escalaos'), array('action' => 'index')); ?></li>
 		<li><?php echo $this->Html->link(__('List Categorias'), array('controller' => 'categorias', 'action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Categoria'), array('controller' => 'categorias', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Rclasses'), array('controller' => 'rclasses', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Rclasse'), array('controller' => 'rclasses', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('List Rclasses'), array('controller' => 'clazzes', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Rclasse'), array('controller' => 'clazzes', 'action' => 'add')); ?> </li>
 	</ul>
 </div>

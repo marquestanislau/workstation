@@ -1,12 +1,12 @@
 <div class="escalaos index">
 	<h2><?php echo __('Escalaos'); ?></h2>
-	<table cellpadding="0" cellspacing="0">
+        <table class="table table-hover" cellpadding="0" cellspacing="0">
 	<thead>
 	<tr>
 			<th><?php echo $this->Paginator->sort('id'); ?></th>
 			<th><?php echo $this->Paginator->sort('nome'); ?></th>
 			<th><?php echo $this->Paginator->sort('categoria_id'); ?></th>
-			<th><?php echo $this->Paginator->sort('rclasse_id'); ?></th>
+			<th><?php echo $this->Paginator->sort('clazze_id'); ?></th>
 			<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
 	</thead>
@@ -16,10 +16,10 @@
 		<td><?php echo h($escalao['Escalao']['id']); ?>&nbsp;</td>
 		<td><?php echo h($escalao['Escalao']['nome']); ?>&nbsp;</td>
 		<td>
-			<?php echo $this->Html->link($escalao['Categoria']['id'], array('controller' => 'categorias', 'action' => 'view', $escalao['Categoria']['id'])); ?>
+			<?php echo $this->Html->link($escalao['Categoria']['nome'], array('controller' => 'categorias', 'action' => 'view', $escalao['Categoria']['id'])); ?>
 		</td>
 		<td>
-			<?php echo $this->Html->link($escalao['Rclasse']['id'], array('controller' => 'rclasses', 'action' => 'view', $escalao['Rclasse']['id'])); ?>
+			<?php echo $this->Html->link($escalao['Clazze']['nome'], array('controller' => 'clazzes', 'action' => 'view', $escalao['Clazze']['id'])); ?>
 		</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $escalao['Escalao']['id'])); ?>
@@ -50,7 +50,7 @@
 		<li><?php echo $this->Html->link(__('New Escalao'), array('action' => 'add')); ?></li>
 		<li><?php echo $this->Html->link(__('List Categorias'), array('controller' => 'categorias', 'action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Categoria'), array('controller' => 'categorias', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Rclasses'), array('controller' => 'rclasses', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Rclasse'), array('controller' => 'rclasses', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('List Classes'), array('controller' => 'clazzes', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Classes'), array('controller' => 'clazzes', 'action' => 'add')); ?> </li>
 	</ul>
 </div>

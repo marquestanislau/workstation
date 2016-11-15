@@ -55,12 +55,16 @@ class EscalaosController extends AppController {
 				$this->Flash->error(__('The escalao could not be saved. Please, try again.'));
 			}
 		}
-		$categorias = $this->Escalao->Categoria->find('list', array('fields' => 'Categoria.nome', 'Categoria.id'));
-		$rclasses = $this->Escalao->Rclasse->find('list', array('fields' => 'Rclasse.nome', 'Rclasse.id'));
-		$this->set(compact('categorias', 'rclasses'));
+                $this->getkeys();
 	}
 
-/**
+        protected function getkeys() {
+            $categorias = $this->Escalao->Categoria->find('list', array('fields' => 'Categoria.nome', 'Categoria.id'));
+            $clazzes = $this->Escalao->Clazze->find('list', array('fields' => 'Clazze.nome', 'Clazze.id'));
+            $this->set(compact('categorias', 'clazzes'));
+        }
+
+                /**
  * edit method
  *
  * @throws NotFoundException
@@ -82,9 +86,7 @@ class EscalaosController extends AppController {
 			$options = array('conditions' => array('Escalao.' . $this->Escalao->primaryKey => $id));
 			$this->request->data = $this->Escalao->find('first', $options);
 		}
-		$categorias = $this->Escalao->Categorium->find('list');
-		$rclasses = $this->Escalao->Rclasse->find('list');
-		$this->set(compact('categorias', 'rclasses'));
+		$this->getkeys();
 	}
 
 /**

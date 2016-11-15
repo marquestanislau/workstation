@@ -1,12 +1,11 @@
 <?php
 App::uses('AppModel', 'Model');
 /**
- * Escalao Model
+ * Sectore Model
  *
- * @property Categoria $Categoria
- * @property Classe $Classe
+ * @property Delegacao $Delegacao
  */
-class Escalao extends AppModel {
+class Sectore extends AppModel {
 
 /**
  * Validation rules
@@ -14,7 +13,7 @@ class Escalao extends AppModel {
  * @var array
  */
 	public $validate = array(
-		'nome' => array(
+		'designacao' => array(
 			'notBlank' => array(
 				'rule' => array('notBlank'),
 				//'message' => 'Your custom message here',
@@ -34,16 +33,9 @@ class Escalao extends AppModel {
  * @var array
  */
 	public $belongsTo = array(
-		'Categoria' => array(
-			'className' => 'Categoria',
-			'foreignKey' => 'categoria_id',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
-		),
-		'Clazze' => array(
-			'className' => 'Clazze',
-			'foreignKey' => 'clazze_id',
+		'Delegacao' => array(
+			'className' => 'Delegacao',
+			'foreignKey' => 'delegacao_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''

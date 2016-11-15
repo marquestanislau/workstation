@@ -1,12 +1,12 @@
 <?php
 App::uses('AppModel', 'Model');
 /**
- * Escalao Model
+ * Clazze Model
  *
- * @property Categoria $Categoria
- * @property Classe $Classe
+ * @property Carreira $Carreira
+ * @property Escalao $Escalao
  */
-class Escalao extends AppModel {
+class Clazze extends AppModel {
 
 /**
  * Validation rules
@@ -34,19 +34,34 @@ class Escalao extends AppModel {
  * @var array
  */
 	public $belongsTo = array(
-		'Categoria' => array(
-			'className' => 'Categoria',
-			'foreignKey' => 'categoria_id',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
-		),
-		'Clazze' => array(
-			'className' => 'Clazze',
-			'foreignKey' => 'clazze_id',
+		'Carreira' => array(
+			'className' => 'Carreira',
+			'foreignKey' => 'carreira_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
 		)
 	);
+
+/**
+ * hasMany associations
+ *
+ * @var array
+ */
+	public $hasMany = array(
+		'Escalao' => array(
+			'className' => 'Escalao',
+			'foreignKey' => 'clazze_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		)
+	);
+
 }

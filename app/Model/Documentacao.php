@@ -1,12 +1,12 @@
 <?php
 App::uses('AppModel', 'Model');
 /**
- * Escalao Model
+ * Documentacao Model
  *
- * @property Categoria $Categoria
- * @property Classe $Classe
+ * @property Carreira $Carreira
+ * @property Concurso $Concurso
  */
-class Escalao extends AppModel {
+class Documentacao extends AppModel {
 
 /**
  * Validation rules
@@ -34,16 +34,16 @@ class Escalao extends AppModel {
  * @var array
  */
 	public $belongsTo = array(
-		'Categoria' => array(
-			'className' => 'Categoria',
-			'foreignKey' => 'categoria_id',
+		'Carreira' => array(
+			'className' => 'Carreira',
+			'foreignKey' => 'carreira_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
 		),
-		'Clazze' => array(
-			'className' => 'Clazze',
-			'foreignKey' => 'clazze_id',
+		'Concurso' => array(
+			'className' => 'Concurso',
+			'foreignKey' => 'concurso_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
