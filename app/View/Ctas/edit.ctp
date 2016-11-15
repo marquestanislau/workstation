@@ -1,4 +1,4 @@
-<div class="ctas form">
+<div class="col-md-8">
     <?php echo $this->Form->create('Cta'); ?>
     <fieldset>
         <legend><?php echo __('Edit Cta'); ?></legend>
@@ -15,7 +15,7 @@
     </fieldset>
     <?php echo $this->Form->end(__('Submit')); ?>
 </div>
-<div class="actions">
+<div class="col-md-4>
     <h3><?php echo __('Actions'); ?></h3>
     <ul>
 
