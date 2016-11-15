@@ -1,4 +1,4 @@
-<div class="sectores form">
+<div class="col-md-6">
 <?php echo $this->Form->create('Sectore'); ?>
 	<fieldset>
 		<legend><?php echo __('Edit Sectore'); ?></legend>
